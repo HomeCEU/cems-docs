@@ -44,7 +44,69 @@ paths:
           description: "User already exists (probably duplicate employee_id)"
         422:
           description: "Cannot process the request with the provided information"
-          
+  /company/{company_id}/group:
+    get:
+      tags:
+        - "Company"
+      summary: "Get a set of groups associated with the company"
+      description: ""
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GroupSet"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Authenticated but not authorized"
+
+  /company/{company_id}/login:
+    post:
+      tags:
+        - "Company"
+      summary: "Grants user access to our api for a given university"
+      description: ""
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - in: "body"
+          name: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required:
+              - "username"
+              - "password"
+              - "client_id"
+            properties:
+              username:
+                type: "string"
+                example: "email@example.com"
+              password:
+                type: "string"
+                example: "abcd1234"
+              client_id:
+                type: "string"
+                example: "123ab45c6def78g90hij"
+      responses:
+        200:
+          description: "User was authenticated"
+          schema:
+            $ref: "#/definitions/UserLogin"
+        401:
+          description: "User was not authenticted"
+        403:
+          description: "User was authenticated but not authorized"
   /company/{companyId}/user/{userId}:
     get:
       tags:
@@ -360,6 +422,44 @@ paths:
           description: "user was authenticated but not authorized"
 
 definitions:
+  GroupSet:
+    type: "object"
+    required: 
+    - "data"
+    properties:
+      data:
+        type: "array"
+        items:
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 123
+            name: 
+              type: "string"
+              example: "Admin Assistant (t)"
+            users: 
+              type: "number"
+              example: 2
+
+  UserLogin:
+      type: "string"
+      example: {
+    "data": {
+        "access_token": "access_token",
+        "refresh_token": "refresh_token",
+        "first_name": "John",
+        "last_name": "Doe",
+        "email_address": "john@example.com",
+        "is_admin": false,
+        "user_id": 12345,
+        "account_setup_complete": false,
+        "is_corporate_admin": true
+    },
+    "messages": {
+        "message": "User was authenticated"
+    }
+}
   Enrollment:
     type: "object"
     required: 
