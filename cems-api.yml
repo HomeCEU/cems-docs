@@ -10,7 +10,7 @@ paths:
   /company/user:
     post:
       tags:
-        - "Company"
+        - "User"
       summary: "Add company member"
       description: "Add create a new user within a specific company"
       operationId: "addCompanyMember"
@@ -48,8 +48,8 @@ paths:
   /company/{companyId}/user/{userId}:
     get:
       tags:
-        - "User"
-      summary: ""
+        - "Company"
+      summary: "Get the user details"
       description: ""
       operationId: "userDetails"
       parameters:
@@ -903,7 +903,10 @@ definitions:
           - "shipping_address"
           - "phones"
           - "corporate"
-        properties: 
+        properties:
+          asha_code:
+            type: "string"
+            example: "HCEU229"
           first_name: 
             type: "string"
             example: "Fred"
