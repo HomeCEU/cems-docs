@@ -87,7 +87,6 @@ paths:
           description: "Authenticated but not authorized"
         404:
           description: "Company not found"
-
   /company/{company_id}/login:
     post:
       tags:
@@ -129,6 +128,29 @@ paths:
           description: "User was not authenticted"
         403:
           description: "User was authenticated but not authorized"
+          
+  /company/{companyId}/resources:
+    get:
+      tags:
+        - "Company"
+      summary: "Get a company's cms pages by the ID"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "companyId"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ResourcePages"
+        403:
+          description: "Authenticated but not authorized"
+        404:
+          description: "Company not found"
   /company/{companyId}/user/{userId}:
     get:
       tags:
@@ -539,6 +561,27 @@ definitions:
         "message": "User was authenticated"
     }
 }
+
+  ResourcePages:
+    type: "object"
+    required: 
+    - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 123
+            name: 
+              type: "string"
+              example: "Example Resource Page Title"
+            link: 
+              type: "string"
+              example: "example-resource-page-title"
+
   Enrollment:
     type: "object"
     required: 
