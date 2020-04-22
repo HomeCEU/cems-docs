@@ -65,6 +65,28 @@ paths:
           description: "Not authenticated"
         403:
           description: "Authenticated but not authorized"
+          
+  /company/{alias}/config:
+    get:
+      tags:
+        - "Company"
+      summary: "Gets company configuration by company domain alias"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "alias"
+          description: ""
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/AliasConfig"
+        403:
+          description: "Authenticated but not authorized"
+        404:
+          description: "Company not found"
 
   /company/{company_id}/login:
     post:
@@ -422,6 +444,63 @@ paths:
           description: "user was authenticated but not authorized"
 
 definitions:
+  AliasConfig:
+    type: "object"
+    required: 
+    - "data"
+    properties: 
+      data:
+        type: "object"
+        required: 
+          - "id"
+          - "name"
+          - "logo"
+          - "alias"
+          - "forum_url"
+          - "subdomain"
+          - "theme"
+          - "username_watermark"
+          - "username_label"
+          - "example_username"
+          - "landing_message"
+          - "landing_replacement"
+          - "username_input_label"
+          - "default_access_level"
+        properties: 
+          id: 
+            type: "string"
+            example: "4"
+          name: 
+            type: "string"
+            example: "Demo University"
+          logo: 
+            type: "string"
+            example: "https://www.example.com/image.png"
+          alias: 
+            type: "string"
+            example: "demo"
+          subdomain: 
+            type: "string"
+            example: "demo"
+          username_watermark: 
+            type: "string"
+            example: "Username (Email address)"
+          username_label: 
+            type: "string"
+            example: "f initial + lastname + any 4 digits"
+          example_username: 
+            type: "string"
+            example: "jsmith@email.com"
+          landing_message: 
+            type: "string"
+            example: "<h3>Welcome to the Demo University!</h3>\r\n<p><stron>We're glad you made it. Welcome to the easiest onlinecontinuing education portal ever built. </strong></p>"
+          username_input_label: 
+            type: "string"
+            example: "Custom Username Suffix"
+          default_access_level: 
+            type: "string"
+            example: "unlimited"
+
   GroupSet:
     type: "object"
     required: 
