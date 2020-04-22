@@ -7,6 +7,28 @@ host: "api.hceu-sandbox.com"
 basePath: "/api/v2"
 
 paths:
+  /company/{company_id}:
+    get:
+      tags:
+        - "Company"
+      summary: "Get company by the ID"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GetCompany"
+        403:
+          description: "Authenticated but not authorized"
+        404:
+          description: "Company not found"
   /company/user:
     post:
       tags:
@@ -466,6 +488,191 @@ paths:
           description: "user was authenticated but not authorized"
 
 definitions:
+  GetCompany:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data:
+        type: "object"
+        required: 
+          - "id"
+          - "company_name"
+          - "name"
+          - "support_email"
+          - "email_sender_name"
+          - "reply_to_email"
+          - "reply_to_email_sender_name"
+          - "embedded_css"
+          - "asset_folder_location"
+          - "company_image_url"
+          - "subscription_length_in_days"
+          - "company_cert_image_url"
+          - "settings_json"
+          - "username_type"
+          - "username_input_label"
+          - "username_prefix"
+          - "username_input_rules"
+          - "username_input_min_length"
+          - "username_input_max_length"
+          - "username_watermark"
+          - "username_label"
+          - "example_username"
+          - "primary_url"
+          - "certificate_cc_recipients"
+          - "non_credit_certificate_cc_recipients"
+          - "login_welcome_message"
+          - "homepage_replacement_text"
+          - "company_access_levels"
+          - "contract_status"
+          - "asha_provider_code"
+          - "ce_broker_provider_code"
+          - "features"
+          - "license_filters"
+          - "company_type"
+        properties: 
+          id: 
+            type: "number"
+            example: 4
+          company_name: 
+            type: "string"
+            example: "Demo University"
+          name: 
+            type: "string"
+            example: "Demo University"
+          support_email: 
+            type: "string"
+            example: "help@example.com"
+          asset_folder_location: 
+            type: "string"
+            example: "/web/frontend/images/demo/"
+          company_image_url: 
+            type: "string"
+            example: "https://www.example.com/image.png"
+          company_cert_image_url: 
+            type: "string"
+            example: "https://www.example.com/image.jpg"
+          username_type: 
+            type: "string"
+            example: "finitlast"
+          username_input_label: 
+            type: "string"
+            example: "Custom Username Suffix"
+          username_input_rules: 
+            type: "string"
+            example: "numeric"
+          username_input_min_length: 
+            type: "number"
+            example: 4
+          username_input_max_length: 
+            type: "number"
+            example: 4
+          username_watermark: 
+            type: "string"
+            example: "Username (Email address)"
+          username_label: 
+            type: "string"
+            example: "f initial + lastname + any 4 digits"
+          example_username: 
+            type: "string"
+            example: "email@example.com"
+          primary_url: 
+            type: "string"
+            example: "demo.example.com"
+          login_welcome_message: 
+            type: "string"
+            example: "<h3>Welcome to the Demo University!</h3>\r\n<p><strong>We're glad you made it. Welcome to the easiest online continuing education portal ever built. </strong></p>"
+          company_access_levels: 
+            type: "array"
+            items: 
+              type: "object"
+              properties: 
+                id: 
+                  type: "number"
+                  example: 2
+                access_level: 
+                  type: "string"
+                  example: "unlimited"
+                is_default: 
+                  type: "boolean"
+                  example: true
+          contract_status: 
+            required: 
+              - "id"
+              - "contract_status_constant"
+              - "name"
+              - "constant"
+            properties: 
+              id: 
+                type: "number"
+                example: 1
+              contract_status_constant: 
+                type: "string"
+                example: "Demo"
+              name: 
+                type: "string"
+                example: "Demo"
+              constant: 
+                type: "string"
+                example: "demo"
+            type: "object"
+          asha_provider_code: 
+            type: "string"
+            example: "ACGB"
+          ce_broker_provider_code: 
+            type: "string"
+            example: "8744"
+          features: 
+            type: "array"
+            items: 
+              type: "object"
+              properties: 
+                id: 
+                  type: "number"
+                  example: 1
+                feature: 
+                  type: "string"
+                  example: "university-reporting"
+                name: 
+                  type: "string"
+                  example: "Download Reports"
+                constant: 
+                  type: "string"
+                  example: "university-reporting"
+          license_filters: 
+            type: "array"
+            items: 
+              type: "object"
+              properties: 
+                id: 
+                  type: "number"
+                  example: 1
+                license_group: 
+                  required: 
+                    - "id"
+                    - "constant"
+                    - "name"
+                  properties: 
+                    id: 
+                      type: "number"
+                      example: 1
+                    constant: 
+                      type: "string"
+                      example: "pt-pta"
+                    name: 
+                      type: "string"
+                      example: "PT/PTA"
+                  type: "object"
+                name: 
+                  type: "string"
+                  example: "PT"
+                constant: 
+                  type: "string"
+                  example: "pt"
+          company_type: 
+            type: "string"
+            example: "SUBSCRIPTION"
+        
   AliasConfig:
     type: "object"
     required: 
@@ -512,7 +719,7 @@ definitions:
             example: "f initial + lastname + any 4 digits"
           example_username: 
             type: "string"
-            example: "jsmith@email.com"
+            example: "email@example.com"
           landing_message: 
             type: "string"
             example: "<h3>Welcome to the Demo University!</h3>\r\n<p><stron>We're glad you made it. Welcome to the easiest onlinecontinuing education portal ever built. </strong></p>"
