@@ -26,9 +26,31 @@ paths:
           schema:
             $ref: "#/definitions/GetCompany"
         403:
-          description: "Authenticated but not authorized"
+          description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
+  /company/{company_id}/curriculum:
+    get:
+      tags:
+        - "Company"
+      summary: "Get all curricula for a company"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/CompanyCurricula"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "User was authenticated but not authorized"
   /company/user:
     post:
       tags:
@@ -59,7 +81,6 @@ paths:
                   user_id: 
                     type: integer
                     example: 271930
-            
         403:
           description: "user was authenticated but not authorized"
         409:
@@ -86,7 +107,7 @@ paths:
         401:
           description: "Not authenticated"
         403:
-          description: "Authenticated but not authorized"
+          description: "User was authenticated but not authorized"
           
   /company/{alias}/config:
     get:
@@ -106,7 +127,7 @@ paths:
           schema:
             $ref: "#/definitions/AliasConfig"
         403:
-          description: "Authenticated but not authorized"
+          description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
   /company/{company_id}/login:
@@ -147,7 +168,7 @@ paths:
           schema:
             $ref: "#/definitions/UserLogin"
         401:
-          description: "User was not authenticted"
+          description: "User was not authenticated"
         403:
           description: "User was authenticated but not authorized"
           
@@ -170,7 +191,7 @@ paths:
           schema:
             $ref: "#/definitions/ResourcePages"
         403:
-          description: "Authenticated but not authorized"
+          description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
   /company/{companyId}/user/{userId}:
@@ -672,7 +693,54 @@ definitions:
           company_type: 
             type: "string"
             example: "SUBSCRIPTION"
-        
+            
+  CompanyCurricula:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 102
+            name: 
+              type: "string"
+              example: "Example Curriculum"
+            description: 
+              type: "string"
+              example: "Description for the curriculum"
+            sendCourseReminder: 
+              type: "boolean"
+              example: true
+            companyId: 
+              type: "number"
+              example: 4
+            courses: 
+              type: "array"
+              items: 
+                type: "object"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 3341
+                  name: 
+                    type: "string"
+                    example: "Example course name"
+                  dueDays: 
+                    type: "number"
+                    example: 1
+                  availableDays: 
+                    type: "number"
+                    example: 0
+                  isSoftDueDate: 
+                    type: "boolean"
+                    example: true
+
+    
   AliasConfig:
     type: "object"
     required: 
