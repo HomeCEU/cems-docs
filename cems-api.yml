@@ -855,23 +855,59 @@ definitions:
               example: 2
 
   UserLogin:
-      type: "string"
-      example: {
-    "data": {
-        "access_token": "access_token",
-        "refresh_token": "refresh_token",
-        "first_name": "John",
-        "last_name": "Doe",
-        "email_address": "john@example.com",
-        "is_admin": false,
-        "user_id": 12345,
-        "account_setup_complete": false,
-        "is_corporate_admin": true
-    },
-    "messages": {
-        "message": "User was authenticated"
-    }
-}
+      type: "object"
+      required: 
+        - "data"
+        - "messages"
+      properties: 
+        data:
+          type: "object"
+          required: 
+            - "access_token"
+            - "refresh_token"
+            - "first_name"
+            - "last_name"
+            - "email_address"
+            - "is_admin"
+            - "user_id"
+            - "account_setup_complete"
+            - "is_corporate_admin"
+          properties: 
+            access_token: 
+              type: "string"
+              example: "access_token"
+            refresh_token: 
+              type: "string"
+              example: "refresh_token"
+            first_name: 
+              type: "string"
+              example: "John"
+            last_name: 
+              type: "string"
+              example: "Smith"
+            email_address: 
+              type: "string"
+              example: "jsmith@example.com"
+            is_admin: 
+              type: "boolean"
+              example: false
+            user_id: 
+              type: "number"
+              example: 504973
+            account_setup_complete: 
+              type: "boolean"
+              example: false
+            is_corporate_admin: 
+              type: "boolean"
+              example: true
+        messages:
+          type: "object"
+          required: 
+            - "message"
+          properties: 
+            message: 
+              type: "string"
+              example: "User was authenticated"
 
   ResourcePages:
     type: "object"
