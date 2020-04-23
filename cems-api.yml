@@ -156,6 +156,27 @@ paths:
             $ref: "#/definitions/OrgUnitList"
         403:
           description: "User was authenticated but not authorized"
+  /company/{company_id}/resource:
+    get:
+      tags:
+        - "Company"
+      summary: "List all company enabled resources"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/EnabledResources"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "User was authenticated but not authorized"
   /company/user:
     post:
       tags:
@@ -941,6 +962,26 @@ definitions:
             parentUnit:
               type: "number"
               example: 113
+              
+  EnabledResources:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            constant: 
+              type: "string"
+              example: "users"
+            name: 
+              type: "string"
+              example: "Users"
+            description: 
+              type: "string"
+              example: "User Related Features"
 
   AliasConfig:
     type: "object"
