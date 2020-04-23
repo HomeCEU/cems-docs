@@ -29,6 +29,28 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
+  /company/{company_id}/boc_instructional_level:
+    get:
+      tags:
+        - "Company"
+      summary: "Board of Certification instructional level"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/BOCLevel"
+        403:
+          description: "User was authenticated but not authorized"
+        404:
+          description: "Company not found"
   /company/{company_id}/curriculum:
     get:
       tags:
@@ -714,6 +736,23 @@ definitions:
             type: "string"
             example: "SUBSCRIPTION"
             
+  BOCLevel:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 1
+            name: 
+              type: "string"
+              example: "Essential"
+
   CompanyCurricula:
     type: "object"
     required: 
