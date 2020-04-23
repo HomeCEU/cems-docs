@@ -115,6 +115,28 @@ paths:
             $ref: "#/definitions/CompanyFeatures"
         403:
           description: "User was authenticated but not authorized"
+  /company/{company_id}/instructional_level:
+    get:
+      tags:
+        - "Company"
+      summary: "List instructional levels"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/InstructLevel"
+        403:
+          description: "User was authenticated but not authorized"
+        404:
+          description: "Company not found"
   /company/user:
     post:
       tags:
@@ -854,6 +876,23 @@ definitions:
             name: 
               type: "string"
               example: "Download Reports"
+              
+  InstructLevel:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 1
+            name: 
+              type: "string"
+              example: "Beginner"
 
   AliasConfig:
     type: "object"
@@ -1708,4 +1747,3 @@ definitions:
                 example: []
             type: "object"
         type: "object"
-        
