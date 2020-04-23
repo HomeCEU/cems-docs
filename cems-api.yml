@@ -51,6 +51,28 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
+  /company/{company_id}/clinical_topic:
+    get:
+      tags:
+        - "Company"
+      summary: "List all clinical topics"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ClinicalTopic"
+        403:
+          description: "User was authenticated but not authorized"
+        404:
+          description: "Company not found"
   /company/{company_id}/curriculum:
     get:
       tags:
@@ -752,6 +774,23 @@ definitions:
             name: 
               type: "string"
               example: "Essential"
+              
+  ClinicalTopic:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 272
+            name: 
+              type: "string"
+              example: "Abuse/Neglect"
 
   CompanyCurricula:
     type: "object"
@@ -1669,3 +1708,4 @@ definitions:
                 example: []
             type: "object"
         type: "object"
+        
