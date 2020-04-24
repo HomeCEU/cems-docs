@@ -51,6 +51,32 @@ paths:
           description: "Not authenticated"
         403:
           description: "User was authenticated but not authorized"
+
+  /company/{company_id}/assignments/incomplete:
+    get:
+      tags:
+        - "Company"
+      summary: "List all incomplete courses for a company"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/AssignmentsIncomplete"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "User was authenticated but not authorized"
+        404:
+          description: "Company not found"
+          
   /company/{company_id}/access_level/{access_level_constant}/courses:
     get:
       tags:
@@ -890,7 +916,7 @@ definitions:
             name: 
               type: "string"
               example: "unlimited"
-
+  
   AccessLevelCourses:
     type: "object"
     required: 
@@ -937,8 +963,7 @@ definitions:
               example: true
             broadcase_date:
               type: "string"
-              format: "date-time"
-              example: "2017-07-21T17:32:28Z"
+              example: "2019-11-07T09:46:37-0600"
       metadata: 
         required: 
           - "page"
@@ -955,6 +980,47 @@ definitions:
             type: "string"
             example: "424"
         type: "object"
+        
+  AssignmentsIncomplete:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            orderItemId: 
+              type: "number"
+              example: 1234567
+            userFirstName: 
+              type: "string"
+              example: "John"
+            userLastName: 
+              type: "string"
+              example: "Smith"
+            organizationalUnit: 
+              type: "string"
+              example: "Southern Branch"
+            groups: 
+              type: "string"
+              example: "Managers,onboarding"
+            curriculum: 
+              type: "string"
+              example: "Clinical Management Training"
+            course: 
+              type: "string"
+              example: "Leading With Confidence"
+            enrollmentDate: 
+              type: "string"
+              example: "2019-11-07T09:46:37-0600"
+            dueDate: 
+              type: "string"
+              example: "2019-11-10T00:00:00-0600"
+            isPastDue: 
+              type: "string"
+              example: "1"
 
   BOCLevel:
     type: "object"
