@@ -29,6 +29,28 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
+  /company/{company_id}/accesslevels:
+    get:
+      tags:
+        - "Company"
+      summary: "Access levels associated with a company"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/AccessLevels"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "User was authenticated but not authorized"
   /company/{company_id}/access_level/{access_level_constant}/courses:
     get:
       tags:
@@ -849,6 +871,26 @@ definitions:
             type: "string"
             example: "SUBSCRIPTION"
             
+  AccessLevels:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 3
+            constant: 
+              type: "string"
+              example: "unlimited"
+            name: 
+              type: "string"
+              example: "unlimited"
+
   AccessLevelCourses:
     type: "object"
     required: 
