@@ -29,6 +29,7 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
+          
   /company/{company_id}/accesslevels:
     get:
       tags:
@@ -128,6 +129,7 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
+          
   /company/{company_id}/clinical_topic:
     get:
       tags:
@@ -173,7 +175,7 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
-          
+
   /company/{company_id}/curriculum:
     get:
       tags:
@@ -196,6 +198,7 @@ paths:
           description: "Not authenticated"
         403:
           description: "User was authenticated but not authorized"
+          
   /company/{company_id}/features:
     get:
       tags:
@@ -216,6 +219,7 @@ paths:
             $ref: "#/definitions/CompanyFeatures"
         403:
           description: "User was authenticated but not authorized"
+          
   /company/{company_id}/instructional_level:
     get:
       tags:
@@ -238,6 +242,7 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
+          
   /company/{company_id}/organizational-unit/list:
     get:
       tags:
@@ -257,6 +262,7 @@ paths:
             $ref: "#/definitions/OrgUnitList"
         403:
           description: "User was authenticated but not authorized"
+          
   /company/{company_id}/resource:
     get:
       tags:
@@ -278,6 +284,7 @@ paths:
           description: "Not authenticated"
         403:
           description: "User was authenticated but not authorized"
+          
   /company/user:
     post:
       tags:
@@ -314,6 +321,7 @@ paths:
           description: "User already exists (probably duplicate employee_id)"
         422:
           description: "Cannot process the request with the provided information"
+          
   /company/{company_id}/group:
     get:
       tags:
@@ -357,6 +365,7 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company domain alias not found"
+          
   /company/{company_id}/login:
     post:
       tags:
@@ -421,6 +430,7 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
+          
   /company/{companyId}/user/{userId}:
     get:
       tags:
@@ -449,7 +459,6 @@ paths:
         404:
           description: "Company or User not found"
       
-          
   /license-type:
     get:
       tags:
@@ -481,7 +490,6 @@ paths:
         401:
           description: "not authenticated"
       
-  
   /user/{userId}/license:
     post:
       tags:
@@ -548,8 +556,7 @@ paths:
           description: "user was authenticated but not authorized"
         404:
           description: "User or User License was not found"
-
-
+          
   /company/{companyId}/course/{courseId}:
     get:
       tags:
@@ -636,7 +643,6 @@ paths:
           description: "Enrollment not found"
         409:
           description: "We do not have asha number on file and one was not provided, please provide the asha number in the request body"
-
 
   /company/{companyId}/member/{learnerId}/completions:
     get:
@@ -1285,7 +1291,7 @@ definitions:
   AliasConfig:
     type: "object"
     required: 
-    - "data"
+      - "data"
     properties: 
       data:
         type: "object"
@@ -1317,9 +1323,15 @@ definitions:
           alias: 
             type: "string"
             example: "demo"
+          forum_url: 
+            type: "string"
+            example: "https://www.example.com/forums"
           subdomain: 
             type: "string"
             example: "demo"
+          theme: 
+            type: "string"
+            example: "/theme/css"
           username_watermark: 
             type: "string"
             example: "Username (Email address)"
@@ -1328,10 +1340,13 @@ definitions:
             example: "f initial + lastname + any 4 digits"
           example_username: 
             type: "string"
-            example: "email@example.com"
+            example: "jsmith@email.com"
           landing_message: 
             type: "string"
-            example: "<h3>Welcome to the Demo University!</h3>\r\n<p><stron>We're glad you made it. Welcome to the easiest onlinecontinuing education portal ever built. </strong></p>"
+            example: "<h3>Welcome to the Demo University!</h3>\r\n<p><strong>We're glad you made it. Welcome to the easiest online continuing education portal ever built. </strong></p>"
+          landing_replacement: 
+            type: "string"
+            example: "www.examplereplacement.com"
           username_input_label: 
             type: "string"
             example: "Custom Username Suffix"
@@ -1535,6 +1550,7 @@ definitions:
           examId: 
             type: "string"
             example: "290"
+            
   CourseCatalogCourseDetail:
     type: "object"
     required: 
@@ -1796,6 +1812,7 @@ definitions:
                 ceBrokerCourseNumber: 
                   type: "number"
                   example: 554433
+                  
   CompanyMember:
     required: 
       - "company_id"
