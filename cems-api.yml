@@ -76,7 +76,7 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
-          
+
   /company/{company_id}/access_level/{access_level_constant}/courses:
     get:
       tags:
@@ -150,6 +150,30 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
+
+  /company/{company_id}/courses:
+    get:
+      tags:
+        - "Company"
+      summary: "Get courses for a given company"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/CompanyCourses"
+        403:
+          description: "User was authenticated but not authorized"
+        404:
+          description: "Company not found"
+          
   /company/{company_id}/curriculum:
     get:
       tags:
@@ -1055,6 +1079,79 @@ definitions:
             name: 
               type: "string"
               example: "Abuse/Neglect"
+
+  CompanyCourses:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data:
+        type: "object"
+        required: 
+          - "current_page"
+          - "items_per_page"
+          - "total"
+          - "items"
+        properties: 
+          current_page: 
+            type: "number"
+            example: 1
+          items_per_page: 
+            type: "number"
+            example: 10
+          total: 
+            type: "number"
+            example: 785
+          items: 
+            type: "array"
+            items: 
+              type: "object"
+              properties: 
+                id: 
+                  type: "number"
+                  example: 1234
+                name: 
+                  type: "string"
+                  example: "Managing A Winning Team"
+                description: 
+                  type: "string"
+                  example: "<p><span style=\"font-size: 10pt;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet faucibus metus. Nullam volutpat nunc in dolor auctor posuere. Nulla at vulputate tellus. Quisque a tellus metus. Praesent placerat hendrerit est ut dictum. Donec nulla magna, vestibulum sit amet rutrum id, faucibus vitae eros.</span></p>"
+                hours: 
+                  type: "number"
+                  example: 0.75
+                category_name: 
+                  type: "string"
+                  example: "Communication"
+                approval_status_name: 
+                  type: "string"
+                  example: "Professional Development - No CE Credit"
+                item_format_name: 
+                  type: "string"
+                  example: "Video"
+                preview_link: 
+                  type: "string"
+                  example: "https://www.example.com"
+                preview_name: 
+                  type: "string"
+                  example: "Managing A Winning Team"
+                preview_type: 
+                  type: "string"
+                  example: "image"
+                is_credit: 
+                  type: "boolean"
+                  example: false
+                broadcastDate: 
+                  type: "string"
+                  example: "2020-03-31T05:00:00.000Z"
+                completed_on: 
+                  type: "string"
+                  example: "2020-03-31T05:00:00.000Z"
+                incomplete: 
+                  type: "string"
+                  example: "0"
+                is_soft_due_date: 
+                  type: "string"
+                  example: "hard"
 
   CompanyCurricula:
     type: "object"
