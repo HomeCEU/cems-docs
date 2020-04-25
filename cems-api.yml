@@ -29,7 +29,6 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
-<<<<<<< HEAD
           
   /company/{company_id}/accesslevels:
     get:
@@ -108,8 +107,6 @@ paths:
         404:
           description: "Company or access level not found"
           
-=======
->>>>>>> e93ef35791d87f69d65fa75f91e1e194d4f3fe1a
   /company/{company_id}/boc_instructional_level:
     get:
       tags:
@@ -132,10 +129,7 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
-<<<<<<< HEAD
           
-=======
->>>>>>> e93ef35791d87f69d65fa75f91e1e194d4f3fe1a
   /company/{company_id}/clinical_topic:
     get:
       tags:
@@ -158,7 +152,6 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
-<<<<<<< HEAD
 
   /company/{company_id}/courses:
     get:
@@ -183,8 +176,6 @@ paths:
         404:
           description: "Company not found"
 
-=======
->>>>>>> e93ef35791d87f69d65fa75f91e1e194d4f3fe1a
   /company/{company_id}/curriculum:
     get:
       tags:
@@ -228,10 +219,7 @@ paths:
             $ref: "#/definitions/CompanyFeatures"
         403:
           description: "User was authenticated but not authorized"
-<<<<<<< HEAD
           
-=======
->>>>>>> e93ef35791d87f69d65fa75f91e1e194d4f3fe1a
   /company/{company_id}/instructional_level:
     get:
       tags:
@@ -254,10 +242,7 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
-<<<<<<< HEAD
           
-=======
->>>>>>> e93ef35791d87f69d65fa75f91e1e194d4f3fe1a
   /company/{company_id}/organizational-unit/list:
     get:
       tags:
@@ -277,10 +262,7 @@ paths:
             $ref: "#/definitions/OrgUnitList"
         403:
           description: "User was authenticated but not authorized"
-<<<<<<< HEAD
           
-=======
->>>>>>> e93ef35791d87f69d65fa75f91e1e194d4f3fe1a
   /company/{company_id}/resource:
     get:
       tags:
@@ -302,10 +284,7 @@ paths:
           description: "Not authenticated"
         403:
           description: "User was authenticated but not authorized"
-<<<<<<< HEAD
           
-=======
->>>>>>> e93ef35791d87f69d65fa75f91e1e194d4f3fe1a
   /company/user:
     post:
       tags:
@@ -948,7 +927,6 @@ definitions:
             type: "string"
             example: "SUBSCRIPTION"
             
-<<<<<<< HEAD
   AccessLevels:
     type: "object"
     required: 
@@ -1074,8 +1052,6 @@ definitions:
               type: "string"
               example: "1"
 
-=======
->>>>>>> e93ef35791d87f69d65fa75f91e1e194d4f3fe1a
   BOCLevel:
     type: "object"
     required: 
@@ -1110,7 +1086,6 @@ definitions:
               type: "string"
               example: "Abuse/Neglect"
 
-<<<<<<< HEAD
   CompanyCourses:
     type: "object"
     required: 
@@ -1184,8 +1159,6 @@ definitions:
                   type: "string"
                   example: "hard"
 
-=======
->>>>>>> e93ef35791d87f69d65fa75f91e1e194d4f3fe1a
   CompanyCurricula:
     type: "object"
     required: 
