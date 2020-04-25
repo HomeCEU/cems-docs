@@ -1694,6 +1694,7 @@ definitions:
           isSearchable: 
             type: "boolean"
             example: true
+            
   Accreditations:
     type: "object"
     required: 
@@ -1997,7 +1998,7 @@ definitions:
         properties:
           asha_code:
             type: "string"
-            example: "HCEU229"
+            example: "ACGB0022"
           first_name: 
             type: "string"
             example: "Fred"
@@ -2136,6 +2137,9 @@ definitions:
               is_corporate_admin: 
                 type: "boolean"
                 example: false
+              subscription_expires_on:
+                type: "string"
+                example: "2020-03-31T05:00:00.000Z"
               is_active: 
                 type: "boolean"
                 example: true
@@ -2145,10 +2149,16 @@ definitions:
               email_address: 
                 type: "string"
                 example: "fred@example.com"
+              hire_date:
+                type: "string"
+                example: "01/01/2020"
               group_ids: 
                 type: "array"
                 items: 
                   type: "object"
                 example: []
+              organizational_unit_id:
+                type: "number"
+                example: 119
             type: "object"
         type: "object"
