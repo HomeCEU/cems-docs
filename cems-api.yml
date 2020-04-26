@@ -462,6 +462,36 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company or group ID not found"
+  /company/{company_id}/group/{group_id}/member:
+    get:
+      tags:
+        - "Company"
+      summary: "Get users for a group by company and group IDs"
+      description: ""
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "group_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GroupUsers"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "User was authenticated but not authorized"
+        404:
+          description: "Company or group ID not found"
   /company/{alias}/config:
     get:
       tags:
@@ -1645,6 +1675,31 @@ definitions:
             users: 
               type: "number"
               example: 2
+  GroupUsers:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            user_id: 
+              type: "string"
+              example: "123456"
+            unique_id: 
+              type: "string"
+              example: "54321"
+            first_name: 
+              type: "string"
+              example: "Smith"
+            last_name: 
+              type: "string"
+              example: "Jeff"
+            email_address: 
+              type: "string"
+              example: "jsmith@example.com"
 
   UserLogin:
       type: "object"
