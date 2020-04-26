@@ -86,7 +86,7 @@ paths:
       parameters:
         - in: "path"
           name: "company_id"
-          description:
+          description: ""
           required: true
           type: "integer"
           pattern: '\d+'
@@ -193,6 +193,30 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/CorpAdminReport"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "User was authenticated but not authorized"
+        404:
+          description: "Company not found"
+  /company/{company_id}/course_type:
+    get:
+      tags:
+        - "Company"
+      summary: "Get list of course types"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/CourseType"
         401:
           description: "Not authenticated"
         403:
@@ -1269,6 +1293,22 @@ definitions:
                 applicable_filters: 
                   type: "string"
                   example: "null"
+  CourseType:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 2
+            name: 
+              type: "string"
+              example: "Webinar"
 
   CompanyCourses:
     type: "object"
