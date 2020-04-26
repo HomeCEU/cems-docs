@@ -77,7 +77,30 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company not found"
-
+  /company/{company_id}/assignments/incomplete/metadata:
+    get:
+      tags:
+        - "Company"
+      summary: "Metadata for all incomplete courses for a given company"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description:
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/AssignmentsMeta"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "User was authenticated but not authorized"
+        404:
+          description: "Company not found"
   /company/{company_id}/access_level/{access_level_constant}/courses:
     get:
       tags:
@@ -1051,6 +1074,47 @@ definitions:
             isPastDue: 
               type: "string"
               example: "1"
+  AssignmentsMeta:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        required: 
+          - "userFirstNames"
+          - "userLastNames"
+          - "organizationalUnits"
+          - "groups"
+          - "curricula"
+          - "courses"
+          - "enrollmentDates"
+          - "dueDates"
+        properties: 
+          userFirstNames: 
+            type: "string"
+            example: "Jim,John,Mary,Carol"
+          userLastNames: 
+            type: "string"
+            example: "Smith,Doe,Johnson,Brown"
+          organizationalUnits: 
+            type: "string"
+            example: "Northern Branch,Southern Branch"
+          groups: 
+            type: "string"
+            example: "Clinical Staff,Facility A"
+          curricula: 
+            type: "string"
+            example: "Clinical Manager Leadership Training,New Hire Orientation Program"
+          courses: 
+            type: "string"
+            example: "Leading With Confidence,Combating Stress"
+          enrollmentDates: 
+            type: "string"
+            example: "2013-03-13,2013-11-27,2014-07-03,2014-07-04"
+          dueDates: 
+            type: "string"
+            example: "2014-03-13,2014-11-27,2015-07-03,2013-11-29"
+        type: "object"
 
   BOCLevel:
     type: "object"
