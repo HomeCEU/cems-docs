@@ -355,7 +355,7 @@ paths:
             $ref: "#/definitions/OrgUnitList"
         403:
           description: "User was authenticated but not authorized"
-          
+         
   /company/{company_id}/resource:
     get:
       tags:
@@ -377,6 +377,53 @@ paths:
           description: "Not authenticated"
         403:
           description: "User was authenticated but not authorized"
+          
+  /company/{company_id}/resource/{resource_constant}:
+    get:
+      tags:
+        - "Company"
+      summary: "Company enabled privileges for given resource"
+      description: ""
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "resource_constant"
+          in: "path"
+          description: ""
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    name: 
+                      type: "string"
+                      example: "Add/Edit Users"
+                    constant: 
+                      type: "string"
+                      example: "add-edit-users"
+                    description: 
+                      type: "string"
+                      example: "Allow university corp admins to add/edit users"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "User was authenticated but not authorized"
+        404:
+          description: "Company or resource not found"
           
   /company/user:
     post:
