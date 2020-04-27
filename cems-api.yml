@@ -817,7 +817,37 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company or User not found"
-      
+          
+  /company/{company_id}/user/{user_id}/courses/{status}:
+    get:
+      deprecated: true
+      tags:
+        - "Company"
+      summary: "Get courses for given status of user and company"
+      description: This endpoint has been deprecated and will be removed in a future version. Please use /profile/enrollments instead"
+      parameters:
+        - name: "company_id"
+          in: "path"
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "user_id"
+          in: "path"
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "status"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+          
   /license-type:
     get:
       tags:
