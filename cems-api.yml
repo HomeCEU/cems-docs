@@ -484,6 +484,48 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
+  /company/{company_id}/user:
+    get:
+      tags:
+        - "Company"
+      summary: "Get a list of users in the company, if no filter provided will return all users"
+      description: ""
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - in: "query"
+          name: "page"
+          type: "integer"
+          description: "Page of users to get"
+          x-example: "/user?page=3"
+        - in: "query"
+          name: "limit"
+          type: "integer"
+          description: "Number of users per page"
+          x-example: "/user?limit=5"
+        - in: "query"
+          name: "filter"
+          type: "string"
+          description: "Filter for each property on a user"
+          x-example: "/user?filter[username]=jsmith1234"
+        - in: "query"
+          name: "sory"
+          type: "string"
+          description: "Order of users based on properties. A '-' indicates descending."
+          x-example: "/user?sort=username"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/UserFilters"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
   /company/user:
     post:
       tags:
@@ -1809,6 +1851,61 @@ definitions:
             description: 
               type: "string"
               example: "User Related Features"
+  UserFilters:
+    type: "object"
+    required: 
+      - "data"
+      - "metadata"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 123456
+            username: 
+              type: "string"
+              example: "jsmith@example.com"
+            first_name: 
+              type: "string"
+              example: "Jeff"
+            last_name: 
+              type: "string"
+              example: "Smith"
+            email: 
+              type: "string"
+              example: "jsmith123@example.com"
+            access_level_constant: 
+              type: "string"
+              example: "limited"
+            is_active: 
+              type: "boolean"
+              example: false
+            corporate_email_address: 
+              type: "string"
+              example: "jsmith@examplecorp.com"
+            is_corporate_admin: 
+              type: "boolean"
+              example: false
+            employee_id: 
+              type: "string"
+              example: "jsmith12345"
+      metadata:
+        type: "object"
+        required: 
+          - "total"
+          - "warnings"
+        properties: 
+          total: 
+            type: "number"
+            example: 100
+          warnings: 
+            type: "array"
+            items: 
+              type: "integer"
+            example: []
 
   AliasConfig:
     type: "object"
