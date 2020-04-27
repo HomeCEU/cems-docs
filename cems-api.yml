@@ -424,7 +424,50 @@ paths:
           description: "User was authenticated but not authorized"
         404:
           description: "Company or resource not found"
-          
+  /company/{company_id}/supervisingusers:
+    get:
+      tags:
+        - "Company"
+      summary: "List of users for supervisor field"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    id: 
+                      type: "number"
+                      example: 123456
+                    firstName: 
+                      type: "string"
+                      example: "Jeff"
+                    lastName: 
+                      type: "string"
+                      example: "Smith"
+                    organizationalUnit: 
+                      type: "string"
+                      example: "Southern Branch"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
   /company/user:
     post:
       tags:
