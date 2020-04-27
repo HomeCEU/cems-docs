@@ -301,6 +301,40 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
+  /company/{company_id}/filteredreport:
+    get:
+      tags:
+        - "Company"
+      summary: "Filtered reports for a company by ID of corp admin report"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - in: "query"
+          name: "corp_admin_report_id"
+          type: "integer"
+          description: "The ID of the corp admin report"
+          x-example: "?corp_admin_report_id=4"
+        - in: "query"
+          name: "filter_by_creator"
+          type: "integer"
+          description: "1 for true and 0 for false"
+          x-example: "?filter_by_creator=0"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/FilteredReport"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
   /company/{company_id}/filterset:
     get:
       tags:
@@ -501,22 +535,22 @@ paths:
           name: "page"
           type: "integer"
           description: "Page of users to get"
-          x-example: "/user?page=3"
+          x-example: "?page=3"
         - in: "query"
           name: "limit"
           type: "integer"
           description: "Number of users per page"
-          x-example: "/user?limit=5"
+          x-example: "?limit=5"
         - in: "query"
           name: "filter"
           type: "string"
           description: "Filter for each property on a user"
-          x-example: "/user?filter[username]=jsmith1234"
+          x-example: "?filter[username]=jsmith1234"
         - in: "query"
           name: "sory"
           type: "string"
           description: "Order of users based on properties. A '-' indicates descending."
-          x-example: "/user?sort=username"
+          x-example: "?sort=username"
       responses:
         200:
           description: "Success"
@@ -1704,6 +1738,65 @@ definitions:
             name: 
               type: "string"
               example: "Download Reports"
+  FilteredReport:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 3
+            name: 
+              type: "string"
+              example: "Southern Branch"
+            company_id: 
+              type: "number"
+              example: 4
+            filter_sets: 
+              type: "array"
+              items: 
+                type: "object"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 123
+                  name: 
+                    type: "string"
+                    example: "Access Level (unlimited)"
+            courses: 
+              type: "array"
+              items: 
+                type: "object"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 9999
+                  name: 
+                    type: "string"
+                    example: "Example Course"
+            curricula: 
+              type: "array"
+              items: 
+                type: "object"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 99
+                  name: 
+                    type: "string"
+                    example: "Example Curriculum"
+            corp_admin_report_ids: 
+              type: "array"
+              items: 
+                type: "number"
+              example: 
+                - 1
+
   FilterSet:
     type: "object"
     required: 
