@@ -289,7 +289,30 @@ paths:
             $ref: "#/definitions/CompanyFeatures"
         403:
           description: "User was authenticated but not authorized"
-          
+  /company/{company_id}/filterset:
+    get:
+      tags:
+        - "Company"
+      summary: "Get all filter sets for a given company"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/FilterSet"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "User was authenticated but not authorized"
+        404:
+          description: "Company not found"
   /company/{company_id}/instructional_level:
     get:
       tags:
@@ -1523,7 +1546,88 @@ definitions:
             name: 
               type: "string"
               example: "Download Reports"
-              
+  FilterSet:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 99
+            name: 
+              type: "string"
+              example: "Demo University"
+            description: 
+              type: "string"
+              example: "Description for Demo University"
+            isViewableByCorpAdmin: 
+              type: "boolean"
+              example: false
+            isEditableByCorpAdmin: 
+              type: "boolean"
+              example: false
+            companyId: 
+              type: "number"
+              example: 4
+            curricula: 
+              type: "array"
+              items: 
+                type: "object"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 9
+                  name: 
+                    type: "string"
+                    example: "Clinical Manager Leadership Training"
+                  priorCompletionThreshold: 
+                    type: "string"
+                    example: "null"
+                  sendCourseReminder: 
+                    type: "boolean"
+                    example: false
+                  courses: 
+                    type: "array"
+                    items: 
+                      type: "object"
+                      properties: 
+                        id: 
+                          type: "number"
+                          example: 1234
+                        name: 
+                          type: "string"
+                          example: "Leading With Confidence"
+                        dueDate: 
+                          type: "string"
+                          example: "2016-05-31T00:00:00-0500"
+                        dueDays: 
+                          type: "string"
+                          example: "null"
+            filters: 
+              type: "array"
+              items: 
+                type: "object"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 99
+                  type: 
+                    type: "string"
+                    example: "Group"
+                  attributes: 
+                    type: "array"
+                    items: 
+                      type: "object"
+                      properties: 
+                        id: 
+                          type: "number"
+                          example: 999
+
   InstructLevel:
     type: "object"
     required: 
