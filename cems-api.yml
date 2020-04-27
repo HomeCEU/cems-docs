@@ -25,8 +25,10 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/GetCompany"
+        401:
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
           
@@ -49,9 +51,9 @@ paths:
           schema:
             $ref: "#/definitions/AccessLevels"
         401:
-          description: "Not authenticated"
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
 
   /company/{company_id}/assignments/incomplete:
     get:
@@ -72,9 +74,9 @@ paths:
           schema:
             $ref: "#/definitions/AssignmentsIncomplete"
         401:
-          description: "Not authenticated"
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
   /company/{company_id}/assignments/incomplete/metadata:
@@ -96,9 +98,9 @@ paths:
           schema:
             $ref: "#/definitions/AssignmentsMeta"
         401:
-          description: "Not authenticated"
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
   /company/{company_id}/access_level/{access_level_constant}/courses:
@@ -125,8 +127,10 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/AccessLevelCourses"
+        401:
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company or access level not found"
           
@@ -148,8 +152,10 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/BOCLevel"
+        401:
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
           
@@ -171,8 +177,10 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/ClinicalTopic"
+        401:
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
   /company/{company_id}/corpadminreport:
@@ -194,9 +202,9 @@ paths:
           schema:
             $ref: "#/definitions/CorpAdminReport"
         401:
-          description: "Not authenticated"
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
   /company/{company_id}/course_type:
@@ -218,9 +226,9 @@ paths:
           schema:
             $ref: "#/definitions/CourseType"
         401:
-          description: "Not authenticated"
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
   /company/{company_id}/courses:
@@ -241,8 +249,10 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/CompanyCourses"
+        401:
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
 
@@ -265,9 +275,9 @@ paths:
           schema:
             $ref: "#/definitions/CompanyCurricula"
         401:
-          description: "Not authenticated"
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
           
   /company/{company_id}/features:
     get:
@@ -287,8 +297,10 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/CompanyFeatures"
+        401:
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
   /company/{company_id}/filterset:
     get:
       tags:
@@ -308,9 +320,9 @@ paths:
           schema:
             $ref: "#/definitions/FilterSet"
         401:
-          description: "Not authenticated"
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
   /company/{company_id}/instructional_level:
@@ -331,8 +343,10 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/InstructLevel"
+        401:
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
   
@@ -353,8 +367,10 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/OrgUnitList"
+        401:
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
          
   /company/{company_id}/resource:
     get:
@@ -374,9 +390,9 @@ paths:
           schema:
             $ref: "#/definitions/EnabledResources"
         401:
-          description: "Not authenticated"
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
           
   /company/{company_id}/resource/{resource_constant}:
     get:
@@ -419,9 +435,9 @@ paths:
                       type: "string"
                       example: "Allow university corp admins to add/edit users"
         401:
-          description: "Not authenticated"
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company or resource not found"
   /company/{company_id}/supervisingusers:
@@ -499,7 +515,7 @@ paths:
                     type: integer
                     example: 271930
         403:
-          description: "user was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         409:
           description: "User already exists (probably duplicate employee_id)"
         422:
@@ -523,9 +539,9 @@ paths:
           schema:
             $ref: "#/definitions/GroupSet"
         401:
-          description: "Not authenticated"
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
   /company/{company_id}/group/{group_id}:
     get:
       tags:
@@ -570,9 +586,9 @@ paths:
                     type: "number"
                     example: 1
         401:
-          description: "Not authenticated"
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company or group ID not found"
   /company/{company_id}/group/{group_id}/member:
@@ -600,9 +616,9 @@ paths:
           schema:
             $ref: "#/definitions/GroupUsers"
         401:
-          description: "Not authenticated"
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company or group ID not found"
   /company/{alias}/config:
@@ -622,8 +638,10 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/AliasConfig"
+        401:
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company domain alias not found"
           
@@ -687,8 +705,10 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/ResourcePages"
+        401:
+          description: "Access token was not authenticated"
         403:
-          description: "User was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
           
@@ -715,8 +735,10 @@ paths:
           description: "success"
           schema:
             $ref: "#/definitions/UserDetail"
+        401:
+          description: "Access token was not authenticated"
         403:
-          description: "user was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company or User not found"
       
@@ -729,7 +751,7 @@ paths:
       operationId: "licenseTypeList"
       responses:
         200:
-          description: "success"
+          description: "Success"
           schema:
             type: "object"
             required: 
@@ -749,7 +771,9 @@ paths:
                       type: string
                       example: "PT"
         401:
-          description: "not authenticated"
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
       
   /user/{userId}/license:
     post:
@@ -787,8 +811,10 @@ paths:
                     type: integer
                     description: "user-license Id"
                     example: 426646
+        401:
+          description: "Access token was not authenticated"
         403:
-          description: "user was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         422:
           description: "Cannot process the request with the provided information"
 
@@ -812,9 +838,9 @@ paths:
           type: "integer"
       responses:
         200:
-          description: "success"
+          description: "Success"
         403:
-          description: "user was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "User or User License was not found"
           
@@ -842,7 +868,7 @@ paths:
           schema:
             $ref: "#/definitions/CourseCatalogCourseDetail"
         403:
-          description: "user was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company or course not found in company"
           
@@ -865,7 +891,7 @@ paths:
           schema:
             $ref: "#/definitions/Enrollment"
         403:
-          description: "user was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Enrollment not found"
 
@@ -899,7 +925,7 @@ paths:
         204:
           description: "success"
         403:
-          description: "user was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Enrollment not found"
         409:
@@ -928,7 +954,7 @@ paths:
           schema:
             $ref: "#/definitions/LearnerCompletions"
         403:
-          description: "user was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
 
   /accreditations:
     get:
@@ -1000,7 +1026,7 @@ paths:
           schema:
             $ref: "#/definitions/Accreditations"
         403:
-          description: "user was authenticated but not authorized"
+          description: "Access token was authenticated but not authorized for this feature"
 
 definitions:
   GetCompany:
