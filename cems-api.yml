@@ -847,7 +847,30 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
-          
+  /course/{course_id}/approval:
+    get:
+      tags:
+        - "Course"
+      summary: "Active approvals for a course"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "course_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/CourseApproval"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Course not found"
   /license-type:
     get:
       tags:
@@ -2750,7 +2773,8 @@ definitions:
     required: 
       - "data"
     properties: 
-      data: 
+      data:
+        type: "object"
         required: 
           - "asha_code"
           - "first_name"
@@ -2889,7 +2913,8 @@ definitions:
                 is_valid: 
                   type: "boolean"
                   example: true
-          corporate: 
+          corporate:
+            type: "object"
             required: 
               - "employee_id"
               - "is_corporate_admin"
@@ -2927,5 +2952,56 @@ definitions:
               organizational_unit_id:
                 type: "number"
                 example: 119
-            type: "object"
-        type: "object"
+        
+  CourseApproval:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            approval_id: 
+              type: "number"
+              example: 1234567
+            is_credit: 
+              type: "boolean"
+              example: false
+            state: 
+              required: 
+                - "code"
+                - "name"
+              properties: 
+                code: 
+                  type: "string"
+                  example: "AK"
+                name: 
+                  type: "string"
+                  example: "Alaska"
+              type: "object"
+            license_group: 
+              required: 
+                - "constant"
+                - "name"
+              properties: 
+                constant: 
+                  type: "string"
+                  example: "rn"
+                name: 
+                  type: "string"
+                  example: "RN"
+              type: "object"
+            status: 
+              type: "string"
+              example: "Compliance - No CE Credit"
+            expiration_date: 
+              type: "string"
+              example: "2020-03-31T05:00:00.000Z"
+            statement: 
+              type: "string"
+              example: ""
+            provider_code: 
+              type: "string"
+              example: "AB12"
