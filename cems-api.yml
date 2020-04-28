@@ -938,6 +938,28 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
+  /curriculum/{curriculum_id}:
+    get:
+      tags:
+        - "Curriculum"
+      description: ""
+      summary: "Get a curriculum"
+      parameters:
+        - in: "path"
+          name: "curriculum_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GetCurriculum"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
   /license-type:
     get:
       tags:
@@ -3130,3 +3152,73 @@ definitions:
                 delivery_type: 
                   type: "string"
                   example: "online"
+  GetCurriculum:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data:
+        type: "object"
+        required: 
+          - "id"
+          - "name"
+          - "description"
+          - "priorCompletionThreshold"
+          - "sendCourseReminder"
+          - "companyId"
+          - "courses"
+          - "filterSets"
+          - "deactivationDate"
+        properties: 
+          id: 
+            type: "number"
+            example: 35
+          name: 
+            type: "string"
+            example: "Clinical Manager Leadership"
+          description: 
+            type: "string"
+            example: "Leadership courses for new manager hires"
+          priorCompletionThreshold: 
+            type: "string"
+            example: "730"
+          sendCourseReminder: 
+            type: "boolean"
+            example: false
+          companyId: 
+            type: "number"
+            example: 4
+          courses: 
+            type: "array"
+            items: 
+              type: "object"
+              properties: 
+                id: 
+                  type: "number"
+                  example: 2848
+                name: 
+                  type: "string"
+                  example: "Leading With Confidence"
+                dueDate: 
+                  type: "string"
+                  example: "06/30/2016"
+                dueDays: 
+                  type: "string"
+                  example: "4"
+                availableDate: 
+                  type: "string"
+                  example: "03/29/2016"
+                availableDays: 
+                  type: "string"
+                  example: "15"
+                isSoftDueDate: 
+                  type: "boolean"
+                  example: true
+          filterSets: 
+            type: "array"
+            items: 
+              type: "object"
+            example: []
+          deactivationDate: 
+            type: "string"
+            example: "02/19/2020"
