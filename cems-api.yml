@@ -1172,10 +1172,60 @@ paths:
                     example: true
                 type: "object"
         401:
-          description: "Access token not authorized"
+          description: "Access token not authenticated"
         404:
           description: "Company ID or no results found"
-          
+  /profile/company/{company_id}/access/allowed/all:
+    get:
+      tags:
+        - "User"
+      summary: "All privileges for the user"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "assignments/mark-as-complete"
+                  - "assignments/manual-course-assignment"
+                  - "assignments/extend-due-dates"
+                  - "groups/delete-groups"
+                  - "groups/rename-groups"
+                  - "groups/create-groups"
+                  - "hierarchy/move-organizational-units"
+                  - "hierarchy/delete-organizational-units"
+                  - "hierarchy/hierarchy-importer"
+                  - "hierarchy/edit-hierarchy"
+                  - "hierarchy/create-organizational-units"
+                  - "hierarchy/rename-organizational-units"
+                  - "reports/university-reporting"
+                  - "reports/filtered-reporting"
+                  - "reports/report-schedule"
+                  - "users/add-edit-users"
+                  - "users/grant-revoke-privileges"
+                  - "users/view-transcript"
+                  - "users/batch-user-importer"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
   /user/{userId}/license:
     post:
       tags:
