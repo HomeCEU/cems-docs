@@ -1051,7 +1051,7 @@ paths:
     get:
       tags:
         - "User Licenses"
-      summary: "list of possible license types"
+      summary: "List of possible license types"
       description: ""
       operationId: "licenseTypeList"
       responses:
@@ -1066,20 +1066,78 @@ paths:
                 type: "array"
                 items:
                   type: "object"
-                  required: 
-                    - "constant"
-                  properties: 
+                  properties:
+                    id: 
+                      type: "number"
+                      example: 26 
                     constant: 
                       type: string
-                      example: "pt"
+                      example: "rn"
                     name:
                       type: string
-                      example: "PT"
+                      example: "RN"
         401:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
-      
+          
+  /profile/companies:
+    get:
+      tags:
+        - "User"
+      summary: "List of basic information for companies that user belongs to"
+      description: ""
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    id: 
+                      type: "string"
+                      example: "1"
+                    user_id: 
+                      type: "string"
+                      example: "999999"
+                    name: 
+                      type: "string"
+                      example: "Example University"
+                    theme: 
+                      type: "string"
+                      example: "teal-silver-dark"
+                    is_corporate_admin: 
+                      type: "string"
+                      example: "0"
+                    is_admin: 
+                      type: "string"
+                      example: "1"
+                    subdomain: 
+                      type: "string"
+                      example: "exuniversity"
+                    username_watermark: 
+                      type: "string"
+                      example: "Username (Email address)"
+                    username_label: 
+                      type: "string"
+                      example: "Username (Email address)"
+                    example_username: 
+                      type: "string"
+                      example: "jsmith@email.com"
+                    logo: 
+                      type: "string"
+                      example: "https://www.example.com/image.png"
+        401:
+          description: "Access token was not authenticated"
+        404:
+          description: "No results found"
+          
   /user/{userId}/license:
     post:
       tags:
