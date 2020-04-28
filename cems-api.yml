@@ -893,6 +893,51 @@ paths:
           description: "Access token not authenticated"
         404:
           description: "Course not found"
+  /courses/company/{companyId}:
+    get:
+      tags:
+        - "Company"
+      description: ""
+      summary: "Get all courses for a company"
+      parameters:
+        - in: "path"
+          name: "companyId"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    id: 
+                      type: "number"
+                      example: 1234
+                    name: 
+                      type: "string"
+                      example: "Creating A Respectful Workplace"
+                    curricula: 
+                      type: "array"
+                      items: 
+                        type: "number"
+                      example: 
+                        - 999
+                        - 1111
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
   /license-type:
     get:
       tags:
