@@ -1138,6 +1138,44 @@ paths:
         404:
           description: "No results found"
           
+  /profile/companies/{company_id}:
+    get:
+      tags:
+        - "User"
+      summary: "Basic information for a requested company a user belongs to"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                required: 
+                  - "has_access"
+                  - "is_corporate_admin"
+                properties: 
+                  has_access: 
+                    type: "boolean"
+                    example: true
+                  is_corporate_admin: 
+                    type: "boolean"
+                    example: true
+                type: "object"
+        401:
+          description: "Access token not authorized"
+        404:
+          description: "Company ID or no results found"
+          
   /user/{userId}/license:
     post:
       tags:
