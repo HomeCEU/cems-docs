@@ -1175,6 +1175,7 @@ paths:
           description: "Access token not authenticated"
         404:
           description: "Company ID or no results found"
+          
   /profile/company/{company_id}/access/allowed/all:
     get:
       tags:
@@ -1226,6 +1227,97 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
+          
+  /profile/feature/{feature_constant}:
+    get:
+      tags:
+        - "User"
+      summary: "Responds if the user is a member of any company with the given feature"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "feature_constant"
+          description: ""
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+  
+  /profile/user/details:
+    get:
+      tags:
+        - "User"
+      summary: "Get basic information of a user"
+      description: "Returns basic information of a user based on the access token."
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data:
+                type: "object"
+                required: 
+                  - "first_name"
+                  - "last_name"
+                  - "email_address"
+                  - "is_admin"
+                  - "user_id"
+                  - "account_setup_complete"
+                properties: 
+                  first_name: 
+                    type: "string"
+                    example: "Jeff"
+                  last_name: 
+                    type: "string"
+                    example: "Smith"
+                  email_address: 
+                    type: "string"
+                    example: "jsmith123@example.com"
+                  is_admin: 
+                    type: "boolean"
+                    example: true
+                  user_id: 
+                    type: "number"
+                    example: 123456
+                  account_setup_complete: 
+                    type: "boolean"
+                    example: false
+        401:
+          description: "Access token was not authenticated"
+          
+  /report_filter_type:
+    get:
+      tags:
+        - "Reports"
+      summary: "All possible report filter types"
+      description: ""
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    type: 
+                      type: "string"
+                      example: "license_type"
+        401:
+          description: "Access token was not authenticated"
+          
   /user/{userId}/license:
     post:
       tags:
