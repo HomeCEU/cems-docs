@@ -871,6 +871,28 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Course not found"
+  /course/{course_id}/materials:
+    get:
+      tags:
+        - "Course"
+      description: ""
+      summary: "Course materials for a given course"
+      parameters:
+        - in: "path"
+          name: "course_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/CourseMaterials"
+        401:
+          description: "Access token not authenticated"
+        404:
+          description: "Course not found"
   /license-type:
     get:
       tags:
@@ -3005,3 +3027,61 @@ definitions:
             provider_code: 
               type: "string"
               example: "AB12"
+              
+  CourseMaterials:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data:
+        type: "object"
+        required: 
+          - "audio"
+          - "video"
+          - "text"
+        properties: 
+          audio: 
+            type: "array"
+            items: 
+              type: "object"
+              properties: 
+                name: 
+                  type: "string"
+                  example: "Course Notes"
+                link: 
+                  type: "string"
+                  example: "/uploads/coursematerial/audio.mp3"
+                delivery_type: 
+                  type: "string"
+                  example: "online"
+          video: 
+            type: "array"
+            items: 
+              type: "object"
+              properties: 
+                name: 
+                  type: "string"
+                  example: "Creating a Respectful Workplace"
+                link: 
+                  type: "string"
+                  example: "/play/1234?mobile_alert=no&template=none"
+                delivery_type: 
+                  type: "string"
+                  example: "online"
+                run_time: 
+                  type: "number"
+                  example: 99
+          text: 
+            type: "array"
+            items: 
+              type: "object"
+              properties: 
+                name: 
+                  type: "string"
+                  example: "Creating a Respectful Workplace Course Manual"
+                link: 
+                  type: "string"
+                  example: "/uploads/coursematerial/image.pdf"
+                delivery_type: 
+                  type: "string"
+                  example: "online"
