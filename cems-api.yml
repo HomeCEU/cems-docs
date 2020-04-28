@@ -1355,7 +1355,42 @@ paths:
                 type: "object"
         401:
           description: "Refresh token has expired"
-          
+  
+  /state:
+    get:
+      tags:
+        - "State"
+      summary: "List all states"
+      description: ""
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    id: 
+                      type: "number"
+                      example: 1
+                    name: 
+                      type: "string"
+                      example: "Alaska"
+                    code: 
+                      type: "string"
+                      example: "AK"
+                    display_order: 
+                      type: "number"
+                      example: 21
+                    constant: 
+                      type: "string"
+                      example: ""
+         
   /user/{userId}/license:
     post:
       tags:
