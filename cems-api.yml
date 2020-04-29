@@ -1046,6 +1046,46 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "External course completion ID not found"
+  /filteredreport:
+    post:
+      tags:
+        - "Reports"
+      summary: "Create a new filtered report for a given company"
+      description: "**NOTE**:<br>filterSetIds is not a required field"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: ""
+          required: true
+          schema:
+            $ref: "#/definitions/CreateFilteredReport"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+              - "messages"
+            properties: 
+              data: 
+                required: 
+                  - "id"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 9999
+                type: "object"
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Filtered Report was created successfully with ID 9999"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
   /getUsers/{company_id}:
     get:
       deprecated: true
@@ -3762,3 +3802,41 @@ definitions:
           file: 
             type: "string"
             example: ""
+  
+  CreateFilteredReport:
+    type: "object"
+    required:
+      - "name"
+      - "companyId"
+      - "corpAdminReportId"
+      - "curriculumIds"
+      - "courseIds"
+    properties:
+      name:
+        type: "string"
+        example: "Example Report"
+      companyId:
+        type: "integer"
+        example: "4"
+      filterSetIds:
+        type: "array"
+        items:
+          type: "integer"
+        example: 
+          - "2"
+      corpAdminReportId:
+        type: "integer"
+        example: "1"
+      curriculumIds:
+        type: "array"
+        items:
+          type: "integer"
+        example: 
+          - "99"
+      courseIds:
+        type: "array"
+        items:
+          type: "integer"
+        example: 
+          - "1234"
+          
