@@ -1497,7 +1497,30 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Email not found"
-          
+  
+  /user/feature/{feature_id}:
+    get:
+      tags:
+        - "User"
+      summary: "Check if current user has access to a specific feature"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "feature_id"
+          description: ""
+          required: true
+          type: 'integer'
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/FeatureAccess"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+         
   /user/import/map:
     get:
       tags:
@@ -3876,3 +3899,33 @@ definitions:
         example: 
           - "1234"
           
+  FeatureAccess:
+    type: "object"
+    required: 
+      - "data"
+      - "messages"
+    properties: 
+      data: 
+        required: 
+          - "id"
+          - "name"
+          - "user_has_access"
+        properties: 
+          id: 
+            type: "number"
+            example: 20
+          name: 
+            type: "string"
+            example: "Add/Edit Users"
+          user_has_access: 
+            type: "boolean"
+            example: true
+        type: "object"
+      messages: 
+        required: 
+          - "message"
+        properties: 
+          message: 
+            type: "string"
+            example: "Access token was authenticated and authorized"
+        type: "object"
