@@ -1022,7 +1022,30 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Enrollment ID not found"
-          
+  /externalcoursecompletion/{external_course_completion_id}:
+    get:
+      tags:
+        - "Course"
+      summary: "Display data for an external course completion model"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "external_course_completion_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ExternalCourseData"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "External course completion ID not found"
   /getUsers/{company_id}:
     get:
       deprecated: true
@@ -3664,3 +3687,78 @@ definitions:
           deactivationDate: 
             type: "string"
             example: "02/19/2020"
+            
+  ExternalCourseData:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data:
+        type: "object"
+        required: 
+          - "courseName"
+          - "hours"
+          - "certDate"
+          - "filename"
+          - "user"
+          - "mutableProperties"
+          - "id"
+          - "createdAt"
+          - "updatedAt"
+          - "createdBy"
+          - "updatedBy"
+          - "deletedAt"
+          - "file"
+        properties: 
+          courseName: 
+            type: "string"
+            example: "Clinical Management"
+          hours: 
+            type: "number"
+            example: 23
+          certDate: 
+            type: "string"
+            example: "2015-07-14 00:00:00"
+          filename: 
+            type: "string"
+            example: "uploads/externalcoursecompletion/image.png"
+          user: 
+            type: "string"
+            example: "jsmith123456"
+          mutableProperties: 
+            required: 
+              - "basic"
+              - "corpAdmin"
+            properties: 
+              basic: 
+                type: "array"
+                items: 
+                  type: "object"
+                example: []
+              corpAdmin: 
+                type: "array"
+                items: 
+                  type: "object"
+                example: []
+            type: "object"
+          id: 
+            type: "number"
+            example: 3
+          createdAt: 
+            type: "string"
+            example: "2015-10-29 13:53:35"
+          updatedAt: 
+            type: "string"
+            example: "2015-10-29 13:53:35"
+          createdBy: 
+            type: "string"
+            example: "jsmith123456"
+          updatedBy: 
+            type: "string"
+            example: "jsmith123456"
+          deletedAt: 
+            type: "string"
+            example: ""
+          file: 
+            type: "string"
+            example: ""
