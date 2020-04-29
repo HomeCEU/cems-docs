@@ -1390,7 +1390,51 @@ paths:
                     constant: 
                       type: "string"
                       example: ""
-         
+                      
+  /user/email:
+    get:
+      tags:
+        - "User"
+      summary: "Get email address for user"
+      description: ""
+      parameters:
+        - in: "query"
+          name: "email_address"
+          type: "string"
+          required: true
+          x-example: "?email_address=jsmith@example.com"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    user_id: 
+                      type: "number"
+                      example: 123456
+                    is_confirmed: 
+                      type: "boolean"
+                      example: true
+                    user_email_id: 
+                      type: "number"
+                      example: 999999
+                    is_primary: 
+                      type: "boolean"
+                      example: true
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Email not found"
+        
   /user/{userId}/license:
     post:
       tags:
