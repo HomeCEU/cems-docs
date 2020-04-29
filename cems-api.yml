@@ -1497,7 +1497,43 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Email not found"
-        
+          
+  /user/import/map:
+    get:
+      tags:
+        - "User"
+      summary: "Columns available for mapping when importing CSV of users"
+      description: ""
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    column_name: 
+                      type: "string"
+                      example: "firstname"
+                    label: 
+                      type: "string"
+                      example: "First Name"
+                    max_columns: 
+                      type: "number"
+                      example: 1
+                    required: 
+                      type: "boolean"
+                      example: false
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+      
   /user/{userId}/license:
     post:
       tags:
