@@ -54,7 +54,9 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
-
+        404:
+          description: "Company not found"
+          
   /company/{company_id}/assignments/incomplete:
     get:
       tags:
@@ -283,6 +285,8 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
           
   /company/{company_id}/features:
     get:
@@ -306,6 +310,8 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
           
   /company/{company_id}/filteredreport:
     get:
@@ -413,7 +419,9 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
-         
+        404:
+          description: "Company not found"
+          
   /company/{company_id}/resource:
     get:
       tags:
@@ -435,6 +443,8 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
           
   /company/{company_id}/resource/{resource_constant}:
     get:
@@ -570,7 +580,8 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
-          
+        404:
+          description: "Company not found"
   /company/user:
     post:
       tags:
@@ -629,6 +640,8 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
           
   /company/{company_id}/group/{group_id}:
     get:
@@ -678,7 +691,7 @@ paths:
         403:
           description: "Access token was authenticated but not authorized for this feature"
         404:
-          description: "Company or group ID not found"
+          description: "Company or group not found"
           
   /company/{company_id}/group/{group_id}/member:
     get:
@@ -709,7 +722,7 @@ paths:
         403:
           description: "Access token was authenticated but not authorized for this feature"
         404:
-          description: "Company or group ID not found"
+          description: "Company or group not found"
           
   /company/{alias}/config:
     get:
@@ -776,6 +789,8 @@ paths:
           description: "User was not authenticated"
         403:
           description: "User was authenticated but not authorized"
+        404:
+          description: "Company not found"
           
   /company/{companyId}/resources:
     get:
@@ -830,7 +845,7 @@ paths:
         403:
           description: "Access token was authenticated but not authorized for this feature"
         404:
-          description: "Company or User not found"
+          description: "Company or user not found"
           
   /company/{company_id}/user/{user_id}/courses/{status}:
     get:
@@ -861,6 +876,8 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company, user, or status not found"
           
   /course/{course_id}/approval:
     get:
@@ -978,6 +995,8 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Curriculum not found"
           
   /enrollment/{enrollmentId}/exam-eligibility:
     get:
@@ -1021,7 +1040,8 @@ paths:
         403:
           description: "Access token was authenticated but not authorized for this feature"
         404:
-          description: "Enrollment ID not found"
+          description: "Enrollment not found"
+          
   /externalcoursecompletion/{external_course_completion_id}:
     get:
       tags:
@@ -1045,7 +1065,8 @@ paths:
         403:
           description: "Access token was authenticated but not authorized for this feature"
         404:
-          description: "External course completion ID not found"
+          description: "External course completion not found"
+          
   /filteredreport:
     post:
       tags:
@@ -1086,6 +1107,7 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
+          
   /getUsers/{company_id}:
     get:
       deprecated: true
@@ -1237,7 +1259,7 @@ paths:
         401:
           description: "Access token not authenticated"
         404:
-          description: "Company ID or no results found"
+          description: "Company not found"
           
   /profile/company/{company_id}/access/allowed/all:
     get:
@@ -1310,7 +1332,9 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
-  
+        404:
+          description: "Feature not found"
+          
   /profile/user/details:
     get:
       tags:
@@ -1520,7 +1544,9 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
-         
+        404:
+          description: "Feature not found"
+          
   /user/import/map:
     get:
       tags:
@@ -1606,7 +1632,38 @@ paths:
         403:
           description: "Access token was authenticated but not authorized for this feature"
         404:
-          description: "User ID not found"
+          description: "User not found"
+          
+  /user/{user_id}/fulltranscript/company/{company_id}:
+    get:
+      tags:
+        - "User"
+      summary: "All courses for a user including external course completions"
+      description: ""
+      parameters:
+        - name: "user_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/FullTranscript"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "User or company not found"
           
   /user/{userId}/license:
     post:
@@ -1648,6 +1705,8 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "User not found"
         422:
           description: "Cannot process the request with the provided information"
 
@@ -1675,7 +1734,7 @@ paths:
         403:
           description: "Access token was authenticated but not authorized for this feature"
         404:
-          description: "User or User License was not found"
+          description: "User or user license was not found"
           
   /company/{companyId}/course/{courseId}:
     get:
@@ -1697,13 +1756,13 @@ paths:
           type: "integer"
       responses:
         200:
-          description: "success"
+          description: "Success"
           schema:
             $ref: "#/definitions/CourseCatalogCourseDetail"
         403:
           description: "Access token was authenticated but not authorized for this feature"
         404:
-          description: "Company or course not found in company"
+          description: "Company or course not found"
           
   /enrollment/{enrollmentId}:
     get:
@@ -1720,7 +1779,7 @@ paths:
           type: "integer"
       responses:
         200:
-          description: "success"
+          description: "Success"
           schema:
             $ref: "#/definitions/Enrollment"
         403:
@@ -1756,7 +1815,7 @@ paths:
             
       responses:
         204:
-          description: "success"
+          description: "Success"
         403:
           description: "Access token was authenticated but not authorized for this feature"
         404:
@@ -1783,12 +1842,14 @@ paths:
           type: "string"
       responses:
         200:
-          description: "success"
+          description: "Success"
           schema:
             $ref: "#/definitions/LearnerCompletions"
         403:
           description: "Access token was authenticated but not authorized for this feature"
-
+        404:
+          description: "Company or learner not found"
+          
   /accreditations:
     get:
       tags:
@@ -3044,7 +3105,68 @@ definitions:
           examId: 
             type: "string"
             example: "290"
-            
+  
+  FullTranscript:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data:
+        type: "object"
+        required: 
+          - "externalCourseCompletions"
+          - "userCertificates"
+        properties: 
+          externalCourseCompletions: 
+            type: "array"
+            items: 
+              type: "object"
+              properties: 
+                Course_Name: 
+                  type: "string"
+                  example: "Leading With Confidence"
+                Student_Name: 
+                  type: "string"
+                  example: "Jeff Smith"
+                Hours: 
+                  type: "number"
+                  example: 23
+                Date_Earned: 
+                  type: "string"
+                  example: "07/14/2015"
+                Proof_of_Completion: 
+                  type: "string"
+                  example: "https://www.example.com/uploads/externalcoursecompletion/image.png"
+                userId: 
+                  type: "string"
+                  example: "12345"
+          userCertificates: 
+            type: "array"
+            items: 
+              type: "object"
+              properties: 
+                Course_Name: 
+                  type: "string"
+                  example: "Clinical Management"
+                Student_Name: 
+                  type: "string"
+                  example: "Jeff Smith"
+                Hours: 
+                  type: "number"
+                  example: 1
+                Date_Earned: 
+                  type: "string"
+                  example: "08/16/2016"
+                Order_ID: 
+                  type: "number"
+                  example: 9999999
+                userId: 
+                  type: "string"
+                  example: "12345"
+                Proof_of_Completion: 
+                  type: "string"
+                  example: "https://www.example.com/certificate/view/image"
+           
   CourseCatalogCourseDetail:
     type: "object"
     required: 
