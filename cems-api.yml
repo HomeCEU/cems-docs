@@ -7,6 +7,22 @@ host: "api.hceu-sandbox.com"
 basePath: "/api/v2"
 
 paths:
+  /company:
+    get:
+      tags:
+        - "Company"
+      summary: "List of all companies"
+      description: ""
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/CompanyList"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+          
   /company/{company_id}:
     get:
       tags:
@@ -1923,6 +1939,188 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
 
 definitions:
+  CompanyList:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 120
+            company_name: 
+              type: "string"
+              example: "Example University"
+            name: 
+              type: "string"
+              example: "Example University"
+            support_email: 
+              type: "string"
+              example: "support@example.com"
+            email_sender_name: 
+              type: "string"
+              example: "Jeff Smith"
+            reply_to_email: 
+              type: "string"
+              example: "jsmith123@example.com"
+            reply_to_email_sender_name: 
+              type: "string"
+              example: "Jeff Smith"
+            embedded_css: 
+              type: "string"
+              example: "<!-- This is some site text- https://example.com --><p><script src=\"https://a.example.com/app/js/api.min.js\" async=\"\" type=\"text/javascript\" data-account=\"9999\" data-user=\"99999\"></script></p><!-- / https://example.com -->"
+            asset_folder_location: 
+              type: "string"
+              example: "/web/bundles/frontend/images/corp/"
+            company_image_url: 
+              type: "string"
+              example: "https://www.example.com/image.png"
+            subscription_length_in_days: 
+              type: "string"
+              example: "365"
+            company_cert_image_url: 
+              type: "string"
+              example: "https://www.example.com/image.jpg"
+            settings_json: 
+              type: "string"
+              example: "Array"
+            username_type: 
+              type: "string"
+              example: "finitlast"
+            username_input_label: 
+              type: "string"
+              example: "customer ID"
+            username_prefix: 
+              type: "string"
+              example: "Mr"
+            username_input_rules: 
+              type: "string"
+              example: "alphanumeric"
+            username_input_min_length: 
+              type: "number"
+              example: 4
+            username_input_max_length: 
+              type: "number"
+              example: 4
+            username_watermark: 
+              type: "string"
+              example: "First initial + last name + last 4 digits of social security #"
+            username_label: 
+              type: "string"
+              example: "Username"
+            example_username: 
+              type: "string"
+              example: "jsmith1234"
+            primary_url: 
+              type: "string"
+              example: "www.example.com"
+            certificate_cc_recipients: 
+              type: "string"
+              example: ""
+            non_credit_certificate_cc_recipients: 
+              type: "string"
+              example: ""
+            login_welcome_message: 
+              type: "string"
+              example: "<h2>Welcome Professionals!</h2>"
+            homepage_replacement_text: 
+              type: "string"
+              example: "<!-- This is some site text- https://example.com --><p><script src=\"https://a.example.com/app/js/api.min.js\" async=\"\" type=\"text/javascript\" data-account=\"9999\" data-user=\"99999\"></script></p><!-- / https://example.com -->"
+            company_access_levels: 
+              type: "array"
+              items: 
+                type: "object"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 999
+                  access_level: 
+                    type: "string"
+                    example: "unlimited"
+                  is_default: 
+                    type: "boolean"
+                    example: true
+            contract_status: 
+              required: 
+                - "id"
+                - "contract_status_constant"
+                - "name"
+                - "constant"
+              properties: 
+                id: 
+                  type: "number"
+                  example: 2
+                contract_status_constant: 
+                  type: "string"
+                  example: "Live"
+                name: 
+                  type: "string"
+                  example: "Live"
+                constant: 
+                  type: "string"
+                  example: "live"
+              type: "object"
+            asha_provider_code: 
+              type: "string"
+              example: "ABCD"
+            ce_broker_provider_code: 
+              type: "string"
+              example: "1234"
+            features: 
+              type: "array"
+              items: 
+                type: "object"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 1
+                  feature: 
+                    type: "string"
+                    example: "university-reporting"
+                  name: 
+                    type: "string"
+                    example: "Download Reports"
+                  constant: 
+                    type: "string"
+                    example: "university-reporting"
+            license_filters: 
+              type: "array"
+              items: 
+                type: "object"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 1
+                  license_group: 
+                    required: 
+                      - "id"
+                      - "constant"
+                      - "name"
+                    properties: 
+                      id: 
+                        type: "number"
+                        example: 1
+                      constant: 
+                        type: "string"
+                        example: "rn"
+                      name: 
+                        type: "string"
+                        example: "RN"
+                    type: "object"
+                  name: 
+                    type: "string"
+                    example: "RN"
+                  constant: 
+                    type: "string"
+                    example: "rn"
+            company_type: 
+              type: "string"
+              example: "SUBSCRIPTION"
+
   GetCompany:
     type: "object"
     required: 
