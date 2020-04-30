@@ -1556,7 +1556,58 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
-      
+          
+  /user/{user_id}/externalcoursecompletion:
+    get:
+      tags:
+        - "User"
+      summary: "All external course completion data for a user"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "user_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    id: 
+                      type: "number"
+                      example: 3
+                    courseName: 
+                      type: "string"
+                      example: "Leading With Confidence"
+                    hours: 
+                      type: "number"
+                      example: 23
+                    certDate: 
+                      type: "string"
+                      example: "07/14/2015"
+                    filename: 
+                      type: "string"
+                      example: "uploads/externalcoursecompletion/image.png"
+                    userId: 
+                      type: "string"
+                      example: "99999"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "User ID not found"
+          
   /user/{userId}/license:
     post:
       tags:
