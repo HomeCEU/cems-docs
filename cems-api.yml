@@ -413,7 +413,47 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
-  
+          
+  /company/{company_id}/licensetype:
+    get:
+      tags:
+        - "Company"
+      summary: "Get a list of license types for a company"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    id: 
+                      type: "number"
+                      example: 1
+                    constant: 
+                      type: "string"
+                      example: "rn"
+                    name: 
+                      type: "string"
+                      example: "RN"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+          
   /company/{company_id}/organizational-unit/list:
     get:
       tags:
