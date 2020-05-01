@@ -758,7 +758,43 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
-          
+    post:
+      tags:
+        - "Company"
+      summary: "Adds groups to a company"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "names"
+            properties: 
+              names: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Midwest Branch"
+      responses:
+        201:
+          description: "Group(s) created successfully"
+          schema:
+            $ref: "#/definitions/CreateGroups"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+
   /company/{company_id}/group/{group_id}:
     get:
       tags:
@@ -1802,7 +1838,7 @@ paths:
             $ref: "#/definitions/UserLicense"
       responses:
         201:
-          description: "success"
+          description: "Success"
           schema:
             type: "object"
             required: 
@@ -3280,6 +3316,31 @@ definitions:
             users: 
               type: "number"
               example: 2
+              
+  CreateGroups:
+    type: "object"
+    required: 
+      - "data"
+      - "messages"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 15046
+            name: 
+              type: "string"
+              example: "Midwest Branch"
+      messages: 
+        type: "array"
+        items: 
+          type: "string"
+        example: 
+          - "Added the groups successfully!"
+              
   GroupUsers:
     type: "object"
     required: 
