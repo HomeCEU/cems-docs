@@ -844,6 +844,56 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company or group not found"
+    put:
+      tags:
+        - "Company"
+      summary: "Update the name of a group"
+      description: ""
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "group_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - in: "body"
+          name: "body"
+          required: true
+          description: ""
+          schema:
+            type: "object"
+            required: 
+              - "name"
+            properties: 
+              name: 
+                type: "string"
+                example: "Midwest Branch"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Updated the group name successfully!"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        409:
+          description: "Group name is taken"
           
   /company/{company_id}/group/{group_id}/member:
     get:
@@ -3340,7 +3390,7 @@ definitions:
           type: "string"
         example: 
           - "Added the groups successfully!"
-              
+    
   GroupUsers:
     type: "object"
     required: 
