@@ -894,6 +894,44 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         409:
           description: "Group name is taken"
+    delete:
+      tags:
+        - "Company"
+      summary: "Delete a group"
+      description: ""
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "group_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Removed the group successfully!"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company or group not found"
           
   /company/{company_id}/group/{group_id}/member:
     get:
