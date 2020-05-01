@@ -483,7 +483,7 @@ paths:
     get:
       tags:
         - "Company"
-      summary: "List of organizational units for a company"
+      summary: "Get a list of organizational units with preformatted labels"
       description: ""
       parameters:
         - in: "path"
