@@ -698,6 +698,7 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
+          
   /company/user:
     post:
       tags:
@@ -734,7 +735,7 @@ paths:
           description: "User already exists (probably duplicate employee_id)"
         422:
           description: "Cannot process the request with the provided information"
-          
+
   /company/{company_id}/group:
     get:
       tags:
@@ -963,7 +964,7 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company or group not found"
-          
+           
   /company/{alias}/config:
     get:
       tags:
@@ -1823,6 +1824,45 @@ paths:
         403:
           description: "Access token was authenticated but not authorized for this feature"
           
+  /user/password:
+    post:
+      tags:
+        - "User"
+      summary: "Updates the password of user that is providing an access token"
+      description: "**NOTE**:<br>**company_id** is not a required parameter"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "password"
+            properties: 
+              password: 
+                type: "string"
+                example: "abcd1234"
+              company_id: 
+                type: "string"
+                example: "4"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages:
+                type: "object"
+                required: 
+                  - "emailSent"
+                properties: 
+                  emailSent: 
+                    type: "boolean"
+                    example: true
+                    
   /user/{user_id}/externalcoursecompletion:
     get:
       tags:
