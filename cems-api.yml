@@ -785,8 +785,8 @@ paths:
     get:
       tags:
         - "Company"
-      summary: "Get a list of users in the company, if no filter provided will return all users"
-      description: ""
+      summary: "Get a list of users in the company."
+      description: "**NOTE**: If no filter is used, only the first page of users will be returned"
       parameters:
         - name: "company_id"
           in: "path"
@@ -862,7 +862,35 @@ paths:
           description: "User already exists (probably duplicate employee_id)"
         422:
           description: "Cannot process the request with the provided information"
-
+          
+  /company/user/{user_id}:
+    put:
+      tags:
+        - "User"
+      summary: "Update a user in a given company"
+      description: ""
+      parameters:
+        - name: "user_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - in: "body"
+          name: "body"
+          description: "The only **required** parameters are company_id, employee_id, access_level, is_active, and is_corporate_admin"
+          schema:
+            $ref: "#/definitions/UpdateUser"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "User not found"
+          
   /company/{company_id}/group:
     get:
       tags:
@@ -1340,7 +1368,29 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
-          
+  
+  # /curriculum:
+  #   post:
+  #     tags:
+  #       - "Curriculum"
+  #     description: ""
+  #     summary: "Create a curriculum"
+  #     parameters:
+  #       - in: "body"
+  #         name: "body"
+  #         description: ""
+  #         schema:
+  #           $ref: "#/definitions/CreateCurriculum"
+  #     responses:
+  #       200:
+  #         description: "Success"
+  #       401:
+  #         description: "Access token was not authenticated"
+  #       404:
+  #         description: "Company Not Found"
+  #       406:
+  #         description: "No courses provided or doesn't have expected format"
+         
   /curriculum/{curriculum_id}:
     get:
       tags:
@@ -3571,7 +3621,52 @@ definitions:
           default_access_level: 
             type: "string"
             example: "unlimited"
-
+  
+  UpdateUser:
+    type: "object"
+    required: 
+      - "company_id"
+      - "email_address"
+      - "hire_date"
+      - "subscription_expires_on"
+      - "group_ids"
+      - "organizational_unit_id"
+      - "employee_id"
+      - "access_level"
+      - "is_active"
+      - "is_corporate_admin"
+    properties: 
+      company_id: 
+        type: "number"
+        example: 4
+      email_address: 
+        type: "string"
+        example: "jsmith123@example.com"
+      hire_date: 
+        type: "string"
+        example: ""
+      subscription_expires_on: 
+        type: "string"
+        example: ""
+      group_ids: 
+        type: "string"
+        example: ""
+      organizational_unit_id: 
+        type: "string"
+        example: ""
+      employee_id: 
+        type: "string"
+        example: "tt9999"
+      access_level: 
+        type: "string"
+        example: "limited"
+      is_active: 
+        type: "boolean"
+        example: true
+      is_corporate_admin: 
+        type: "boolean"
+        example: false
+  
   GroupSet:
     type: "object"
     required: 
@@ -4602,6 +4697,63 @@ definitions:
                 delivery_type: 
                   type: "string"
                   example: "online"
+                  
+  CreateCurriculum:
+    type: "object"
+    required: 
+      - "id"
+      - "name"
+      - "description"
+      - "priorCompletionThreshold"
+      - "sendCourseReminder"
+      - "companyId"
+      - "courses"
+    properties: 
+      id: 
+        type: "number"
+        example: 555
+      name: 
+        type: "string"
+        example: "Example Curriculum"
+      description: 
+        type: "string"
+        example: "Description of Curriculum"
+      priorCompletionThreshold: 
+        type: "number"
+        example: 250
+      sendCourseReminder: 
+        type: "string"
+        example: "false"
+      companyId: 
+        type: "number"
+        example: 4
+      courses: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 777
+            name: 
+              type: "string"
+              example: "Example Course"
+            dueDate: 
+              type: "string"
+              example: "06/30/2016"
+            dueDays: 
+              type: "number"
+              example: 90
+            availableDate: 
+              type: "string"
+              example: "03/29/2016"
+            availableDays: 
+              type: "number"
+              example: 120
+            isSoftDueDate: 
+              type: "boolean"
+              example: true
+                  
   GetCurriculum:
     type: "object"
     required: 
