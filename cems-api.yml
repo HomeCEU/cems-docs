@@ -513,6 +513,44 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
+    post:
+      tags:
+        - "Company"
+      summary: "Create new Organizational Unit for a company"
+      description: "**NOTE**:<br>**parentId** not a required parameter but may cause error if there is already a top-level organizational unit"
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "body"
+          in: "body"
+          description: ""
+          schema:
+            type: "object"
+            required: 
+              - "name"
+              - "parentId"
+            properties: 
+              name: 
+                type: "string"
+                example: "Region 1"
+              parentId: 
+                type: "string"
+                example: "121"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/CreateOrgUnit"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        406:
+          description: "Company already has top-level organizational unit or company ID is invalid"
           
   /company/{company_id}/organizational-unit/list:
     get:
@@ -1834,13 +1872,12 @@ paths:
         - name: "body"
           in: "body"
           description: ""
-          required: true
           schema:
             type: "object"
             required: 
               - "password"
-            properties: 
-              password: 
+            properties:
+              password:
                 type: "string"
                 example: "abcd1234"
               company_id: 
@@ -1851,12 +1888,12 @@ paths:
           description: "Success"
           schema:
             type: "object"
-            required: 
+            required:
               - "messages"
-            properties: 
+            properties:
               messages:
                 type: "object"
-                required: 
+                required:
                   - "emailSent"
                 properties: 
                   emailSent: 
@@ -3254,7 +3291,28 @@ definitions:
                               items: 
                                 type: "object"
                               example: []
-  
+                              
+  CreateOrgUnit:
+    type: "object"
+    required: 
+      - "data"
+      - "messages"
+    properties: 
+      data: 
+        required: 
+          - "id"
+        properties: 
+          id: 
+            type: "number"
+            example: 12345
+        type: "object"
+      messages: 
+        type: "array"
+        items: 
+          type: "string"
+        example: 
+          - "Successfully saved the organizational unit."
+    
   OrgUnitList:
     type: "object"
     required: 
