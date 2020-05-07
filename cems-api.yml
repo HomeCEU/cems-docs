@@ -2038,7 +2038,49 @@ paths:
                   emailSent: 
                     type: "boolean"
                     example: true
-                    
+  
+  /user/{user_id}:
+    put:
+      tags:
+        - "User"
+      summary: Update user's first and last name
+      description: ""
+      parameters:
+        - name: "user_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - in: "body"
+          name: "body"
+          description: "**NOTE**: asha_code is not a required parameter"
+          schema:
+            type: "object"
+            required: 
+              - "first_name"
+              - "last_name"
+              - "asha_code"
+            properties: 
+              first_name: 
+                type: "string"
+                example: "Jeff"
+              last_name: 
+                type: "string"
+                example: "Smith"
+              asha_code: 
+                type: "string"
+                example: ""
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "User not found"
+                   
   /user/{user_id}/externalcoursecompletion:
     get:
       tags:
