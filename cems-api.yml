@@ -493,7 +493,7 @@ paths:
     get:
       tags:
         - "Company"
-      summary: "Get organizational unit information for a company"
+      summary: "Get Organizational Unit information for a company"
       description: ""
       parameters:
         - in: "path"
@@ -556,7 +556,7 @@ paths:
     get:
       tags:
         - "Company"
-      summary: "Get a list of organizational units with preformatted labels"
+      summary: "Get a list of Organizational Units with preformatted labels"
       description: ""
       parameters:
         - in: "path"
@@ -626,7 +626,45 @@ paths:
           description: "Company not found"
         409:
           description: "Organizational unit with this name already exists"
-
+    delete:
+      tags:
+        - "Company"
+      summary: "Delete an Organizational Unit for given company"
+      description: ""
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "organizational_unit_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Organizational Unit was removed successfully"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
+    
   /company/{company_id}/resource:
     get:
       tags:
