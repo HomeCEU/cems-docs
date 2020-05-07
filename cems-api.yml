@@ -576,6 +576,57 @@ paths:
         404:
           description: "Company not found"
           
+  /company/{company_id}/organizational-unit/{organizational_unit_id}:
+    put:
+      tags:
+        - "Company"
+      summary: "Update name of an Organizational Unit for given company"
+      description: ""
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "organizational_unit_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "body"
+          in: "body"
+          description: ""
+          schema:
+            type: "object"
+            required: 
+              - "name"
+            properties: 
+              name: 
+                type: "string"
+                example: "Example Name"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Successfully saved the Organizational Unit."
+        401:
+          description: "Access token was not authenticated"
+        404:
+          description: "Company not found"
+        409:
+          description: "Organizational unit with this name already exists"
+
   /company/{company_id}/resource:
     get:
       tags:
