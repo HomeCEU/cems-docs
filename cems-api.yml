@@ -1369,27 +1369,38 @@ paths:
         404:
           description: "Company not found"
   
-  # /curriculum:
-  #   post:
-  #     tags:
-  #       - "Curriculum"
-  #     description: ""
-  #     summary: "Create a curriculum"
-  #     parameters:
-  #       - in: "body"
-  #         name: "body"
-  #         description: ""
-  #         schema:
-  #           $ref: "#/definitions/CreateCurriculum"
-  #     responses:
-  #       200:
-  #         description: "Success"
-  #       401:
-  #         description: "Access token was not authenticated"
-  #       404:
-  #         description: "Company Not Found"
-  #       406:
-  #         description: "No courses provided or doesn't have expected format"
+  /curriculum:
+    post:
+      tags:
+        - "Curriculum"
+      description: ""
+      summary: "Create a curriculum"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: ""
+          schema:
+            $ref: "#/definitions/CreateCurriculum"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Curriculum was created successfully with ID 1994"
+        401:
+          description: "Access token was not authenticated"
+        404:
+          description: "Company Not Found"
+        406:
+          description: "No courses provided or doesn't have expected format"
          
   /curriculum/{curriculum_id}:
     get:
@@ -4794,58 +4805,52 @@ definitions:
   CreateCurriculum:
     type: "object"
     required: 
-      - "id"
-      - "name"
-      - "description"
-      - "priorCompletionThreshold"
-      - "sendCourseReminder"
+      - "allowPriorCompletion"
       - "companyId"
       - "courses"
+      - "deactivationDate"
+      - "description"
+      - "enrollmentType"
+      - "filterSets"
+      - "name"
+      - "priorCompletionThreshold"
+      - "sendCourseReminder"
+      - "useAbsoluteDates"
     properties: 
-      id: 
-        type: "number"
-        example: 555
-      name: 
+      allowPriorCompletion: 
+        type: "boolean"
+        example: true
+      companyId: 
         type: "string"
-        example: "Example Curriculum"
+        example: "4"
+      courses: 
+        type: "string"
+        example: "[{\"courseId\":\"183\",\"isSoftDueDate\":true,\"dueDate\":\"10/31/2020\",\"availableDate\":\"05/31/2020\"}]"
+      deactivationDate: 
+        type: "string"
+        example: "09/30/2020 "
       description: 
         type: "string"
-        example: "Description of Curriculum"
+        example: "Teaching to teach while teaching"
+      enrollmentType: 
+        type: "string"
+        example: "Absolute"
+      filterSets: 
+        type: "string"
+        example: "[]"
+      name: 
+        type: "string"
+        example: "Teaching Yourself and Others"
       priorCompletionThreshold: 
         type: "number"
-        example: 250
+        example: 120
       sendCourseReminder: 
-        type: "string"
-        example: "false"
-      companyId: 
-        type: "number"
-        example: 4
-      courses: 
-        type: "array"
-        items: 
-          type: "object"
-          properties: 
-            id: 
-              type: "number"
-              example: 777
-            name: 
-              type: "string"
-              example: "Example Course"
-            dueDate: 
-              type: "string"
-              example: "06/30/2016"
-            dueDays: 
-              type: "number"
-              example: 90
-            availableDate: 
-              type: "string"
-              example: "03/29/2016"
-            availableDays: 
-              type: "number"
-              example: 120
-            isSoftDueDate: 
-              type: "boolean"
-              example: true
+        type: "boolean"
+        example: false
+      useAbsoluteDates: 
+        type: "boolean"
+        example: true
+
                   
   GetCurriculum:
     type: "object"
