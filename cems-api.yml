@@ -1460,6 +1460,57 @@ paths:
         404:
           description: "Enrollment not found"
           
+  /externalcoursecompletion:
+    post:
+      tags:
+        - "Course"
+      summary: "Create an external course completion model"
+      consumes:
+        - "multipart/form-data"
+      parameters:
+        - in: "formData"
+          name: "course_name"
+          description: ""
+          type: "string"
+          required: true
+        - in: "formData"
+          name: "credit_hours"
+          description: ""
+          type: "integer"
+          required: true
+        - in: "formData"
+          name: "completion_date"
+          description: ""
+          type: "string"
+          required: true
+        - in: "formData"
+          name: "proof_of_completion"
+          description: ""
+          type: "file"
+          required: true
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "External Course Completion saved successfully"
+                type: "object"
+        400:
+          description: "The server didn't receive enough information"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+      
   /externalcoursecompletion/{external_course_completion_id}:
     get:
       tags:
