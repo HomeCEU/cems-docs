@@ -416,7 +416,7 @@ paths:
         200:
           description: "Success"
           schema:
-            $ref: "#/definitions/FilterSet"
+            $ref: "#/definitions/CompanyFilterSet"
         401:
           description: "Access token was not authenticated"
         403:
@@ -1596,7 +1596,32 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "External course completion not found"
-          
+  
+  /filterset/{filter_set_id}:
+    get:
+      tags:
+        - "Filter Set"
+      summary: "Get a filter set by ID"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "filter_set_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GetFilterSet"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Filter Set not found"
+  
   /filteredreport:
     post:
       tags:
@@ -3429,7 +3454,7 @@ definitions:
               example: 
                 - 1
 
-  FilterSet:
+  CompanyFilterSet:
     type: "object"
     required: 
       - "data"
@@ -5084,7 +5109,93 @@ definitions:
           file: 
             type: "string"
             example: ""
-  
+            
+  GetFilterSet:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data:
+        type: "object"
+        required: 
+          - "id"
+          - "name"
+          - "description"
+          - "companyId"
+          - "isViewableByCorpAdmin"
+          - "isEditableByCorpAdmin"
+          - "curricula"
+          - "filters"
+        properties: 
+          id: 
+            type: "number"
+            example: 2
+          name: 
+            type: "string"
+            example: "New Clinicians (PT/PTA, OT/OTA, SLP)"
+          description: 
+            type: "string"
+            example: "New Clinicians"
+          companyId: 
+            type: "number"
+            example: 99
+          isViewableByCorpAdmin: 
+            type: "boolean"
+            example: false
+          isEditableByCorpAdmin: 
+            type: "boolean"
+            example: false
+          curricula: 
+            type: "array"
+            items: 
+              type: "object"
+              properties: 
+                id: 
+                  type: "number"
+                  example: 2
+                name: 
+                  type: "string"
+                  example: "Clinical Onboarding"
+                priorCompletionThreshold: 
+                  type: "number"
+                  example: 200
+                sendCourseReminder: 
+                  type: "boolean"
+                  example: false
+                courses: 
+                  type: "array"
+                  items: 
+                    type: "object"
+                    properties: 
+                      id: 
+                        type: "number"
+                        example: 1234
+                      name: 
+                        type: "string"
+                        example: "Treatment Encounter Note Documentation Training"
+                      dueDate: 
+                        type: "string"
+                        example: ""
+          filters: 
+            type: "array"
+            items: 
+              type: "object"
+              properties: 
+                id: 
+                  type: "number"
+                  example: 111
+                type: 
+                  type: "string"
+                  example: "Group"
+                attributes: 
+                  type: "array"
+                  items: 
+                    type: "object"
+                    properties: 
+                      id: 
+                        type: "number"
+                        example: 9999
+    
   CreateFilteredReport:
     type: "object"
     required:
