@@ -449,6 +449,31 @@ paths:
         404:
           description: "Company not found"
           
+  /company/{company_id}/item_format:
+    get:
+      tags:
+        - "Company"
+      summary: "List course media types"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ItemFormat"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
+          
   /company/{company_id}/licensetype:
     get:
       tags:
@@ -3477,6 +3502,23 @@ definitions:
             name: 
               type: "string"
               example: "Beginner"
+  
+  ItemFormat:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 5
+            name: 
+              type: "string"
+              example: "Webinar"
               
   OrgUnit:   
     type: "object"
