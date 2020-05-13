@@ -183,7 +183,7 @@ paths:
     get:
       tags:
         - "Company"
-      summary: "List all clinical topics"
+      summary: "List all clinical topics for a company"
       description: ""
       parameters:
         - in: "path"
@@ -197,141 +197,6 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/ClinicalTopic"
-        401:
-          description: "Access token was not authenticated"
-        403:
-          description: "Access token was authenticated but not authorized for this feature"
-        404:
-          description: "Company not found"
-          
-  /company/{company_id}/corpadminreport:
-    get:
-      tags:
-        - "Company"
-      summary: "Get all corp admin reports for a company"
-      description: ""
-      parameters:
-        - in: "path"
-          name: "company_id"
-          description: ""
-          required: true
-          type: "integer"
-          pattern: '\d+'
-      responses:
-        200:
-          description: "Success"
-          schema:
-            $ref: "#/definitions/CorpAdminReport"
-        401:
-          description: "Access token was not authenticated"
-        403:
-          description: "Access token was authenticated but not authorized for this feature"
-        404:
-          description: "Company not found"
-          
-  /company/{company_id}/course/self-enroll:
-    post:
-      tags:
-        - "User"
-      summary: "Register a single course for an existing user"
-      description: ""
-      parameters:
-        - in: "path"
-          name: "company_id"
-          description: ""
-          required: true
-          type: "integer"
-          pattern: '\d+'
-        - name: "body"
-          in: "body"
-          description: ""
-          required: true
-          schema:
-            type: "object"
-            required: 
-              - "course_id"
-            properties: 
-              course_id: 
-                type: "string"
-                example: "9999"
-      responses:
-        200:
-          description: "Success"
-          schema:
-            $ref: "#/definitions/SelfEnroll"
-        401:
-          description: "Access token was not authenticated"
-        403:
-          description: "Access token was authenticated but not authorized for this feature"
-
-  /company/{company_id}/course_type:
-    get:
-      tags:
-        - "Company"
-      summary: "Get list of course types"
-      description: ""
-      parameters:
-        - in: "path"
-          name: "company_id"
-          description: ""
-          required: true
-          type: "integer"
-          pattern: '\d+'
-      responses:
-        200:
-          description: "Success"
-          schema:
-            $ref: "#/definitions/CourseType"
-        401:
-          description: "Access token was not authenticated"
-        403:
-          description: "Access token was authenticated but not authorized for this feature"
-        404:
-          description: "Company not found"
-          
-  /company/{company_id}/courses:
-    get:
-      tags:
-        - "Company"
-      summary: "Get courses for a given company"
-      description: ""
-      parameters:
-        - in: "path"
-          name: "company_id"
-          description: ""
-          required: true
-          type: "integer"
-          pattern: '\d+'
-      responses:
-        200:
-          description: "Success"
-          schema:
-            $ref: "#/definitions/CompanyCourses"
-        401:
-          description: "Access token was not authenticated"
-        403:
-          description: "Access token was authenticated but not authorized for this feature"
-        404:
-          description: "Company not found"
-
-  /company/{company_id}/curriculum:
-    get:
-      tags:
-        - "Company"
-      summary: "Get all curricula for a company"
-      description: ""
-      parameters:
-        - in: "path"
-          name: "company_id"
-          description: ""
-          required: true
-          type: "integer"
-          pattern: '\d+'
-      responses:
-        200:
-          description: "Success"
-          schema:
-            $ref: "#/definitions/CompanyCurricula"
         401:
           description: "Access token was not authenticated"
         403:
@@ -364,71 +229,11 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/filteredreport:
-    get:
-      tags:
-        - "Company"
-      summary: "Filtered reports for a company by ID of corp admin report"
-      description: ""
-      parameters:
-        - in: "path"
-          name: "company_id"
-          description: ""
-          required: true
-          type: "integer"
-          pattern: '\d+'
-        - in: "query"
-          name: "corp_admin_report_id"
-          type: "integer"
-          description: "The ID of the corp admin report"
-          x-example: "?corp_admin_report_id=4"
-        - in: "query"
-          name: "filter_by_creator"
-          type: "integer"
-          description: "1 for true and 0 for false"
-          x-example: "?filter_by_creator=0"
-      responses:
-        200:
-          description: "Success"
-          schema:
-            $ref: "#/definitions/FilteredReport"
-        401:
-          description: "Access token was not authenticated"
-        403:
-          description: "Access token was authenticated but not authorized for this feature"
-        404:
-          description: "Company not found"
-          
-  /company/{company_id}/filterset:
-    get:
-      tags:
-        - "Company"
-      summary: "Get all filter sets for a given company"
-      description: ""
-      parameters:
-        - in: "path"
-          name: "company_id"
-          description: ""
-          required: true
-          type: "integer"
-          pattern: '\d+'
-      responses:
-        200:
-          description: "Success"
-          schema:
-            $ref: "#/definitions/CompanyFilterSet"
-        401:
-          description: "Access token was not authenticated"
-        403:
-          description: "Access token was authenticated but not authorized for this feature"
-        404:
-          description: "Company not found"
-          
   /company/{company_id}/instructional_level:
     get:
       tags:
         - "Company"
-      summary: "List instructional levels"
+      summary: "List instructional levels of a given company"
       description: ""
       parameters:
         - in: "path"
@@ -449,31 +254,6 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/item_format:
-    get:
-      tags:
-        - "Company"
-      summary: "List course media types"
-      description: ""
-      parameters:
-        - in: "path"
-          name: "company_id"
-          description: ""
-          required: true
-          type: "integer"
-          pattern: '\d+'
-      responses:
-        200:
-          description: "Success"
-          schema:
-            $ref: "#/definitions/ItemFormat"
-        401:
-          description: "Access token was not authenticated"
-        403:
-          description: "Access token was authenticated but not authorized for this feature"
-        404:
-          description: "Company not found"
-  
   /company/{company_id}/license_group:
     get:
       tags:
@@ -539,182 +319,6 @@ paths:
         403:
           description: "Access token was authenticated but not authorized for this feature"
           
-  /company/{company_id}/organizational-unit:
-    get:
-      tags:
-        - "Company"
-      summary: "Get Organizational Unit information for a company"
-      description: ""
-      parameters:
-        - in: "path"
-          name: "company_id"
-          description: ""
-          required: true
-          type: "integer"
-          pattern: '\d+'
-      responses:
-        200:
-          description: "Success"
-          schema:
-            $ref: "#/definitions/OrgUnit"
-        401:
-          description: "Access token was not authenticated"
-        403:
-          description: "Access token was authenticated but not authorized for this feature"
-        404:
-          description: "Company not found"
-    post:
-      tags:
-        - "Company"
-      summary: "Create new Organizational Unit for a company"
-      description: "**NOTE**:<br>**parentId** not a required parameter but may cause error if there is already a top-level organizational unit"
-      parameters:
-        - name: "company_id"
-          in: "path"
-          description: ""
-          required: true
-          type: "integer"
-          pattern: '\d+'
-        - name: "body"
-          in: "body"
-          description: ""
-          schema:
-            type: "object"
-            required: 
-              - "name"
-              - "parentId"
-            properties: 
-              name: 
-                type: "string"
-                example: "Region 1"
-              parentId: 
-                type: "string"
-                example: "121"
-      responses:
-        200:
-          description: "Success"
-          schema:
-            $ref: "#/definitions/CreateOrgUnit"
-        401:
-          description: "Access token was not authenticated"
-        403:
-          description: "Access token was authenticated but not authorized for this feature"
-        406:
-          description: "Company already has top-level organizational unit or company ID is invalid"
-          
-  /company/{company_id}/organizational-unit/list:
-    get:
-      tags:
-        - "Company"
-      summary: "Get a list of Organizational Units with preformatted labels"
-      description: ""
-      parameters:
-        - in: "path"
-          name: "company_id"
-          required: true
-          type: "integer"
-          pattern: '\d+'
-      responses:
-        200:
-          description: "Success"
-          schema:
-            $ref: "#/definitions/OrgUnitList"
-        401:
-          description: "Access token was not authenticated"
-        403:
-          description: "Access token was authenticated but not authorized for this feature"
-        404:
-          description: "Company not found"
-          
-  /company/{company_id}/organizational-unit/{organizational_unit_id}:
-    put:
-      tags:
-        - "Company"
-      summary: "Update name of an Organizational Unit for given company"
-      description: ""
-      parameters:
-        - name: "company_id"
-          in: "path"
-          description: ""
-          required: true
-          type: "integer"
-          pattern: '\d+'
-        - name: "organizational_unit_id"
-          in: "path"
-          description: ""
-          required: true
-          type: "integer"
-          pattern: '\d+'
-        - name: "body"
-          in: "body"
-          description: ""
-          schema:
-            type: "object"
-            required: 
-              - "name"
-            properties: 
-              name: 
-                type: "string"
-                example: "Example Name"
-      responses:
-        200:
-          description: "Success"
-          schema:
-            type: "object"
-            required: 
-              - "messages"
-            properties: 
-              messages: 
-                type: "array"
-                items: 
-                  type: "string"
-                example: 
-                  - "Successfully saved the Organizational Unit."
-        401:
-          description: "Access token was not authenticated"
-        404:
-          description: "Company not found"
-        409:
-          description: "Organizational unit with this name already exists"
-    delete:
-      tags:
-        - "Company"
-      summary: "Delete an Organizational Unit for given company"
-      description: ""
-      parameters:
-        - name: "company_id"
-          in: "path"
-          description: ""
-          required: true
-          type: "integer"
-          pattern: '\d+'
-        - name: "organizational_unit_id"
-          in: "path"
-          description: ""
-          required: true
-          type: "integer"
-          pattern: '\d+'
-      responses:
-        200:
-          description: "Success"
-          schema:
-            type: "object"
-            required: 
-              - "messages"
-            properties: 
-              messages: 
-                type: "array"
-                items: 
-                  type: "string"
-                example: 
-                  - "Organizational Unit was removed successfully"
-        401:
-          description: "Access token was not authenticated"
-        403:
-          description: "Access token was authenticated but not authorized for this feature"
-        404:
-          description: "Company not found"
-    
   /company/{company_id}/resource:
     get:
       tags:
@@ -786,10 +390,406 @@ paths:
         404:
           description: "Company or resource not found"
           
+  /company/{company_id}/corpadminreport:
+    get:
+      tags:
+        - "Reports"
+      summary: "Get all corp admin reports for a company"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/CorpAdminReport"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
+          
+  /company/{company_id}/course/self-enroll:
+    post:
+      tags:
+        - "User"
+      summary: "Register a single course for an existing user"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "course_id"
+            properties: 
+              course_id: 
+                type: "string"
+                example: "9999"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/SelfEnroll"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+
+  /company/{company_id}/course_type:
+    get:
+      tags:
+        - "Course"
+      summary: "Get list of course types"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/CourseType"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
+          
+  /company/{company_id}/courses:
+    get:
+      tags:
+        - "Course"
+      summary: "Get detailed course information for a given company"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/CompanyCourses"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
+
+  /company/{company_id}/curriculum:
+    get:
+      tags:
+        - "Curriculum"
+      summary: "Get all curricula for a company"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/CompanyCurricula"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
+        
+  /company/{company_id}/filteredreport:
+    get:
+      tags:
+        - "Reports"
+      summary: "Filtered reports for a company by ID of corp admin report"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - in: "query"
+          name: "corp_admin_report_id"
+          type: "integer"
+          description: "The ID of the corp admin report"
+          x-example: "?corp_admin_report_id=4"
+        - in: "query"
+          name: "filter_by_creator"
+          type: "integer"
+          description: "1 for true and 0 for false"
+          x-example: "?filter_by_creator=0"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/FilteredReport"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
+          
+  /company/{company_id}/filterset:
+    get:
+      tags:
+        - "Filter Set"
+      summary: "Get all filter sets for a given company"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/CompanyFilterSet"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
+          
+  /company/{company_id}/item_format:
+    get:
+      tags:
+        - "Course"
+      summary: "List course media types"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ItemFormat"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
+          
+  /company/{company_id}/organizational-unit:
+    get:
+      tags:
+        - "Organizational Unit"
+      summary: "Get Organizational Unit information for a company"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/OrgUnit"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
+    post:
+      tags:
+        - "Organizational Unit"
+      summary: "Create new Organizational Unit for a company"
+      description: "**NOTE**:<br>**parentId** not a required parameter but may cause error if there is already a top-level organizational unit"
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "body"
+          in: "body"
+          description: ""
+          schema:
+            type: "object"
+            required: 
+              - "name"
+              - "parentId"
+            properties: 
+              name: 
+                type: "string"
+                example: "Region 1"
+              parentId: 
+                type: "string"
+                example: "121"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/CreateOrgUnit"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        406:
+          description: "Company already has top-level organizational unit or company ID is invalid"
+          
+  /company/{company_id}/organizational-unit/list:
+    get:
+      tags:
+        - "Organizational Unit"
+      summary: "Get a list of Organizational Units with preformatted labels"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "company_id"
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/OrgUnitList"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
+          
+  /company/{company_id}/organizational-unit/{organizational_unit_id}:
+    put:
+      tags:
+        - "Organizational Unit"
+      summary: "Update name of an Organizational Unit for given company"
+      description: ""
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "organizational_unit_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "body"
+          in: "body"
+          description: ""
+          schema:
+            type: "object"
+            required: 
+              - "name"
+            properties: 
+              name: 
+                type: "string"
+                example: "Example Name"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Successfully saved the Organizational Unit."
+        401:
+          description: "Access token was not authenticated"
+        404:
+          description: "Company not found"
+        409:
+          description: "Organizational unit with this name already exists"
+    delete:
+      tags:
+        - "Organizational Unit"
+      summary: "Delete an Organizational Unit for given company"
+      description: ""
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "organizational_unit_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Organizational Unit was removed successfully"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company not found"
+          
   /company/{company_id}/supervisingusers:
     get:
       tags:
-        - "Company"
+        - "User"
       summary: "List of users for supervisor field"
       description: ""
       parameters:
@@ -944,7 +944,7 @@ paths:
   /company/{company_id}/group:
     get:
       tags:
-        - "Company"
+        - "Group"
       summary: "Get a set of groups associated with the company"
       description: ""
       parameters:
@@ -966,7 +966,7 @@ paths:
           description: "Company not found"
     post:
       tags:
-        - "Company"
+        - "Group"
       summary: "Adds groups to a company"
       description: ""
       parameters:
@@ -1004,7 +1004,7 @@ paths:
   /company/{company_id}/group/{group_id}:
     get:
       tags:
-        - "Company"
+        - "Group"
       summary: "Get a group associated with the company by group ID"
       description: ""
       parameters:
@@ -1052,7 +1052,7 @@ paths:
           description: "Company or group not found"
     put:
       tags:
-        - "Company"
+        - "Group"
       summary: "Update the name of a group"
       description: ""
       parameters:
@@ -1102,7 +1102,7 @@ paths:
           description: "Group name is taken"
     delete:
       tags:
-        - "Company"
+        - "Group"
       summary: "Delete a group"
       description: ""
       parameters:
@@ -1142,7 +1142,7 @@ paths:
   /company/{company_id}/group/{group_id}/member:
     get:
       tags:
-        - "Company"
+        - "Group"
       summary: "Get users for a group by company and group IDs"
       description: ""
       parameters:
@@ -1266,8 +1266,8 @@ paths:
   /company/{companyId}/user/{userId}:
     get:
       tags:
-        - "Company"
-      summary: "Get the user details"
+        - "User"
+      summary: "Get detailed information about a user in a given company"
       description: ""
       operationId: "userDetails"
       parameters:
@@ -1297,7 +1297,7 @@ paths:
     get:
       deprecated: true
       tags:
-        - "Company"
+        - "User"
       summary: "Get courses for given status of user and company"
       description: This endpoint has been deprecated and will be removed in a future version. Please use /profile/enrollments instead"
       parameters:
@@ -1376,9 +1376,9 @@ paths:
   /courses/company/{companyId}:
     get:
       tags:
-        - "Company"
+        - "Course"
       description: ""
-      summary: "Get all courses for a company"
+      summary: "Get basic course information for a given company"
       parameters:
         - in: "path"
           name: "companyId"
@@ -1720,7 +1720,23 @@ paths:
           description: "Access token was not authenticated"
         403:
           description: "Access token was authenticated but not authorized for this feature"
-          
+  
+  /user/me/license:
+    get:
+      tags:
+        - "User Licenses"
+      summary: "Get a user's license information from the current access token"
+      description: ""
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GetUserLicense"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+         
   /profile/companies:
     get:
       tags:
@@ -2318,7 +2334,7 @@ paths:
           description: "User License"
           required: true
           schema:
-            $ref: "#/definitions/UserLicense"
+            $ref: "#/definitions/AddUserLicense"
       responses:
         201:
           description: "Success"
@@ -4599,7 +4615,7 @@ definitions:
                         format: "url"
                         example: "/api/v2/enrollment/3632108/certificate"
 
-  UserLicense:
+  AddUserLicense:
     required: 
       - "license_type"
       - "license_number"
@@ -4618,7 +4634,76 @@ definitions:
       license_state: 
         type: "string"
         example: "TX"
-
+  
+  GetUserLicense:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 999999
+            number: 
+              type: "string"
+              example: "123456"
+            expiration_date: 
+              type: "string"
+              example: "2020-03-31"
+            license_type: 
+              required: 
+                - "license_group"
+                - "name"
+                - "constant"
+              properties: 
+                license_group: 
+                  required: 
+                    - "constant"
+                    - "name"
+                  properties: 
+                    constant: 
+                      type: "string"
+                      example: "rn"
+                    name: 
+                      type: "string"
+                      example: "RN"
+                  type: "object"
+                name: 
+                  type: "string"
+                  example: "RN"
+                constant: 
+                  type: "string"
+                  example: "rn"
+              type: "object"
+            state:
+              type: "object"
+              required: 
+                - "id"
+                - "name"
+                - "code"
+                - "display_order"
+                - "constant"
+              properties: 
+                id: 
+                  type: "number"
+                  example: 46
+                name: 
+                  type: "string"
+                  example: "Texas"
+                code: 
+                  type: "string"
+                  example: "TX"
+                display_order: 
+                  type: "number"
+                  example: 64
+                constant: 
+                  type: "string"
+                  example: ""
+  
   UserDetail:
     required: 
       - "data"
