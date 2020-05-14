@@ -1249,7 +1249,60 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company or group not found"
-           
+    post:
+      tags:
+        - "Group"
+      summary: "Add users to a group"
+      description: ""
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "group_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "unique_ids"
+            properties: 
+              unique_ids: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "tt9999"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Added users to the group successfully!"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company, group, or user not found"
+
   /company/{alias}/config:
     get:
       tags:
