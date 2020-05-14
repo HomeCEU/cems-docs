@@ -1302,7 +1302,41 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company, group, or user not found"
-
+  
+  /company/{company_id}/group/{group_id}/member/{unique_id}:
+    delete:
+      tags:
+        - "Group"
+      summary: "Remove a user from a group"
+      description: ""
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "group_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "unique_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company, group, or user not found"
+  
   /company/{alias}/config:
     get:
       tags:
