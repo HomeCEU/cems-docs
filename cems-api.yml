@@ -981,7 +981,46 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "User not found"
-          
+  
+  /company/user/{user_id}/status-change:
+    post:
+      tags:
+        - "User"
+      summary: "Change the active status of a user"
+      description: ""
+      parameters:
+        - name: "user_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "company_id"
+              - "is_active"
+            properties: 
+              company_id: 
+                type: "number"
+                example: 4
+              is_active: 
+                type: "string"
+                example: "false"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "User not found"
+         
   /company/{company_id}/group:
     get:
       tags:
