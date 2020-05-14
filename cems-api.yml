@@ -7,6 +7,47 @@ host: "api.hceu-sandbox.com"
 basePath: "/api/v2"
 
 paths:
+  /assessmentpro/login:
+    post:
+      tags:
+        - "User"
+      summary: "Checks user access to Assessment Pro mobile application"
+      description: ""
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "username"
+              - "password"
+              - "client_id"
+              - "client_secret"
+            properties: 
+              username: 
+                type: "string"
+                example: "jsmith@example.com"
+              password: 
+                type: "string"
+                example: "123abc"
+              client_id: 
+                type: "string"
+                example: "example_client_id"
+              client_secret: 
+                type: "string"
+                example: "example_client_secret"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/AssessmentProLogin"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+
   /company:
     get:
       tags:
@@ -2602,6 +2643,61 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
 
 definitions:
+  AssessmentProLogin:
+    type: "object"
+    required: 
+      - "data"
+      - "messages"
+    properties: 
+      data:
+        type: "object"
+        required: 
+          - "access_token"
+          - "refresh_token"
+          - "first_name"
+          - "last_name"
+          - "email_address"
+          - "is_admin"
+          - "user_id"
+          - "quick_link"
+          - "companies"
+        properties: 
+          access_token: 
+            type: "string"
+            example: "example_access_token"
+          refresh_token: 
+            type: "string"
+            example: "example_refresh_token"
+          first_name: 
+            type: "string"
+            example: "John"
+          last_name: 
+            type: "string"
+            example: "Smith"
+          email_address: 
+            type: "string"
+            example: "jsmith@example.com"
+          is_admin: 
+            type: "boolean"
+            example: true
+          user_id: 
+            type: "number"
+            example: 123456
+          quick_link: 
+            type: "string"
+            example: ""
+          companies: 
+            type: "string"
+            example: "Example University"
+      messages:
+        type: "object"
+        required: 
+          - "message"
+        properties: 
+          message: 
+            type: "string"
+            example: "User was authenticated"
+
   CompanyList:
     type: "object"
     required: 
