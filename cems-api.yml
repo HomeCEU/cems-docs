@@ -2014,41 +2014,6 @@ paths:
         401:
           description: "Refresh token has expired"
   
-  /state:
-    get:
-      tags:
-        - "State"
-      summary: "List all states"
-      description: ""
-      responses:
-        200:
-          description: "Success"
-          schema:
-            type: "object"
-            required: 
-              - "data"
-            properties: 
-              data: 
-                type: "array"
-                items: 
-                  type: "object"
-                  properties: 
-                    id: 
-                      type: "number"
-                      example: 1
-                    name: 
-                      type: "string"
-                      example: "Alaska"
-                    code: 
-                      type: "string"
-                      example: "AK"
-                    display_order: 
-                      type: "number"
-                      example: 21
-                    constant: 
-                      type: "string"
-                      example: ""
-                      
   /user/email:
     get:
       tags:
@@ -2501,6 +2466,69 @@ paths:
         404:
           description: "Company or learner not found"
           
+  /state:
+    get:
+      tags:
+        - "State"
+      summary: "List all states"
+      description: ""
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    id: 
+                      type: "number"
+                      example: 1
+                    name: 
+                      type: "string"
+                      example: "Alaska"
+                    code: 
+                      type: "string"
+                      example: "AK"
+                    display_order: 
+                      type: "number"
+                      example: 21
+                    constant: 
+                      type: "string"
+                      example: ""
+                      
+  /state-study-limits:
+    get:
+      tags:
+        - "State"
+      summary: "Get state study limits for all courses"
+      description: ""
+      parameters:
+        - in: "query"
+          name: "offset"
+          type: "integer"
+          description: "Offset from which to start listing courses (not implemented)"
+          x-example: "?offset=5"
+        - in: "query"
+          name: "limit"
+          type: "integer"
+          description: "How many courses to return (not implemented)"
+          default: "100"
+          x-example: "?limit=25"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/StateStudyLimits"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+         
   /accreditations:
     get:
       tags:
@@ -5317,6 +5345,137 @@ definitions:
           type: "integer"
         example: 
           - "1234"
+  
+  StateStudyLimits:
+    type: "object"
+    required: 
+      - "count"
+      - "previous"
+      - "next"
+      - "data"
+    properties: 
+      count: 
+        type: "number"
+        example: 25
+      previous: 
+        type: "string"
+        example: ""
+      next: 
+        type: "string"
+        example: ""
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 5
+            deleted_at: 
+              type: "string"
+              example: "0000-01-01T00:00:00-0600"
+            is_active: 
+              type: "boolean"
+              example: true
+            max_hours: 
+              type: "number"
+              example: 12
+            state: 
+              required: 
+                - "id"
+                - "name"
+                - "code"
+                - "display_order"
+                - "constant"
+              properties: 
+                id: 
+                  type: "number"
+                  example: 10
+                name: 
+                  type: "string"
+                  example: "Florida"
+                code: 
+                  type: "string"
+                  example: "FL"
+                display_order: 
+                  type: "number"
+                  example: 29
+                constant: 
+                  type: "string"
+                  example: ""
+              type: "object"
+            license_type: 
+              required: 
+                - "id"
+                - "license_type"
+                - "license_group"
+                - "name"
+                - "constant"
+              properties: 
+                id: 
+                  type: "number"
+                  example: 1
+                license_type: 
+                  type: "string"
+                  example: "pt"
+                license_group: 
+                  required: 
+                    - "id"
+                    - "is_public"
+                    - "license_types"
+                    - "constant"
+                    - "name"
+                  properties: 
+                    id: 
+                      type: "number"
+                      example: 1
+                    is_public: 
+                      type: "boolean"
+                      example: true
+                    license_types: 
+                      type: "array"
+                      items: 
+                        type: "string"
+                      example: 
+                        - ""
+                        - 
+                          id: 2
+                          license_type: "pta"
+                          license_group: ""
+                          name: "PTA"
+                          constant: "pta"
+                    constant: 
+                      type: "string"
+                      example: "pt-pta"
+                    name: 
+                      type: "string"
+                      example: "PT/PTA"
+                  type: "object"
+                name: 
+                  type: "string"
+                  example: "PT"
+                constant: 
+                  type: "string"
+                  example: "pt"
+              type: "object"
+            item_formats: 
+              type: "array"
+              items: 
+                type: "object"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 2
+                  deleted_at: 
+                    type: "string"
+                    example: "0000-01-01T00:00:00-0600"
+                  name: 
+                    type: "string"
+                    example: "Text"
+                  constant: 
+                    type: "string"
+                    example: "text"
+
           
   FeatureAccess:
     type: "object"
