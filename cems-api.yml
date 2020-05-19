@@ -947,6 +947,60 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
+  # /company/{company_id}/user/account-recovery:
+  #   post:
+  #     tags:
+  #       - "User"
+  #     summary: "Account recovery for users that are unable to log in"
+  #     description: "Will send an email containing Password Reset instructions or a Welcome Email for completing account setup"
+  #     parameters:
+  #       - name: "company_id"
+  #         in: "path"
+  #         description: ""
+  #         required: true
+  #         type: "integer"
+  #         pattern: '\d+'
+  #       - name: "body"
+  #         in: "body"
+  #         description: ""
+  
+  /company/{company_id}/user/{user_id}/send_welcome_email:
+    post:
+      tags:
+        - "User"
+      summary: "Sends a Welcome Email to a user based on User ID"
+      description: ""
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "user_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "A welcome email has been sent to: 'jsmith123@example.com'."
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
           
   /company/user:
     post:
@@ -1490,6 +1544,28 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company or user not found"
+    # patch:
+    #   tags:
+    #     - "User"
+    #   summary: "Patch information for a user"
+    #   description: ""
+    #   parameters:
+    #     - name: "company_id"
+    #       in: "path"
+    #       description: ""
+    #       required: true
+    #       type: "integer"
+    #       pattern: '\d+'
+    #     - name: "user_id"
+    #       in: "path"
+    #       description: ""
+    #       required: true
+    #       type: "integer"
+    #       pattern: '\d+'
+    #     - name: "body"
+    #       in: "body"
+    #       description: ""
+          
           
   /company/{company_id}/user/{user_id}/courses/{status}:
     get:
@@ -2094,6 +2170,7 @@ paths:
           description: ""
           required: true
           type: "string"
+          x-example: "add-edit-users"
       responses:
         200:
           description: "Success"
