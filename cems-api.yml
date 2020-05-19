@@ -1727,6 +1727,38 @@ paths:
           description: "No courses provided or doesn't have expected format"
          
   /curriculum/{curriculum_id}:
+    delete:
+      tags:
+        - "Curriculum"
+      description: ""
+      summary: "Deletes a curriculum"
+      parameters:
+        - name: "curriculum_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Curriculum with id 1997 removed successfully"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized"
+        404:
+          description: "Curriculum not found"
     get:
       tags:
         - "Curriculum"
@@ -1750,7 +1782,44 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Curriculum not found"
-          
+    put:
+      tags:
+        - "Curriculum"
+      description: ""
+      summary: "Updates a curriculum"
+      parameters:
+        - name: "curriculum_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "body"
+          in: "body"
+          description: ""
+          schema:
+            $ref: "#/definitions/UpdateCurriculum"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Curriculum was updated successfully with ID 1994"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Curriculum not found"
+        
   /enrollment/{enrollmentId}/exam-eligibility:
     get:
       tags:
@@ -5385,7 +5454,7 @@ definitions:
                 delivery_type: 
                   type: "string"
                   example: "online"
-                  
+
   CreateCurriculum:
     type: "object"
     required: 
@@ -5434,7 +5503,6 @@ definitions:
       useAbsoluteDates: 
         type: "boolean"
         example: true
-
                   
   GetCurriculum:
     type: "object"
@@ -5506,6 +5574,55 @@ definitions:
           deactivationDate: 
             type: "string"
             example: "02/19/2020"
+  
+  UpdateCurriculum:
+    type: "object"
+    required: 
+      - "allowPriorCompletion"
+      - "companyId"
+      - "courses"
+      - "deactivationDate"
+      - "description"
+      - "enrollmentType"
+      - "filterSets"
+      - "name"
+      - "priorCompletionThreshold"
+      - "sendCourseReminder"
+      - "useAbsoluteDates"
+    properties: 
+      allowPriorCompletion: 
+        type: "boolean"
+        example: true
+      companyId: 
+        type: "string"
+        example: "4"
+      courses: 
+        type: "string"
+        example: "[{\"courseId\":\"183\",\"isSoftDueDate\":true,\"dueDate\":\"12/31/2020\",\"availableDate\":\"05/31/2020\"}]"
+      deactivationDate: 
+        type: "string"
+        example: "09/30/2020 "
+      description: 
+        type: "string"
+        example: "Example curriculum description"
+      enrollmentType: 
+        type: "string"
+        example: "Absolute"
+      filterSets: 
+        type: "string"
+        example: "[]"
+      name: 
+        type: "string"
+        example: "Example Curriculum Name"
+      priorCompletionThreshold: 
+        type: "number"
+        example: 120
+      sendCourseReminder: 
+        type: "boolean"
+        example: false
+      useAbsoluteDates: 
+        type: "boolean"
+        example: true
             
   ExternalCourseData:
     type: "object"
