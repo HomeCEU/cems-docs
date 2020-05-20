@@ -991,22 +991,40 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Company not found"
-  # /company/{company_id}/user/account-recovery:
-  #   post:
-  #     tags:
-  #       - "User"
-  #     summary: "Account recovery for users that are unable to log in"
-  #     description: "Will send an email containing Password Reset instructions or a Welcome Email for completing account setup"
-  #     parameters:
-  #       - name: "company_id"
-  #         in: "path"
-  #         description: ""
-  #         required: true
-  #         type: "integer"
-  #         pattern: '\d+'
-  #       - name: "body"
-  #         in: "body"
-  #         description: ""
+          
+  /company/{company_id}/user/account-recovery:
+    post:
+      tags:
+        - "User"
+      summary: "Account recovery for users that are unable to log in"
+      description: "Will send an email containing Password Reset instructions or a Welcome Email for completing account setup"
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "body"
+          in: "body"
+          description: ""
+          schema:
+            type: "object"
+            required: 
+              - "email_address"
+            properties: 
+              email_address: 
+                type: "string"
+                example: "jsmith123@example.com"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "Company ID or email not found"
   
   /company/{company_id}/user/{user_id}/send_welcome_email:
     post:
@@ -5981,10 +5999,10 @@ definitions:
         example: 25
       previous: 
         type: "string"
-        example: ""
+        example: "null"
       next: 
         type: "string"
-        example: ""
+        example: "null"
       data: 
         type: "array"
         items: 
@@ -6024,7 +6042,7 @@ definitions:
                   example: 29
                 constant: 
                   type: "string"
-                  example: ""
+                  example: "null"
               type: "object"
             license_type: 
               required: 
@@ -6057,15 +6075,23 @@ definitions:
                     license_types: 
                       type: "array"
                       items: 
-                        type: "string"
-                      example: 
-                        - ""
-                        - 
-                          id: 2
-                          license_type: "pta"
-                          license_group: ""
-                          name: "PTA"
-                          constant: "pta"
+                        type: "object"
+                        properties: 
+                          id: 
+                            type: "number"
+                            example: 2
+                          license_type: 
+                            type: "string"
+                            example: "pta"
+                          license_group: 
+                            type: "string"
+                            example: "null"
+                          name: 
+                            type: "string"
+                            example: "PTA"
+                          constant: 
+                            type: "string"
+                            example: "pta"
                     constant: 
                       type: "string"
                       example: "pt-pta"
@@ -6098,7 +6124,6 @@ definitions:
                     type: "string"
                     example: "text"
 
-          
   FeatureAccess:
     type: "object"
     required: 
