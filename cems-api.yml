@@ -2017,7 +2017,42 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "External course completion not found"
-  
+  /filterset:
+    get:
+      tags:
+        - "Filter Set"
+      summary: "Creates a filter set"
+      description: ""
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            $ref: "#/definitions/CreateFilterSet"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+              - "messages"
+            properties: 
+              data: 
+                required: 
+                  - "id"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 16397
+                type: "object"
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: "Filter Set was created successfully with ID 16397"
+
   /filterset/{filter_set_id}:
     get:
       tags:
@@ -5777,6 +5812,39 @@ definitions:
             type: "string"
             example: ""
             
+  CreateFilterSet:
+    type: "object"
+    required: 
+      - "name"
+      - "description"
+      - "isViewableByCorpAdmin"
+      - "isEditableByCorpAdmin"
+      - "filters"
+      - "curricula"
+      - "company_id"
+    properties: 
+      name: 
+        type: "string"
+        example: "Test Example Filterset"
+      description: 
+        type: "string"
+        example: "Description of example filterset"
+      isViewableByCorpAdmin: 
+        type: "boolean"
+        example: false
+      isEditableByCorpAdmin: 
+        type: "boolean"
+        example: false
+      filters: 
+        type: "string"
+        example: "[{\"type\": \"Group\",\"attributes\": [{\"id\": 273,\"before_date\":null,\"after_date\":null}]}]"
+      curricula: 
+        type: "string"
+        example: "[9]"
+      company_id: 
+        type: "number"
+        example: 4
+  
   GetFilterSet:
     type: "object"
     required: 
