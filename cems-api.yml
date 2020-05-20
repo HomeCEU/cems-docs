@@ -2072,6 +2072,45 @@ paths:
                 example: "Filter Set was created successfully with ID 16397"
 
   /filterset/{filter_set_id}:
+    delete:
+      tags:
+        - "Filter Set"
+      summary: "Delete a filter set"
+      description: ""
+      parameters:
+        - name: "filter_set_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "body"
+          in: "body"
+          description: ""
+          schema:
+            type: "object"
+            required: 
+              - "company_id"
+            properties: 
+              company_id: 
+                type: "string"
+                example: "4"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages:
+                type: "object"
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Filter set was removed successfully"
     get:
       tags:
         - "Filter Set"
