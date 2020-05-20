@@ -7,6 +7,46 @@ host: "api.hceu-sandbox.com"
 basePath: "/api/v2"
 
 paths:
+  /email/send-confirmation:
+    post:
+      tags:
+        - "User"
+      summary: "Resend the confirmation email to a user"
+      description: ""
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "email_address"
+              - "company_id"
+            properties: 
+              email_address: 
+                type: "string"
+                example: "jsmith123@example.com"
+              company_id: 
+                type: "string"
+                example: "4"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Confirmation email sent"
+                type: "object"
+
   /assessmentpro/login:
     post:
       tags:
