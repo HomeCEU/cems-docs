@@ -2036,7 +2036,7 @@ paths:
         404:
           description: "External course completion not found"
   /filterset:
-    get:
+    post:
       tags:
         - "Filter Set"
       summary: "Creates a filter set"
@@ -2075,7 +2075,7 @@ paths:
     get:
       tags:
         - "Filter Set"
-      summary: "Get a filter set by ID"
+      summary: "Get a filter set"
       description: ""
       parameters:
         - in: "path"
@@ -2095,7 +2095,53 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
         404:
           description: "Filter Set not found"
-  
+    put:
+      tags:
+        - "Filter Set"
+      summary: "Update a filter set"
+      description: ""
+      parameters:
+        - name: "filter_set_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+        - name: "body"
+          in: "body"
+          description: ""
+          schema:
+            $ref: "#/definitions/UpdateFilterSet"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+              - "messages"
+            properties: 
+              data:
+                type: "object"
+                required: 
+                  - "id"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 16398
+              messages:
+                type: "object"
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Filter Set was edited successfully with ID 16398"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized"
+        
   /filteredreport:
     post:
       tags:
@@ -5948,6 +5994,38 @@ definitions:
                       id: 
                         type: "number"
                         example: 9999
+  UpdateFilterSet:
+    type: "object"
+    required: 
+      - "name"
+      - "description"
+      - "isViewableByCorpAdmin"
+      - "isEditableByCorpAdmin"
+      - "filters"
+      - "curricula"
+      - "company_id"
+    properties: 
+      name: 
+        type: "string"
+        example: "Updated Example Filterset"
+      description: 
+        type: "string"
+        example: "Description of example filterset"
+      isViewableByCorpAdmin: 
+        type: "boolean"
+        example: false
+      isEditableByCorpAdmin: 
+        type: "boolean"
+        example: false
+      filters: 
+        type: "string"
+        example: "[{\"type\": \"Group\",\"attributes\": [{\"id\": 273,\"before_date\":null,\"after_date\":null}]}]"
+      curricula: 
+        type: "string"
+        example: "[9]"
+      company_id: 
+        type: "number"
+        example: 4
     
   CreateFilteredReport:
     type: "object"
