@@ -38,14 +38,18 @@ paths:
             required: 
               - "messages"
             properties: 
-              messages: 
+              messages:
+                type: "object"
                 required: 
                   - "message"
                 properties: 
                   message: 
                     type: "string"
                     example: "Confirmation email sent"
-                type: "object"
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
 
   /assessmentpro/login:
     post:
@@ -1956,6 +1960,40 @@ paths:
           description: "Access token was authenticated but not authorized for this feature"
       
   /externalcoursecompletion/{external_course_completion_id}:
+    delete:
+      tags:
+        - "Course"
+      summary: "Remove an external course completion model"
+      description: ""
+      parameters:
+        - in: "path"
+          name: "external_course_completion_id"
+          description: ""
+          required: true
+          type: "integer"
+          pattern: '\d+'
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages:
+                type: "object"
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "External course completion id '550593' was removed successfully."
+        401:
+          description: "Access token was not authenticated"
+        403:
+          description: "Access token was authenticated but not authorized for this feature"
+        404:
+          description: "External course completion ID is not valid"
     get:
       tags:
         - "Course"
