@@ -3122,61 +3122,6 @@ paths:
           description: "Not authorized"
 
 definitions:
-  AssessmentProLogin:
-    type: "object"
-    required: 
-      - "data"
-      - "messages"
-    properties: 
-      data:
-        type: "object"
-        required: 
-          - "access_token"
-          - "refresh_token"
-          - "first_name"
-          - "last_name"
-          - "email_address"
-          - "is_admin"
-          - "user_id"
-          - "quick_link"
-          - "companies"
-        properties: 
-          access_token: 
-            type: "string"
-            example: "example_access_token"
-          refresh_token: 
-            type: "string"
-            example: "example_refresh_token"
-          first_name: 
-            type: "string"
-            example: "John"
-          last_name: 
-            type: "string"
-            example: "Smith"
-          email_address: 
-            type: "string"
-            example: "jsmith@example.com"
-          is_admin: 
-            type: "boolean"
-            example: true
-          user_id: 
-            type: "number"
-            example: 123456
-          quick_link: 
-            type: "string"
-            example: ""
-          companies: 
-            type: "string"
-            example: "Example University"
-      messages:
-        type: "object"
-        required: 
-          - "message"
-        properties: 
-          message: 
-            type: "string"
-            example: "User was authenticated"
-
   CompanyList:
     type: "object"
     required: 
