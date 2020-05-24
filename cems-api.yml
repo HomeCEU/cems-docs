@@ -78,8 +78,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"          
       responses:
         200:
           description: "Success"
@@ -103,8 +102,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -128,8 +126,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -153,8 +150,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -178,8 +174,7 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "access_level_constant"
           in: "path"
           description: ""
@@ -209,8 +204,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -234,8 +228,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"        
       responses:
         200:
           description: "Success"
@@ -259,8 +252,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"        
       responses:
         200:
           description: "Success"
@@ -284,8 +276,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -309,8 +300,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -334,8 +324,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -373,8 +362,7 @@ paths:
         - in: "path"
           name: "company_id"
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"          
       responses:
         200:
           description: "Success"
@@ -398,8 +386,7 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "resource_constant"
           in: "path"
           description: ""
@@ -445,8 +432,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -470,8 +456,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "body"
           in: "body"
           description: ""
@@ -505,8 +490,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -530,8 +514,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -555,8 +538,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -580,8 +562,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - in: "query"
           name: "corp_admin_report_id"
           type: "integer"
@@ -615,8 +596,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -640,8 +620,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -665,8 +644,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -688,8 +666,7 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "body"
           in: "body"
           description: ""
@@ -727,8 +704,7 @@ paths:
         - in: "path"
           name: "company_id"
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -752,8 +728,7 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "prefix"
           in: "path"
           description: ""
@@ -783,14 +758,12 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "organizational_unit_id"
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"          
         - name: "body"
           in: "body"
           description: ""
@@ -832,14 +805,12 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "organizational_unit_id"
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"          
       responses:
         200:
           description: "Success"
@@ -872,8 +843,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -917,8 +887,7 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"          
         - in: "query"
           name: "page"
           type: "integer"
@@ -962,8 +931,7 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"        
         - name: "body"
           in: "body"
           description: ""
@@ -996,14 +964,12 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "user_id"
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"          
       responses:
         200:
           description: "Success"
@@ -1071,8 +1037,7 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - in: "body"
           name: "body"
           description: "The only **required** parameters are company_id, employee_id, access_level, is_active, and is_corporate_admin"
@@ -1099,8 +1064,7 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "body"
           in: "body"
           description: ""
@@ -1160,8 +1124,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "body"
           in: "body"
           description: ""
@@ -1198,14 +1161,12 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "group_id"
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"          
       responses:
         200:
           description: "Success"
@@ -1246,14 +1207,12 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "group_id"
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - in: "body"
           name: "body"
           required: true
@@ -1296,14 +1255,12 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"          
         - name: "group_id"
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -1336,14 +1293,12 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "group_id"
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"          
       responses:
         200:
           description: "Success"
@@ -1365,14 +1320,12 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"          
         - name: "group_id"
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "body"
           in: "body"
           description: ""
@@ -1420,14 +1373,12 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "group_id"
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "unique_id"
           in: "path"
           description: ""
@@ -1522,8 +1473,7 @@ paths:
           name: "companyId"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -1575,14 +1525,12 @@ paths:
     #       in: "path"
     #       description: ""
     #       required: true
-    #       type: "integer"
-    #       pattern: '\d+'
+    #       type: "integer"   
     #     - name: "user_id"
     #       in: "path"
     #       description: ""
     #       required: true
-    #       type: "integer"
-    #       pattern: '\d+'
+    #       type: "integer"    
     #     - name: "body"
     #       in: "body"
     #       description: ""
@@ -1599,13 +1547,11 @@ paths:
         - name: "company_id"
           in: "path"
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "user_id"
           in: "path"
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "status"
           in: "path"
           required: true
@@ -1631,8 +1577,7 @@ paths:
           name: "course_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -1656,8 +1601,7 @@ paths:
           name: "course_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -1679,8 +1623,7 @@ paths:
           name: "companyId"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"          
       responses:
         200:
           description: "Success"
@@ -1758,8 +1701,7 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -1790,8 +1732,7 @@ paths:
           name: "curriculum_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -1813,8 +1754,7 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "body"
           in: "body"
           description: ""
@@ -1852,8 +1792,7 @@ paths:
           name: "enrollmentId"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -1947,8 +1886,7 @@ paths:
           name: "external_course_completion_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"          
       responses:
         200:
           description: "Success"
@@ -1981,8 +1919,7 @@ paths:
           name: "external_course_completion_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -2042,8 +1979,7 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"          
         - name: "body"
           in: "body"
           description: ""
@@ -2081,8 +2017,7 @@ paths:
           name: "filter_set_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"        
       responses:
         200:
           description: "Success"
@@ -2104,8 +2039,7 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "body"
           in: "body"
           description: ""
@@ -2194,8 +2128,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -2324,8 +2257,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -2362,8 +2294,7 @@ paths:
           name: "company_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -2589,8 +2520,7 @@ paths:
           name: "feature_id"
           description: ""
           required: true
-          type: 'integer'
-          pattern: '\d+'
+          type: 'integer'         
       responses:
         200:
           description: "Success"
@@ -2688,8 +2618,7 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - in: "body"
           name: "body"
           description: "**NOTE**: asha_code is not a required parameter"
@@ -2730,8 +2659,7 @@ paths:
           name: "user_id"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
@@ -2781,14 +2709,12 @@ paths:
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
         - name: "company_id"
           in: "path"
           description: ""
           required: true
-          type: "integer"
-          pattern: '\d+'
+          type: "integer"         
       responses:
         200:
           description: "Success"
