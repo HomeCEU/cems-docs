@@ -67,7 +67,7 @@ paths:
         403:
           description: "Not authorized"
           
-  /company/{company_id}:
+  /company/{companyId}:
     get:
       tags:
         - "Company"
@@ -75,7 +75,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"          
@@ -91,7 +91,7 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/accesslevels:
+  /company/{companyId}/accesslevels:
     get:
       tags:
         - "Company"
@@ -99,7 +99,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -115,7 +115,7 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/assignments/incomplete:
+  /company/{companyId}/assignments/incomplete:
     get:
       tags:
         - "Company"
@@ -123,7 +123,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -139,15 +139,15 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/assignments/incomplete/metadata:
+  /company/{companyId}/assignments/incomplete/metadata:
     get:
       tags:
         - "Company"
-      summary: "Metadata for all incomplete courses for a given company"
+      summary: "Metadata for all incomplete assignments for a given company"
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -163,19 +163,19 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/access_level/{access_level_constant}/courses:
+  /company/{companyId}/access_level/{accessLevelConstant}/courses:
     get:
       tags:
         - "Company"
       summary: "Get all courses for a given company and access level"
       description: ""
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
           type: "integer"         
-        - name: "access_level_constant"
+        - name: "accessLevelConstant"
           in: "path"
           description: ""
           required: true
@@ -193,7 +193,7 @@ paths:
         404:
           description: "Company or access level not found"
           
-  /company/{company_id}/boc_instructional_level:
+  /company/{companyId}/boc_instructional_level:
     get:
       tags:
         - "Company"
@@ -201,7 +201,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -217,7 +217,7 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/clinical_topic:
+  /company/{companyId}/clinical_topic:
     get:
       tags:
         - "Company"
@@ -225,7 +225,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"        
@@ -241,7 +241,7 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/features:
+  /company/{companyId}/features:
     get:
       tags:
         - "Company"
@@ -249,7 +249,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"        
@@ -265,7 +265,7 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/instructional_level:
+  /company/{companyId}/instructional_level:
     get:
       tags:
         - "Company"
@@ -273,7 +273,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -289,7 +289,7 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/license_group:
+  /company/{companyId}/license_group:
     get:
       tags:
         - "Company"
@@ -297,7 +297,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -313,7 +313,7 @@ paths:
         404:
           description: "Company not found"
          
-  /company/{company_id}/licensetype:
+  /company/{companyId}/licensetype:
     get:
       tags:
         - "Company"
@@ -321,7 +321,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -352,7 +352,7 @@ paths:
         403:
           description: "Not authorized"
           
-  /company/{company_id}/resource:
+  /company/{companyId}/resource:
     get:
       tags:
         - "ACL"
@@ -360,7 +360,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           required: true
           type: "integer"          
       responses:
@@ -375,19 +375,19 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/resource/{resource_constant}:
+  /company/{companyId}/resource/{resourceConstant}:
     get:
       tags:
         - "ACL"
       summary: "Company enabled privileges for given resource"
       description: ""
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
           type: "integer"         
-        - name: "resource_constant"
+        - name: "resourceConstant"
           in: "path"
           description: ""
           required: true
@@ -421,7 +421,7 @@ paths:
         404:
           description: "Company or resource not found"
           
-  /company/{company_id}/corpadminreport:
+  /company/{companyId}/corpadminreport:
     get:
       tags:
         - "Reports"
@@ -429,7 +429,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -445,7 +445,7 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/course/self-enroll:
+  /company/{companyId}/course/self-enroll:
     post:
       tags:
         - "User"
@@ -453,7 +453,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -479,7 +479,7 @@ paths:
         403:
           description: "Not authorized"
 
-  /company/{company_id}/course_type:
+  /company/{companyId}/course_type:
     get:
       tags:
         - "Course"
@@ -487,7 +487,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -503,7 +503,7 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/courses:
+  /company/{companyId}/courses:
     get:
       tags:
         - "Course"
@@ -511,7 +511,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -527,7 +527,7 @@ paths:
         404:
           description: "Company not found"
 
-  /company/{company_id}/curriculum:
+  /company/{companyId}/curriculum:
     get:
       tags:
         - "Curriculum"
@@ -535,7 +535,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -551,7 +551,7 @@ paths:
         404:
           description: "Company not found"
         
-  /company/{company_id}/filteredreport:
+  /company/{companyId}/filteredreport:
     get:
       tags:
         - "Reports"
@@ -559,7 +559,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -585,7 +585,7 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/filterset:
+  /company/{companyId}/filterset:
     get:
       tags:
         - "Curriculum"
@@ -593,7 +593,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -609,7 +609,7 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/item_format:
+  /company/{companyId}/item_format:
     get:
       tags:
         - "Course"
@@ -617,7 +617,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -633,7 +633,7 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/organizational-unit:
+  /company/{companyId}/organizational-unit:
     get:
       tags:
         - "Organizational Unit"
@@ -641,7 +641,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -662,7 +662,7 @@ paths:
       summary: "Create new Organizational Unit for a company"
       description: "**NOTE**:<br>**parentId** not a required parameter but may cause error if there is already a top-level organizational unit"
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
@@ -694,7 +694,7 @@ paths:
         406:
           description: "Company already has top-level organizational unit or company ID is invalid"
           
-  /company/{company_id}/organizational-unit/list:
+  /company/{companyId}/organizational-unit/list:
     get:
       tags:
         - "Organizational Unit"
@@ -702,7 +702,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           required: true
           type: "integer"         
       responses:
@@ -717,14 +717,14 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/organizational-unit/list/{prefix}:
+  /company/{companyId}/organizational-unit/list/{prefix}:
     get:
       tags:
         - "Organizational Unit"
       summary: "Get Organizational Unit for a company using a prefix"
       description: ""
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
@@ -747,19 +747,19 @@ paths:
         404:
           description: "Company not found"
         
-  /company/{company_id}/organizational-unit/{organizational_unit_id}:
+  /company/{companyId}/organizational-unit/{organizationalUnitId}:
     put:
       tags:
         - "Organizational Unit"
       summary: "Update name of an Organizational Unit for given company"
       description: ""
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
           type: "integer"         
-        - name: "organizational_unit_id"
+        - name: "organizationalUnitId"
           in: "path"
           description: ""
           required: true
@@ -801,12 +801,12 @@ paths:
       summary: "Delete an Organizational Unit for given company"
       description: ""
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
           type: "integer"         
-        - name: "organizational_unit_id"
+        - name: "organizationalUnitId"
           in: "path"
           description: ""
           required: true
@@ -832,7 +832,7 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/supervisingusers:
+  /company/{companyId}/supervisingusers:
     get:
       tags:
         - "User"
@@ -840,7 +840,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -876,14 +876,14 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/user:
+  /company/{companyId}/user:
     get:
       tags:
         - "Company"
       summary: "Get a list of users in the company."
       description: "**NOTE**: If no filter is used, only the first page of users will be returned"
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
@@ -920,14 +920,14 @@ paths:
         404:
           description: "Company not found"
           
-  /company/{company_id}/user/account-recovery:
+  /company/{companyId}/user/account-recovery:
     post:
       tags:
         - "User"
       summary: "Account recovery for users that are unable to log in"
       description: "Will send an email containing Password Reset instructions or a Welcome Email for completing account setup"
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
@@ -953,19 +953,19 @@ paths:
         404:
           description: "Company ID or email not found"
   
-  /company/{company_id}/user/{user_id}/send_welcome_email:
+  /company/{companyId}/user/{userId}/send_welcome_email:
     post:
       tags:
         - "User"
       summary: "Sends a Welcome Email to a user based on User ID"
       description: ""
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
           type: "integer"         
-        - name: "user_id"
+        - name: "userId"
           in: "path"
           description: ""
           required: true
@@ -1026,14 +1026,14 @@ paths:
         422:
           description: "Cannot process the request with the provided information"
           
-  /company/user/{user_id}:
+  /company/user/{userId}:
     put:
       tags:
         - "User"
       summary: "Update a user in a given company"
       description: ""
       parameters:
-        - name: "user_id"
+        - name: "userId"
           in: "path"
           description: ""
           required: true
@@ -1053,14 +1053,14 @@ paths:
         404:
           description: "User not found"
   
-  /company/user/{user_id}/status-change:
+  /company/user/{userId}/status-change:
     post:
       tags:
         - "User"
       summary: "Change the active status of a user"
       description: ""
       parameters:
-        - name: "user_id"
+        - name: "userId"
           in: "path"
           description: ""
           required: true
@@ -1091,14 +1091,14 @@ paths:
         404:
           description: "User not found"
          
-  /company/{company_id}/group:
+  /company/{companyId}/group:
     get:
       tags:
         - "Group"
       summary: "Get a set of groups associated with the company"
       description: ""
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
@@ -1121,7 +1121,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -1150,19 +1150,19 @@ paths:
         403:
           description: "Not authorized"
 
-  /company/{company_id}/group/{group_id}:
+  /company/{companyId}/group/{groupId}:
     get:
       tags:
         - "Group"
       summary: "Get a group associated with the company by group ID"
       description: ""
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
           type: "integer"         
-        - name: "group_id"
+        - name: "groupId"
           in: "path"
           description: ""
           required: true
@@ -1203,12 +1203,12 @@ paths:
       summary: "Update the name of a group"
       description: ""
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
           type: "integer"         
-        - name: "group_id"
+        - name: "groupId"
           in: "path"
           description: ""
           required: true
@@ -1251,12 +1251,12 @@ paths:
       summary: "Delete a group"
       description: ""
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
           type: "integer"          
-        - name: "group_id"
+        - name: "groupId"
           in: "path"
           description: ""
           required: true
@@ -1282,19 +1282,19 @@ paths:
         404:
           description: "Company or group not found"
           
-  /company/{company_id}/group/{group_id}/member:
+  /company/{companyId}/group/{groupId}/member:
     get:
       tags:
         - "Group"
       summary: "Get users for a group by company and group IDs"
       description: ""
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
           type: "integer"         
-        - name: "group_id"
+        - name: "groupId"
           in: "path"
           description: ""
           required: true
@@ -1316,12 +1316,12 @@ paths:
       summary: "Add users to a group"
       description: ""
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
           type: "integer"          
-        - name: "group_id"
+        - name: "groupId"
           in: "path"
           description: ""
           required: true
@@ -1362,24 +1362,24 @@ paths:
         404:
           description: "Company, group, or user not found"
   
-  /company/{company_id}/group/{group_id}/member/{unique_id}:
+  /company/{companyId}/group/{groupId}/member/{uniqueId}:
     delete:
       tags:
         - "Group"
       summary: "Remove a user from a group"
       description: ""
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
           type: "integer"         
-        - name: "group_id"
+        - name: "groupId"
           in: "path"
           description: ""
           required: true
           type: "integer"         
-        - name: "unique_id"
+        - name: "uniqueId"
           in: "path"
           description: ""
           required: true
@@ -1418,14 +1418,14 @@ paths:
         404:
           description: "Company domain alias not found"
           
-  /company/{company_id}/login:
+  /company/{companyId}/login:
     post:
       tags:
         - "Company"
       summary: "Grants user access to our api for a given university"
       description: ""
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
@@ -1521,12 +1521,12 @@ paths:
     #   summary: "Patch information for a user"
     #   description: ""
     #   parameters:
-    #     - name: "company_id"
+    #     - name: "companyId"
     #       in: "path"
     #       description: ""
     #       required: true
     #       type: "integer"   
-    #     - name: "user_id"
+    #     - name: "userId"
     #       in: "path"
     #       description: ""
     #       required: true
@@ -1536,7 +1536,7 @@ paths:
     #       description: ""
           
           
-  /company/{company_id}/user/{user_id}/courses/{status}:
+  /company/{companyId}/user/{userId}/courses/{status}:
     get:
       deprecated: true
       tags:
@@ -1544,11 +1544,11 @@ paths:
       summary: "Get courses for given status of user and company"
       description: This endpoint has been deprecated and will be removed in a future version. Please use /profile/enrollments instead"
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           required: true
           type: "integer"         
-        - name: "user_id"
+        - name: "userId"
           in: "path"
           required: true
           type: "integer"         
@@ -1566,7 +1566,7 @@ paths:
         404:
           description: "Company, user, or status not found"
           
-  /course/{course_id}/approval:
+  /course/{courseId}/approval:
     get:
       tags:
         - "Course"
@@ -1574,7 +1574,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "course_id"
+          name: "courseId"
           description: ""
           required: true
           type: "integer"         
@@ -1590,7 +1590,7 @@ paths:
         404:
           description: "Course not found"
           
-  /course/{course_id}/materials:
+  /course/{courseId}/materials:
     get:
       tags:
         - "Course"
@@ -1598,7 +1598,7 @@ paths:
       summary: "Course materials for a given course"
       parameters:
         - in: "path"
-          name: "course_id"
+          name: "courseId"
           description: ""
           required: true
           type: "integer"         
@@ -1690,14 +1690,14 @@ paths:
         406:
           description: "No courses provided or doesn't have expected format"
          
-  /curriculum/{curriculum_id}:
+  /curriculum/{curriculumId}:
     delete:
       tags:
         - "Curriculum"
       description: ""
       summary: "Deletes a curriculum"
       parameters:
-        - name: "curriculum_id"
+        - name: "curriculumId"
           in: "path"
           description: ""
           required: true
@@ -1729,7 +1729,7 @@ paths:
       summary: "Get a curriculum"
       parameters:
         - in: "path"
-          name: "curriculum_id"
+          name: "curriculumId"
           description: ""
           required: true
           type: "integer"         
@@ -1750,7 +1750,7 @@ paths:
       description: ""
       summary: "Updates a curriculum"
       parameters:
-        - name: "curriculum_id"
+        - name: "curriculumId"
           in: "path"
           description: ""
           required: true
@@ -1875,7 +1875,7 @@ paths:
         403:
           description: "Not authorized"
       
-  /externalcoursecompletion/{external_course_completion_id}:
+  /externalcoursecompletion/{externalCourseCompletionId}:
     delete:
       tags:
         - "Course"
@@ -1883,7 +1883,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "external_course_completion_id"
+          name: "externalCourseCompletionId"
           description: ""
           required: true
           type: "integer"          
@@ -1916,7 +1916,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "external_course_completion_id"
+          name: "externalCourseCompletionId"
           description: ""
           required: true
           type: "integer"         
@@ -1968,14 +1968,14 @@ paths:
                   type: "string"
                 example: "Filter Set was created successfully with ID 16397"
 
-  /filterset/{filter_set_id}:
+  /filterset/{filterSetId}:
     delete:
       tags:
         - "Filter Set"
       summary: "Delete a filter set"
       description: ""
       parameters:
-        - name: "filter_set_id"
+        - name: "filterSetId"
           in: "path"
           description: ""
           required: true
@@ -2014,7 +2014,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "filter_set_id"
+          name: "filterSetId"
           description: ""
           required: true
           type: "integer"        
@@ -2035,7 +2035,7 @@ paths:
       summary: "Update a filter set"
       description: ""
       parameters:
-        - name: "filter_set_id"
+        - name: "filterSetId"
           in: "path"
           description: ""
           required: true
@@ -2116,7 +2116,7 @@ paths:
         403:
           description: "Not authorized"
           
-  /getUsers/{company_id}:
+  /getUsers/{companyId}:
     get:
       deprecated: true
       tags:
@@ -2125,7 +2125,7 @@ paths:
       summary: "Get users by company ID"
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -2246,7 +2246,7 @@ paths:
         404:
           description: "No results found"
           
-  /profile/companies/{company_id}:
+  /profile/companies/{companyId}:
     get:
       tags:
         - "User"
@@ -2254,7 +2254,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -2283,7 +2283,7 @@ paths:
         404:
           description: "Company not found"
           
-  /profile/company/{company_id}/access/allowed/all:
+  /profile/company/{companyId}/access/allowed/all:
     get:
       tags:
         - "User"
@@ -2291,7 +2291,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "company_id"
+          name: "companyId"
           description: ""
           required: true
           type: "integer"         
@@ -2334,7 +2334,7 @@ paths:
         404:
           description: "Company not found"
           
-  /profile/feature/{feature_constant}:
+  /profile/feature/{featureConstant}:
     get:
       tags:
         - "User"
@@ -2342,7 +2342,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "feature_constant"
+          name: "featureConstant"
           description: ""
           required: true
           type: "string"
@@ -2509,7 +2509,7 @@ paths:
         404:
           description: "Email not found"
   
-  /user/feature/{feature_id}:
+  /user/feature/{featureId}:
     get:
       tags:
         - "User"
@@ -2517,7 +2517,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "feature_id"
+          name: "featureId"
           description: ""
           required: true
           type: 'integer'         
@@ -2607,14 +2607,14 @@ paths:
                     type: "boolean"
                     example: true
   
-  /user/{user_id}:
+  /user/{userId}:
     put:
       tags:
         - "User"
       summary: Update user's first and last name
       description: ""
       parameters:
-        - name: "user_id"
+        - name: "userId"
           in: "path"
           description: ""
           required: true
@@ -2648,7 +2648,7 @@ paths:
         404:
           description: "User not found"
                    
-  /user/{user_id}/externalcoursecompletion:
+  /user/{userId}/externalcoursecompletion:
     get:
       tags:
         - "User"
@@ -2656,7 +2656,7 @@ paths:
       description: ""
       parameters:
         - in: "path"
-          name: "user_id"
+          name: "userId"
           description: ""
           required: true
           type: "integer"         
@@ -2698,19 +2698,19 @@ paths:
         404:
           description: "User not found"
           
-  /user/{user_id}/fulltranscript/company/{company_id}:
+  /user/{userId}/fulltranscript/company/{companyId}:
     get:
       tags:
         - "User"
       summary: "All courses for a user including external course completions"
       description: ""
       parameters:
-        - name: "user_id"
+        - name: "userId"
           in: "path"
           description: ""
           required: true
           type: "integer"         
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
