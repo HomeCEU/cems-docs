@@ -34,6 +34,52 @@ paths:
         403:
           description: "Not authorized"
           
+  /note:
+    post:
+      tags:
+        - "Note"
+      summary: "Create a note"
+      description: ""
+      consumes:
+        - "multipart/form-data"
+      parameters:
+        - in: "formData"
+          name: "metadata"
+          type: "string"
+          required: false
+          description: "JSON string containing {\"userid\": \"536781\", \"first_name\": \"First name\", \"last_name\": \"Last name\", \"email\": \"test#@example.com\", \"phone\": \"123-456-1234\", \"companyid\": \"4\", \"note\": \"Note text\", \"source_constant\": \"store\"}"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+              - "messages"
+            properties: 
+              data:
+                type: "object"
+                required: 
+                  - "is_admin"
+                properties: 
+                  is_admin: 
+                    type: "boolean"
+                    example: false
+              messages:
+                type: "object"
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Ok - note created"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        406:
+          description: "JSON not formatted properly"
+          
   /email/send-confirmation:
     post:
       tags:
