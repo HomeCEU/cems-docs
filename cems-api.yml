@@ -2005,6 +2005,58 @@ paths:
         404:
           description: "External course completion not found"
           
+  /orderitem/{orderItemId}/update_expiration:
+    post:
+      tags:
+        - "Course"
+      summary: "Set a new expiration date for an Order Item"
+      description: ""
+      parameters:
+        - name: "orderItemId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "body"
+          in: "body"
+          description: ""
+          schema:
+            type: "object"
+            required: 
+              - "expiration_date"
+              - "company_id"
+            properties: 
+              expiration_date: 
+                type: "string"
+                example: "2020-05-28"
+              company_id: 
+                type: "number"
+                example: 4
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data:
+                type: "object"
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "OrderItem 6846373 was updated successfully"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Order item not found"
+        406:
+          description: "Invalid date format"
+          
   /filterset:
     post:
       tags:
