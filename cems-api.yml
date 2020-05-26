@@ -147,8 +147,8 @@ paths:
       summary: "Get company by the ID"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"          
@@ -171,8 +171,8 @@ paths:
       summary: "Access levels associated with a company"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -195,8 +195,8 @@ paths:
       summary: "List all incomplete assignments within a company"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -219,8 +219,8 @@ paths:
       summary: "Metadata for all incomplete assignments for a given company"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -273,8 +273,8 @@ paths:
       summary: "Board of Certification instructional level"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -297,8 +297,8 @@ paths:
       summary: "List all clinical topics for a company"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"        
@@ -321,8 +321,8 @@ paths:
       summary: "List enabled company features"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"        
@@ -345,8 +345,8 @@ paths:
       summary: "List instructional levels of a given company"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -369,8 +369,8 @@ paths:
       summary: "Get a list of license types for a company by alphabetical order"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -393,8 +393,8 @@ paths:
       summary: "Get a list of license types for a company by ID"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -432,8 +432,8 @@ paths:
       summary: "List all company enabled resources"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           required: true
           type: "integer"          
       responses:
@@ -501,8 +501,8 @@ paths:
       summary: "Get all corp admin reports for a company"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -525,8 +525,8 @@ paths:
       summary: "Registers the currently logged in user into a given course"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -559,8 +559,8 @@ paths:
       summary: "Get list of course types"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -583,8 +583,8 @@ paths:
       summary: "Get detailed course information for a given company"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -607,8 +607,8 @@ paths:
       summary: "Get all curricula for a company"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -631,18 +631,18 @@ paths:
       summary: "Filtered reports for a company by ID of corp admin report"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
-        - in: "query"
-          name: "corp_admin_report_id"
+        - name: "corp_admin_report_id"
+          in: "query"
           type: "integer"
           description: "The ID of the corp admin report"
           x-example: "?corp_admin_report_id=4"
-        - in: "query"
-          name: "filter_by_creator"
+        - name: "filter_by_creator"
+          in: "query"
           type: "integer"
           description: "1 for true and 0 for false"
           x-example: "?filter_by_creator=0"
@@ -665,8 +665,8 @@ paths:
       summary: "Get all filter sets for a given company"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -689,8 +689,8 @@ paths:
       summary: "List course media types"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -713,8 +713,8 @@ paths:
       summary: "Get Organizational Unit information for a company"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -774,8 +774,8 @@ paths:
       summary: "Get a list of Organizational Units with preformatted labels"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           required: true
           type: "integer"         
       responses:
@@ -912,8 +912,8 @@ paths:
       summary: "List of users for supervisor field"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -961,23 +961,23 @@ paths:
           description: ""
           required: true
           type: "integer"          
-        - in: "query"
-          name: "page"
+        - name: "page"
+          in: "query"
           type: "integer"
           description: "Page of users to get"
           x-example: "?page=3"
-        - in: "query"
-          name: "limit"
+        - name: "limit"
+          in: "query"
           type: "integer"
           description: "Number of users per page"
           x-example: "?limit=5"
-        - in: "query"
-          name: "filter"
+        - name: "filter"
+          in: "query"
           type: "string"
           description: "Filter for each property on a user"
           x-example: "?filter[username]=jsmith1234"
-        - in: "query"
-          name: "sory"
+        - name: "sort"
+          in: "query"
           type: "string"
           description: "Order of users based on properties. A '-' indicates descending."
           x-example: "?sort=username"
@@ -1070,8 +1070,8 @@ paths:
       description: "Add create a new user within a specific company"
       operationId: "addCompanyMember"
       parameters:
-        - in: "body"
-          name: "body"
+        - name: "body"
+          in: "body"
           description: "The only required parameters are: first_name, last_name, company_id, emloyee_id, access_level, is_active, and is_corporate_admin"
           required: false
           schema:
@@ -1111,8 +1111,8 @@ paths:
           description: ""
           required: true
           type: "integer"         
-        - in: "body"
-          name: "body"
+        - name: "body"
+          in: "body"
           description: "The only **required** parameters are company_id, employee_id, access_level, is_active, and is_corporate_admin"
           schema:
             $ref: "#/definitions/UpdateUser"
@@ -1193,8 +1193,8 @@ paths:
       summary: "Adds groups to a company"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -1286,8 +1286,8 @@ paths:
           description: ""
           required: true
           type: "integer"         
-        - in: "body"
-          name: "body"
+        - name: "body"
+          in: "body"
           required: true
           description: ""
           schema:
@@ -1474,8 +1474,8 @@ paths:
       summary: "Gets company configuration by company domain alias"
       description: ""
       parameters:
-        - in: "path"
-          name: "alias"
+        - name: "alias"
+          in: "path"
           description: ""
           required: true
           type: "string"
@@ -1503,8 +1503,8 @@ paths:
           description: ""
           required: true
           type: "integer"
-        - in: "body"
-          name: "body"
+        - name: "body"
+          in: "body"
           description: ""
           required: true
           schema:
@@ -1542,8 +1542,8 @@ paths:
       summary: "Get a company's cms pages by the ID"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -1646,8 +1646,8 @@ paths:
       summary: "Active approvals for a course"
       description: ""
       parameters:
-        - in: "path"
-          name: "courseId"
+        - name: "courseId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -1670,8 +1670,8 @@ paths:
       description: ""
       summary: "Course materials for a given course"
       parameters:
-        - in: "path"
-          name: "courseId"
+        - name: "courseId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -1692,8 +1692,8 @@ paths:
       description: ""
       summary: "Get basic course information for a given company"
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"          
@@ -1737,8 +1737,8 @@ paths:
       description: ""
       summary: "Create a curriculum"
       parameters:
-        - in: "body"
-          name: "body"
+        - name: "body"
+          in: "body"
           description: ""
           schema:
             $ref: "#/definitions/CreateCurriculum"
@@ -1801,8 +1801,8 @@ paths:
       description: ""
       summary: "Get a curriculum"
       parameters:
-        - in: "path"
-          name: "curriculumId"
+        - name: "curriculumId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -1861,8 +1861,8 @@ paths:
       description: "**NOTE**:<br>**rejectReason**: If a user cannot take the exam, a constant will be provided.<br>**message**: If a reject constant has been provided, this will provide more detail as to why the user cannot take the exam."
       summary: "Exam eligibility for user"
       parameters:
-        - in: "path"
-          name: "enrollmentId"
+        - name: "enrollmentId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -1905,23 +1905,23 @@ paths:
       consumes:
         - "multipart/form-data"
       parameters:
-        - in: "formData"
-          name: "course_name"
+        - name: "course_name"
+          in: "formData"
           description: ""
           type: "string"
           required: true
-        - in: "formData"
-          name: "credit_hours"
+        - name: "credit_hours"
+          in: "formData"
           description: ""
           type: "integer"
           required: true
-        - in: "formData"
-          name: "completion_date"
+        - name: "completion_date"
+          in: "formData"
           description: ""
           type: "string"
           required: true
-        - in: "formData"
-          name: "proof_of_completion"
+        - name: "proof_of_completion"
+          in: "formData"
           description: ""
           type: "file"
           required: true
@@ -1955,8 +1955,8 @@ paths:
       summary: "Remove an external course completion model"
       description: ""
       parameters:
-        - in: "path"
-          name: "externalCourseCompletionId"
+        - name: "externalCourseCompletionId"
+          in: "path"
           description: ""
           required: true
           type: "integer"          
@@ -1988,8 +1988,8 @@ paths:
       summary: "Display data for an external course completion model"
       description: ""
       parameters:
-        - in: "path"
-          name: "externalCourseCompletionId"
+        - name: "externalCourseCompletionId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -2138,8 +2138,8 @@ paths:
       summary: "Get a filter set"
       description: ""
       parameters:
-        - in: "path"
-          name: "filterSetId"
+        - name: "filterSetId"
+          in: "path"
           description: ""
           required: true
           type: "integer"        
@@ -2207,8 +2207,8 @@ paths:
       summary: "Create a new filtered report for a given company"
       description: "**NOTE**:<br>filterSetIds is not a required field"
       parameters:
-        - in: "body"
-          name: "body"
+        - name: "body"
+          in: "body"
           description: ""
           required: true
           schema:
@@ -2249,8 +2249,8 @@ paths:
       description: ""
       summary: "Get users by company ID"
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -2378,8 +2378,8 @@ paths:
       summary: "Basic information for a requested company a user belongs to"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -2415,8 +2415,8 @@ paths:
       summary: "All privileges for the user"
       description: ""
       parameters:
-        - in: "path"
-          name: "companyId"
+        - name: "companyId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -2466,8 +2466,8 @@ paths:
       summary: "Responds if the user is a member of any company with the given feature"
       description: ""
       parameters:
-        - in: "path"
-          name: "featureConstant"
+        - name: "featureConstant"
+          in: "path"
           description: ""
           required: true
           type: "string"
@@ -2671,8 +2671,8 @@ paths:
       summary: "Get email address for user"
       description: ""
       parameters:
-        - in: "query"
-          name: "email_address"
+        - name: "email_address"
+          in: "query"
           type: "string"
           required: true
           x-example: "?email_address=jsmith@example.com"
@@ -2715,8 +2715,8 @@ paths:
       summary: "Check if current user has access to a specific feature"
       description: ""
       parameters:
-        - in: "path"
-          name: "featureId"
+        - name: "featureId"
+          in: "path"
           description: ""
           required: true
           type: 'integer'         
@@ -2818,8 +2818,8 @@ paths:
           description: ""
           required: true
           type: "integer"         
-        - in: "body"
-          name: "body"
+        - name: "body"
+          in: "body"
           description: "**NOTE**: asha_code is not a required parameter"
           schema:
             type: "object"
@@ -2854,8 +2854,8 @@ paths:
       summary: "All external course completion data for a user"
       description: ""
       parameters:
-        - in: "path"
-          name: "userId"
+        - name: "userId"
+          in: "path"
           description: ""
           required: true
           type: "integer"         
@@ -2939,8 +2939,8 @@ paths:
           description: ""
           required: true
           type: "integer"
-        - in: "body"
-          name: "body"
+        - name: "body"
+          in: "body"
           description: "User License"
           required: true
           schema:
@@ -3153,13 +3153,13 @@ paths:
       summary: "Get state study limits for all courses"
       description: ""
       parameters:
-        - in: "query"
-          name: "offset"
+        - name: "offset"
+          in: "query"
           type: "integer"
           description: "Offset from which to start listing courses (not implemented)"
           x-example: "?offset=5"
-        - in: "query"
-          name: "limit"
+        - name: "limit"
+          in: "query"
           type: "integer"
           description: "How many courses to return (not implemented)"
           default: "100"
