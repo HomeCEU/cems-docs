@@ -7,6 +7,33 @@ host: "api.hceu-sandbox.com"
 basePath: "/api/v2"
 
 paths:
+  /login:
+    post:
+      tags:
+        - "Login"
+      summary: "Login for applications requesting non-user related endpoints"
+      description: ""
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data:
+                type: "object"
+                required: 
+                  - "access_token"
+                properties: 
+                  access_token: 
+                    type: "string"
+                    example: ""
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+          
   /email/send-confirmation:
     post:
       tags:
@@ -1935,7 +1962,7 @@ paths:
   /filterset:
     post:
       tags:
-        - "Filter Set"
+        - "Curriculum"
       summary: "Creates a filter set"
       description: ""
       parameters:
@@ -1971,7 +1998,7 @@ paths:
   /filterset/{filterSetId}:
     delete:
       tags:
-        - "Filter Set"
+        - "Curriculum"
       summary: "Delete a filter set"
       description: ""
       parameters:
@@ -2009,7 +2036,7 @@ paths:
                     example: "Filter set was removed successfully"
     get:
       tags:
-        - "Filter Set"
+        - "Curriculum"
       summary: "Get a filter set"
       description: ""
       parameters:
@@ -2031,7 +2058,7 @@ paths:
           description: "Filter Set not found"
     put:
       tags:
-        - "Filter Set"
+        - "Curriculum"
       summary: "Update a filter set"
       description: ""
       parameters:
