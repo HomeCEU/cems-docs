@@ -1072,8 +1072,8 @@ paths:
       parameters:
         - in: "body"
           name: "body"
-          description: "Company Member"
-          required: true
+          description: "The only required parameters are: first_name, last_name, company_id, emloyee_id, access_level, is_active, and is_corporate_admin"
+          required: false
           schema:
             $ref: "#/definitions/CompanyMember"
       responses:
@@ -2482,6 +2482,43 @@ paths:
         404:
           description: "Feature not found"
           
+  /profile/first-time-login:
+    post:
+      tags:
+        - "User"
+      summary: "Login for first time users without a password set"
+      description: "Endpoint for users who have not logged in previously"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "username"
+              - "client_id"
+              - "company_id"
+            properties: 
+              username: 
+                type: "string"
+                example: "TTestington5eb2f62a3c132"
+              client_id: 
+                type: "string"
+                example: "client_id"
+              company_id: 
+                type: "number"
+                example: 4
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/FirstTimeLogin"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+              
   /profile/user/details:
     get:
       tags:
@@ -6196,7 +6233,62 @@ definitions:
                   constant: 
                     type: "string"
                     example: "text"
-
+                    
+  FirstTimeLogin:
+    type: "object"
+    required: 
+      - "data"
+      - "messages"
+    properties: 
+      data:
+        type: "object"
+        required: 
+          - "access_token"
+          - "refresh_token"
+          - "first_name"
+          - "last_name"
+          - "email_address"
+          - "is_admin"
+          - "user_id"
+          - "account_setup_complete"
+          - "is_corporate_admin"
+        properties: 
+          access_token: 
+            type: "string"
+            example: "access_token"
+          refresh_token: 
+            type: "string"
+            example: "refresh_token"
+          first_name: 
+            type: "string"
+            example: "Jeff"
+          last_name: 
+            type: "string"
+            example: "Smith"
+          email_address: 
+            type: "string"
+            example: ""
+          is_admin: 
+            type: "boolean"
+            example: false
+          user_id: 
+            type: "number"
+            example: 999999
+          account_setup_complete: 
+            type: "boolean"
+            example: false
+          is_corporate_admin: 
+            type: "boolean"
+            example: false
+      messages:
+        type: "object"
+        required: 
+          - "message"
+        properties: 
+          message: 
+            type: "string"
+            example: "User was authenticated"
+    
   FeatureAccess:
     type: "object"
     required: 
