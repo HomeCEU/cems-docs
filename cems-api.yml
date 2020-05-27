@@ -2805,7 +2805,53 @@ paths:
                   emailSent: 
                     type: "boolean"
                     example: true
-  
+                    
+  /user/password/reset:
+    post:
+      tags:
+        - "User"
+      summary: "Password reset request for a given email address (username)"
+      description: ""
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "email_address"
+              - "company_id"
+            properties: 
+              email_address: 
+                type: "string"
+                example: "jsmith123@example.com"
+              company_id: 
+                type: "number"
+                example: 4
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages:
+                type: "object"
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Password reset email sent"
+        400:
+          description: "No user found with this email address or Company not found"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+
   /user/{userId}:
     put:
       tags:
@@ -2846,7 +2892,34 @@ paths:
           description: "Not authorized"
         404:
           description: "User not found"
-                   
+  
+  /user/{userId}/addresses:
+    put:
+      tags:
+        - "User"
+      summary: "Update the user billing and shipping addresses"
+      description: ""
+      parameters:
+        - name: "userId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "body"
+          in: "body"
+          description: ""
+          schema:
+            $ref: "#/definitions/UpdateAddresses"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "User not found"
+        
   /user/{userId}/externalcoursecompletion:
     get:
       tags:
@@ -6355,3 +6428,56 @@ definitions:
             type: "string"
             example: "Access token was authenticated and authorized"
         type: "object"
+  
+  UpdateAddresses:
+    type: "object"
+    required: 
+      - "billing_address[address_1]"
+      - "billing_address[address_2]"
+      - "billing_address[city]"
+      - "billing_address[state]"
+      - "billing_address[zip]"
+      - "billing_address[country]"
+      - "shipping_address[address_1]"
+      - "shipping_address[address_2]"
+      - "shipping_address[city]"
+      - "shipping_address[state]"
+      - "shipping_address[zip]"
+      - "shipping_address[country]"
+    properties: 
+      billing_address[address_1]: 
+        type: "string"
+        example: "101 Main St"
+      billing_address[address_2]: 
+        type: "string"
+        example: ""
+      billing_address[city]: 
+        type: "string"
+        example: "Vice City"
+      billing_address[state]: 
+        type: "string"
+        example: "FL"
+      billing_address[zip]: 
+        type: "string"
+        example: "11222"
+      billing_address[country]: 
+        type: "string"
+        example: "US"
+      shipping_address[address_1]: 
+        type: "string"
+        example: "Loop 900"
+      shipping_address[address_2]: 
+        type: "string"
+        example: ""
+      shipping_address[city]: 
+        type: "string"
+        example: "San Andreas"
+      shipping_address[state]: 
+        type: "string"
+        example: "CA"
+      shipping_address[zip]: 
+        type: "string"
+        example: "99000"
+      shipping_address[country]: 
+        type: "string"
+        example: "US"
