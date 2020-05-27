@@ -3191,7 +3191,11 @@ paths:
                   example: 
                     type: "string"
                     example: "RN + 5 Digit License Number"
-  
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+          
   /state-study-limits:
     get:
       tags:
