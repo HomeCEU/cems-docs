@@ -3146,6 +3146,52 @@ paths:
                       type: "string"
                       example: ""
                       
+  /state/cebroker/state/{stateId}/license/{licenseTypeId}:
+    get:
+      tags:
+        - "State"
+      summary: "Returns StateLicenseReportsToCeBroker watermark"
+      description: ""
+      parameters:
+        - name: "stateId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "licenseTypeId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data:
+                type: "object"
+                required: 
+                  - "reportsToCeBroker"
+                  - "watermarkValue"
+                  - "licenseNumberRegularExpression"
+                  - "example"
+                properties: 
+                  reportsToCeBroker: 
+                    type: "boolean"
+                    example: true
+                  watermarkValue: 
+                    type: "string"
+                    example: "RN#####"
+                  licenseNumberRegularExpression: 
+                    type: "string"
+                    example: "RN[0-9]{5}"
+                  example: 
+                    type: "string"
+                    example: "RN + 5 Digit License Number"
+  
   /state-study-limits:
     get:
       tags:
