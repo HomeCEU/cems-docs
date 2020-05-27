@@ -4750,103 +4750,109 @@ definitions:
     type: "object"
     required: 
       - "data"
+      - "links"
     properties: 
-      links: 
-        type: "object"
-        properties:
-          scormContent: 
-            type: "string"
-            description: "Link to consume SCORM content for this enrollment"
-            example: "https://link.to.restici/registrationId"
-            format: "uri"
-          certificate: 
-            type: "string"
-            description: "Link to download certificate of completion"
-            example: "https://link.to.certificate/enrollmentId"
-            format: "uri"
       data:
-        type: "object" 
+        type: "object"
         required: 
-          - "id"
-          - "userId"
-          - "learnerId"
-          - "courseId"
-          - "courseName"
-          - "companyId"
-          - "companyName"
+          - "enrollment_id"
+          - "user_id"
+          - "learner_id"
+          - "course_id"
+          - "course_name"
+          - "company_id"
+          - "company_name"
+          - "curriculum_id"
+          - "curriculum_name"
+          - "enrollment_type"
           - "format"
           - "hours"
-          - "passingGrade"
-          - "isPassing"
-          - "assignmentDate"
+          - "completed_on"
+          - "attempt_id"
+          - "highest_grade"
+          - "passing_grade"
+          - "is_passing"
+          - "assignment_date"
+          - "due_date"
+          - "expires"
+          - "exam_id"
         properties: 
-          id: 
+          enrollment_id: 
+            type: "number"
+            example: 3632108
+          user_id: 
+            type: "number"
+            example: 97230
+          learner_id: 
             type: "string"
-            example: "3632108"
-            description: "enrollmentId"
-          userId: 
-            type: "string"
-            example: "97230"
-          learnerId: 
-            type: "string"
-            example: "E1024"
-          courseId: 
-            type: "string"
-            example: "1698"
-          courseName: 
+            example: "A1234"
+          course_id: 
+            type: "number"
+            example: 1698
+          course_name: 
             type: "string"
             example: "HIV/AIDS - What You Need to Know"
-          companyId: 
-            type: "string"
-            example: "4"
-          companyName: 
+          company_id: 
+            type: "number"
+            example: 4
+          company_name: 
             type: "string"
             example: "Demo University"
-          curriculumId: 
-            type: "string"
-            example: "42"
-          curriculumName: 
+          curriculum_id: 
+            type: "number"
+            example: 42
+          curriculum_name: 
             type: "string"
             example: "HIV/AIDS"
-          enrollmentType: 
+          enrollment_type: 
             type: "string"
-            example: "Assigned"
+            example: "Admin Assigned"
           format: 
             type: "string"
             example: "Text"
           hours: 
             type: "string"
             example: "1.00"
-          completedOn: 
+          completed_on: 
             type: "string"
-            example: "2018-10-20"
-            format: "date"
-          attemptId: 
+            example: "2018-10-26T00:00:00-0500"
+          attempt_id: 
+            type: "number"
+            example: 1234567
+          highest_grade: 
+            type: "number"
+            example: 0.75
+          passing_grade: 
+            type: "number"
+            example: 0.7
+          is_passing: 
+            type: "boolean"
+            example: true
+          assignment_date: 
             type: "string"
-            example: "3640761"
-          highestGrade: 
+            example: "2018-07-16T12:40:48-0500"
+          due_date: 
             type: "string"
-            example: "0.75"
-          passingGrade: 
-            type: "string"
-            example: "0.70"
-          isPassing: 
-            type: "string"
-            example: "0"
-          assignmentDate: 
-            type: "string"
-            example: "2018-07-16"
-            format: "date"
-          dueDate: 
-            type: "string"
-            example: "2018-07-31"
-            format: "date"
+            example: "2018-07-31T00:00:00-0500"
           expires: 
+            type: "boolean"
+            example: false
+          exam_id: 
+            type: "number"
+            example: 290
+      links:
+        type: "object"
+        required: 
+          - "scormContent"
+          - "certificate"
+        properties: 
+          scormContent: 
             type: "string"
-            example: "1"
-          examId: 
+            example: "https://link.to.restici/registrationId"
+          certificate: 
             type: "string"
-            example: "290"
+            example: "/api/v2/enrollment/3632108/certificate"
+
   
   FullTranscript:
     type: "object"
@@ -4913,25 +4919,9 @@ definitions:
     type: "object"
     required: 
       - "data"
+      - "links"
     properties: 
-      links:
-        type: "object"
-        properties:
-          sco: 
-            type: "string"
-            example: "/api/v2/company/153/course/9876/proxy/download"
-            description: "Link to proxy sco file so it can be imported into another LMS"
-            format: "uri"
-          scoDetail:
-            type: "string"
-            format: "uri"
-            example: "/api/v2/course/9876/sco"
-          accreditations:
-            type: "string"
-            example: "/api/v2/accreditations?courseId=9876&activeOnDate=2020-01-30"
-            description: "API Link to accreditations for course"
-            format: "uri"
-      data: 
+      data:
         type: "object"
         required: 
           - "id"
@@ -4948,24 +4938,26 @@ definitions:
           - "outline"
           - "summary"
           - "goals"
+          - "ashaCode"
+          - "code"
+          - "isSearchable"
           - "disciplines"
           - "categories"
           - "authors"
           - "clinicalTopics"
-          - "isSearchable"
         properties: 
           id: 
             type: "string"
-            example: "432"
+            example: "999999"
           createdAt: 
             type: "string"
-            example: "2016-01-15"
+            example: "2018-09-18 15:31:38"
           courseId: 
             type: "string"
-            example: "9876"
+            example: "1234"
           isActive: 
-            type: "boolean"
-            example: true
+            type: "string"
+            example: "1"
           companyId: 
             type: "string"
             example: "153"
@@ -4974,10 +4966,10 @@ definitions:
             example: "How to build a flux capacitor"
           description: 
             type: "string"
-            example: "course description"
+            example: "Course description"
           format: 
             type: "string"
-            example: "video"
+            example: "Video"
           instructionalLevel: 
             type: "string"
             example: "Intermediate"
@@ -4986,16 +4978,25 @@ definitions:
             example: "Essential"
           hours: 
             type: "string"
-            example: "1.5"
+            example: "2.00"
           outline: 
             type: "string"
             example: ""
           summary: 
             type: "string"
-            example: ""
+            example: "Course summary"
           goals: 
             type: "string"
-            example: ""
+            example: "Course goals"
+          ashaCode: 
+            type: "string"
+            example: "ABCD0099"
+          code: 
+            type: "string"
+            example: "CEU999"
+          isSearchable: 
+            type: "string"
+            example: "1"
           disciplines: 
             type: "array"
             items: 
@@ -5017,10 +5018,10 @@ definitions:
               properties: 
                 id: 
                   type: "string"
-                  example: "8"
+                  example: "200"
                 name: 
                   type: "string"
-                  example: "Texas Physical Therapy Ethics"
+                  example: "Scientific Training"
           authors: 
             type: "array"
             items: 
@@ -5028,10 +5029,10 @@ definitions:
               properties: 
                 id: 
                   type: "string"
-                  example: "42"
+                  example: "427"
                 name: 
                   type: "string"
-                  example: "Robert Martin"
+                  example: "Doc"
           clinicalTopics: 
             type: "array"
             items: 
@@ -5039,19 +5040,26 @@ definitions:
               properties: 
                 id: 
                   type: "string"
-                  example: "5"
+                  example: "12"
                 name: 
                   type: "string"
-                  example: "Aphasia"
-          ashaCode: 
+                  example: "Science / Quantum Physics / Time Travel"
+      links:
+        type: "object"
+        required: 
+          - "sco"
+          - "scoDetail"
+          - "accreditations"
+        properties: 
+          sco: 
             type: "string"
-            example: "ACGB0022"
-          code: 
+            example: "/api/v2/company/153/course/9876/proxy/download"
+          scoDetail: 
             type: "string"
-            example: "HCEU229"
-          isSearchable: 
-            type: "boolean"
-            example: true
+            example: "/api/v2/course/9876/sco"
+          accreditations: 
+            type: "string"
+            example: "/api/v2/accreditations?courseId=9876&activeOnDate=2020-01-30"
             
   Accreditations:
     type: "object"
@@ -5275,47 +5283,43 @@ definitions:
     required: 
       - "data"
     properties: 
-      data: 
-        required:
+      data:
+        type: "object"
+        required: 
           - "items"
-        properties:
+        properties: 
           items: 
             type: "array"
             items: 
-              required: 
-                - "enrollmentId"
-                - "learnerId"
-                - "courseId"
-                - "completedOn"
-              properties:
-                enrollmentId: 
+              type: "object"
+              properties: 
+                enrollment_id: 
+                  type: "number"
+                  example: 1234567
+                learner_id: 
                   type: "string"
-                  example: "3632108"
-                  description: "enrollmentId"
-                learnerId: 
+                  example: "A1234"
+                course_id: 
+                  type: "number"
+                  example: 9999
+                course_name: 
                   type: "string"
-                  example: "E1024"
-                courseId: 
+                  example: "Example Course Name"
+                completed_on: 
                   type: "string"
-                  example: "1698"
-                courseName: 
-                  type: "string"
-                  example: "HIV/AIDS - What You Need to Know"
-                completedOn: 
-                  type: "string"
-                  example: "2018-10-20"
+                  example: "2018-08-06T00:00:00-0500"
                 links:
-                  type: "array"
-                  items:
-                    properties:
-                      enrollmentDetail:
-                        type: "string"
-                        format: "url"
-                        example: "/api/v2/enrollment/3632108"
-                      certificate:
-                        type: "string"
-                        format: "url"
-                        example: "/api/v2/enrollment/3632108/certificate"
+                  type: "object"
+                  required: 
+                    - "enrollmentDetail"
+                    - "certificate"
+                  properties: 
+                    enrollmentDetail: 
+                      type: "string"
+                      example: "/api/v2/enrollment/1234567"
+                    certificate: 
+                      type: "string"
+                      example: "/api/v2/enrollment/1234567/certificate"
 
   AddUserLicense:
     required: 
