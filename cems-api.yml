@@ -2991,7 +2991,54 @@ paths:
           description: "Not authenticated"
         403:
           description: "Not authorized"
-       
+  
+  /user/{userId}/email/make-primary:
+    post:
+      tags:
+        - "User"
+      summary: "Makes given email address primary on a user's account"
+      description: ""
+      parameters:
+        - name: "userId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "email_address"
+            properties: 
+              email_address: 
+                type: "string"
+                example: "jsmith123@example.com"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages:
+                type: "object"
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "The email address was successfully set as primary."
+        400:
+          description: "Cannot set unconfirmed email as primary or User could not be found, could not send confirmation email"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        
   /user/{userId}/externalcoursecompletion:
     get:
       tags:
