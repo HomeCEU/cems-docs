@@ -3132,7 +3132,34 @@ paths:
           description: "Not authorized"
         404:
           description: "User not found"
-          
+  
+  /user/{userId}/phone/{userPhoneId}:
+    delete:
+      tags:
+        - "User"
+      summary: "Remove a phone from user's account using given User ID and Phone ID"
+      description: ""
+      parameters:
+        - name: "userId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "userPhoneId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "User or user phone not found"
+         
   /user/{userId}/license:
     post:
       tags:
