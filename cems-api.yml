@@ -2919,12 +2919,84 @@ paths:
           description: "Not authorized"
         404:
           description: "User not found"
-        
+  
+  /user/{userId}/email:
+    delete:
+      tags:
+        - "User"
+      summary: "Removes an email address from a user's account"
+      description: ""
+      parameters:
+        - name: "userId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "email_address"
+            properties: 
+              email_address: 
+                type: "string"
+                example: "jsmith123@example.com"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized or Email address is primary and cannot be deleted"
+        404:
+          description: "Email address not found"
+    post:
+      tags:
+        - "User"
+      summary: "Adds an email address to a user's account"
+      description: ""
+      parameters:
+        - name: "userId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "email_address"
+              - "company_id"
+            properties: 
+              email_address: 
+                type: "string"
+                example: "jsmith999@example.com"
+              company_id: 
+                type: "number"
+                example: 4
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/AddUserEmail"
+        400:
+          description: "User could not be found, could not process email address"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+       
   /user/{userId}/externalcoursecompletion:
     get:
       tags:
         - "User"
-      summary: "All external course completion data for a user"
+      summary: "Get all external course completion data for a user"
       description: ""
       parameters:
         - name: "userId"
@@ -2936,33 +3008,7 @@ paths:
         200:
           description: "Success"
           schema:
-            type: "object"
-            required: 
-              - "data"
-            properties: 
-              data: 
-                type: "array"
-                items: 
-                  type: "object"
-                  properties: 
-                    id: 
-                      type: "number"
-                      example: 3
-                    courseName: 
-                      type: "string"
-                      example: "Leading With Confidence"
-                    hours: 
-                      type: "number"
-                      example: 23
-                    certDate: 
-                      type: "string"
-                      example: "07/14/2015"
-                    filename: 
-                      type: "string"
-                      example: "uploads/externalcoursecompletion/image.png"
-                    userId: 
-                      type: "string"
-                      example: "99999"
+            $ref: "#/definitions/GetExtCourseCompletion"
         401:
           description: "Not authenticated"
         403:
@@ -4976,7 +5022,53 @@ definitions:
             type: "string"
             example: "/api/v2/enrollment/3632108/certificate"
 
+  AddUserEmail:
+    type: "object"
+    required: 
+      - "data"
+      - "messages"
+    properties: 
+      data: 
+        required: 
+          - "id"
+        properties: 
+          id: 
+            type: "number"
+            example: 216109
+        type: "object"
+      messages: 
+        type: "string"
+        example: "Email address added for user"
   
+  GetExtCourseCompletion:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 3
+            courseName: 
+              type: "string"
+              example: "Leading With Confidence"
+            hours: 
+              type: "number"
+              example: 23
+            certDate: 
+              type: "string"
+              example: "07/14/2015"
+            filename: 
+              type: "string"
+              example: "uploads/externalcoursecompletion/image.png"
+            userId: 
+              type: "string"
+              example: "99999"
+    
   FullTranscript:
     type: "object"
     required: 
