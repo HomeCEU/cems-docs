@@ -3091,6 +3091,47 @@ paths:
           description: "Not authorized"
         404:
           description: "User or company not found"
+  
+  /user/{userId}/phone:
+    post:
+      tags:
+        - "User"
+      summary: "Creates a user phone"
+      description: ""
+      parameters:
+        - name: "userId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            $ref: "#/definitions/CreateUserPhone"
+      responses:
+        201:
+          description: "Phone was created"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                required: 
+                  - "id"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 353006
+                type: "object"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "User not found"
           
   /user/{userId}/license:
     post:
@@ -5176,7 +5217,28 @@ definitions:
                 Proof_of_Completion: 
                   type: "string"
                   example: "https://www.example.com/certificate/view/image"
-           
+  
+  CreateUserPhone:
+    type: "object"
+    required: 
+      - "phone_number_type"
+      - "phone_number"
+      - "phone_country"
+      - "phone_extension"
+    properties: 
+      phone_number_type: 
+        type: "string"
+        example: "alternate"
+      phone_number: 
+        type: "string"
+        example: "123-555-9999"
+      phone_country: 
+        type: "string"
+        example: "US"
+      phone_extension: 
+        type: "string"
+        example: ""
+          
   CourseCatalogCourseDetail:
     type: "object"
     required: 
