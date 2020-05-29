@@ -42,6 +42,8 @@ paths:
       description: ""
       consumes:
         - "multipart/form-data"
+      produces:
+        - "application/json"
       parameters:
         - in: "formData"
           name: "metadata"
@@ -86,6 +88,10 @@ paths:
         - "User"
       summary: "Resend the confirmation email to a user"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "body"
           in: "body"
@@ -130,6 +136,8 @@ paths:
         - "Company"
       summary: "List of all companies"
       description: ""
+      produces:
+      - "application/json"
       responses:
         200:
           description: "Success"
@@ -146,6 +154,8 @@ paths:
         - "Company"
       summary: "Get company by the ID"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -170,6 +180,8 @@ paths:
         - "Company"
       summary: "Access levels associated with a company"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -194,6 +206,8 @@ paths:
         - "Company"
       summary: "List all incomplete assignments within a company"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -218,6 +232,8 @@ paths:
         - "Company"
       summary: "Metadata for all incomplete assignments for a given company"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -242,6 +258,8 @@ paths:
         - "Company"
       summary: "Get all courses for a given company and access level"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -272,6 +290,8 @@ paths:
         - "Company"
       summary: "Board of Certification instructional level"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -296,6 +316,8 @@ paths:
         - "Company"
       summary: "List all clinical topics for a company"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -320,6 +342,8 @@ paths:
         - "Company"
       summary: "List enabled company features"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -344,6 +368,8 @@ paths:
         - "Company"
       summary: "List instructional levels of a given company"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -368,6 +394,8 @@ paths:
         - "Company"
       summary: "Get a list of license types for a company by alphabetical order"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -392,6 +420,8 @@ paths:
         - "Company"
       summary: "Get a list of license types for a company by ID"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -431,6 +461,8 @@ paths:
         - "ACL"
       summary: "List all company enabled resources"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -454,6 +486,8 @@ paths:
         - "ACL"
       summary: "Company enabled privileges for given resource"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -500,6 +534,8 @@ paths:
         - "Reports"
       summary: "Get all corp admin reports for a company"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -524,6 +560,10 @@ paths:
         - "User"
       summary: "Registers the currently logged in user into a given course"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -558,6 +598,8 @@ paths:
         - "Course"
       summary: "Get list of course types"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -582,6 +624,8 @@ paths:
         - "Course"
       summary: "Get detailed course information for a given company"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -606,6 +650,8 @@ paths:
         - "Curriculum"
       summary: "Get all curricula for a company"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -630,6 +676,8 @@ paths:
         - "Reports"
       summary: "Filtered reports for a company by ID of corp admin report"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -664,6 +712,8 @@ paths:
         - "Curriculum"
       summary: "Get all filter sets for a given company"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -688,6 +738,8 @@ paths:
         - "Course"
       summary: "List course media types"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -712,6 +764,8 @@ paths:
         - "Organizational Unit"
       summary: "Get Organizational Unit information for a company"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -734,6 +788,10 @@ paths:
         - "Organizational Unit"
       summary: "Create new Organizational Unit for a company"
       description: "**NOTE**:<br>**parentId** not a required parameter but may cause error if there is already a top-level organizational unit"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -773,6 +831,8 @@ paths:
         - "Organizational Unit"
       summary: "Get a list of Organizational Units with preformatted labels"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -796,6 +856,8 @@ paths:
         - "Organizational Unit"
       summary: "Get Organizational Unit for a company using a prefix"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -826,6 +888,10 @@ paths:
         - "Organizational Unit"
       summary: "Update name of an Organizational Unit for given company"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -873,6 +939,8 @@ paths:
         - "Organizational Unit"
       summary: "Delete an Organizational Unit for given company"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -911,6 +979,8 @@ paths:
         - "User"
       summary: "List of users for supervisor field"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -955,6 +1025,8 @@ paths:
         - "Company"
       summary: "Get a list of users in the company."
       description: "**NOTE**: If no filter is used, only the first page of users will be returned"
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -999,6 +1071,10 @@ paths:
         - "User"
       summary: "Account recovery for users that are unable to log in"
       description: "Will send an email containing Password Reset instructions or a Welcome Email for completing account setup"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -1032,6 +1108,8 @@ paths:
         - "User"
       summary: "Sends a Welcome Email to a user based on User ID"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -1069,6 +1147,10 @@ paths:
       summary: "Add company member"
       description: "Add create a new user within a specific company"
       operationId: "addCompanyMember"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "body"
           in: "body"
@@ -1105,6 +1187,10 @@ paths:
         - "User"
       summary: "Update a user in a given company"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "userId"
           in: "path"
@@ -1132,6 +1218,10 @@ paths:
         - "User"
       summary: "Change the active status of a user"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "userId"
           in: "path"
@@ -1170,6 +1260,8 @@ paths:
         - "Group"
       summary: "Get a set of groups associated with the company"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -1192,6 +1284,10 @@ paths:
         - "Group"
       summary: "Adds groups to a company"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -1229,6 +1325,8 @@ paths:
         - "Group"
       summary: "Get a group associated with the company by group ID"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -1275,6 +1373,10 @@ paths:
         - "Group"
       summary: "Update the name of a group"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -1323,6 +1425,8 @@ paths:
         - "Group"
       summary: "Delete a group"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -1361,6 +1465,8 @@ paths:
         - "Group"
       summary: "Get users for a group by company and group IDs"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -1388,6 +1494,10 @@ paths:
         - "Group"
       summary: "Add users to a group"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -1441,6 +1551,8 @@ paths:
         - "Group"
       summary: "Remove a user from a group"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -1473,6 +1585,8 @@ paths:
         - "Company"
       summary: "Gets company configuration by company domain alias"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "alias"
           in: "path"
@@ -1497,6 +1611,10 @@ paths:
         - "Company"
       summary: "Grants user access to our api for a given university"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -1541,6 +1659,8 @@ paths:
         - "ACL"
       summary: "Get a company's cms pages by the ID"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -1566,6 +1686,8 @@ paths:
       summary: "Get detailed information about a user in a given company"
       description: ""
       operationId: "userDetails"
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -1616,6 +1738,8 @@ paths:
         - "User"
       summary: "Get courses for given status of user and company"
       description: This endpoint has been deprecated and will be removed in a future version. Please use /profile/enrollments instead"
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -1645,6 +1769,8 @@ paths:
         - "Course"
       summary: "Active approvals for a course"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "courseId"
           in: "path"
@@ -1667,8 +1793,10 @@ paths:
     get:
       tags:
         - "Course"
-      description: ""
       summary: "Course materials for a given course"
+      description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "courseId"
           in: "path"
@@ -1689,8 +1817,10 @@ paths:
     get:
       tags:
         - "Course"
-      description: ""
       summary: "Get basic course information for a given company"
+      description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -1734,8 +1864,12 @@ paths:
     post:
       tags:
         - "Curriculum"
-      description: ""
       summary: "Create a curriculum"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "body"
           in: "body"
@@ -1767,8 +1901,10 @@ paths:
     delete:
       tags:
         - "Curriculum"
-      description: ""
       summary: "Deletes a curriculum"
+      description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "curriculumId"
           in: "path"
@@ -1798,8 +1934,10 @@ paths:
     get:
       tags:
         - "Curriculum"
-      description: ""
       summary: "Get a curriculum"
+      description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "curriculumId"
           in: "path"
@@ -1820,8 +1958,12 @@ paths:
     put:
       tags:
         - "Curriculum"
-      description: ""
       summary: "Updates a curriculum"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "curriculumId"
           in: "path"
@@ -1858,8 +2000,10 @@ paths:
     get:
       tags:
         - "Enrollments"
-      description: "**NOTE**:<br>**rejectReason**: If a user cannot take the exam, a constant will be provided.<br>**message**: If a reject constant has been provided, this will provide more detail as to why the user cannot take the exam."
       summary: "Exam eligibility for user"
+      description: "**NOTE**:<br>**rejectReason**: If a user cannot take the exam, a constant will be provided.<br>**message**: If a reject constant has been provided, this will provide more detail as to why the user cannot take the exam."
+      produces:
+      - "application/json"
       parameters:
         - name: "enrollmentId"
           in: "path"
@@ -1904,6 +2048,8 @@ paths:
       summary: "Create an external course completion model"
       consumes:
         - "multipart/form-data"
+      produces:
+        - "application/json"
       parameters:
         - name: "course_name"
           in: "formData"
@@ -1954,6 +2100,8 @@ paths:
         - "Course"
       summary: "Remove an external course completion model"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "externalCourseCompletionId"
           in: "path"
@@ -1987,6 +2135,8 @@ paths:
         - "Course"
       summary: "Display data for an external course completion model"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "externalCourseCompletionId"
           in: "path"
@@ -2011,6 +2161,10 @@ paths:
         - "Course"
       summary: "Set a new expiration date for an Order Item"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "orderItemId"
           in: "path"
@@ -2063,6 +2217,10 @@ paths:
         - "Curriculum"
       summary: "Creates a filter set"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "body"
           in: "body"
@@ -2099,6 +2257,10 @@ paths:
         - "Curriculum"
       summary: "Delete a filter set"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "filterSetId"
           in: "path"
@@ -2137,6 +2299,8 @@ paths:
         - "Curriculum"
       summary: "Get a filter set"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "filterSetId"
           in: "path"
@@ -2159,6 +2323,10 @@ paths:
         - "Curriculum"
       summary: "Update a filter set"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "filterSetId"
           in: "path"
@@ -2206,6 +2374,10 @@ paths:
         - "Reports"
       summary: "Create a new filtered report for a given company"
       description: "**NOTE**:<br>filterSetIds is not a required field"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "body"
           in: "body"
@@ -2246,8 +2418,10 @@ paths:
       deprecated: true
       tags:
         - "Company"
-      description: ""
       summary: "Get users by company ID"
+      description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -2271,6 +2445,8 @@ paths:
       summary: "List of possible license types"
       description: ""
       operationId: "licenseTypeList"
+      produces:
+      - "application/json"
       responses:
         200:
           description: "Success"
@@ -2304,6 +2480,8 @@ paths:
         - "User Licenses"
       summary: "Get a user's license information from the current access token"
       description: ""
+      produces:
+      - "application/json"
       responses:
         200:
           description: "Success"
@@ -2320,6 +2498,8 @@ paths:
         - "User"
       summary: "List of basic information for companies that user belongs to"
       description: ""
+      produces:
+      - "application/json"
       responses:
         200:
           description: "Success"
@@ -2377,6 +2557,8 @@ paths:
         - "User"
       summary: "Basic information for a requested company a user belongs to"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -2414,6 +2596,8 @@ paths:
         - "User"
       summary: "All privileges for the user"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -2465,6 +2649,8 @@ paths:
         - "User"
       summary: "Responds if the user is a member of any company with the given feature"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "featureConstant"
           in: "path"
@@ -2488,6 +2674,10 @@ paths:
         - "User"
       summary: "Login for first time users without a password set"
       description: "Endpoint for users who have not logged in previously"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "body"
           in: "body"
@@ -2525,6 +2715,10 @@ paths:
         - "User"
       summary: "Grants API access to a given user"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "body"
           in: "body"
@@ -2562,6 +2756,8 @@ paths:
         - "User"
       summary: "Get basic information of a user"
       description: "Returns basic information of a user based on the access token."
+      produces:
+      - "application/json"
       responses:
         200:
           description: "Success"
@@ -2607,6 +2803,8 @@ paths:
         - "Reports"
       summary: "All possible report filter types"
       description: ""
+      produces:
+      - "application/json"
       responses:
         200:
           description: "Success"
@@ -2632,6 +2830,8 @@ paths:
         - "Security"
       summary: "Refresh access token if not expired"
       description: ""
+      produces:
+      - "application/json"
       responses:
         200:
           description: "Access token has been refreshed"
@@ -2670,6 +2870,8 @@ paths:
         - "User"
       summary: "Get email address for user"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "email_address"
           in: "query"
@@ -2714,6 +2916,8 @@ paths:
         - "User"
       summary: "Check if current user has access to a specific feature"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "featureId"
           in: "path"
@@ -2738,6 +2942,8 @@ paths:
         - "User"
       summary: "Columns available for mapping when importing CSV of users"
       description: ""
+      produces:
+      - "application/json"
       responses:
         200:
           description: "Success"
@@ -2774,6 +2980,10 @@ paths:
         - "User"
       summary: "Updates the password of user that is providing an access token"
       description: "**NOTE**:<br>**company_id** is not a required parameter"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "body"
           in: "body"
@@ -2812,6 +3022,10 @@ paths:
         - "User"
       summary: "Password reset request for a given email address (username)"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "body"
           in: "body"
@@ -2858,6 +3072,10 @@ paths:
         - "User"
       summary: Update user's first and last name
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "userId"
           in: "path"
@@ -2899,6 +3117,10 @@ paths:
         - "User"
       summary: "Update the user billing and shipping addresses"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "userId"
           in: "path"
@@ -2926,6 +3148,10 @@ paths:
         - "User"
       summary: "Removes an email address from a user's account"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "userId"
           in: "path"
@@ -2958,6 +3184,10 @@ paths:
         - "User"
       summary: "Adds an email address to a user's account"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "userId"
           in: "path"
@@ -2998,6 +3228,10 @@ paths:
         - "User"
       summary: "Makes given email address primary on a user's account"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "userId"
           in: "path"
@@ -3045,6 +3279,8 @@ paths:
         - "User"
       summary: "Get all external course completion data for a user"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "userId"
           in: "path"
@@ -3069,6 +3305,8 @@ paths:
         - "User"
       summary: "All courses for a user including external course completions"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "userId"
           in: "path"
@@ -3098,6 +3336,10 @@ paths:
         - "User"
       summary: "Creates a user phone"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "userId"
           in: "path"
@@ -3139,6 +3381,8 @@ paths:
         - "User"
       summary: "Remove a phone from user's account using given User ID and Phone ID"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "userId"
           in: "path"
@@ -3167,6 +3411,10 @@ paths:
       summary: "Add user license"
       description: "add licenses for user"
       operationId: "addUserLicense"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "userId"
           in: "path"
@@ -3212,6 +3460,8 @@ paths:
       summary: "Remove user license"
       description: "remove licenses for user"
       operationId: "removeUserLicense"
+      produces:
+      - "application/json"
       parameters:
         - name: "userId"
           in: "path"
@@ -3238,6 +3488,8 @@ paths:
       summary: "Company Catalog Course Detail"
       description: "get detail for company course"
       operationId: "getCompanyCourse"
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -3266,6 +3518,8 @@ paths:
       summary: "enrollment details"
       description: ""
       operationId: "getEnrollmentDetails"
+      produces:
+      - "application/json"
       parameters:
         - name: "enrollmentId"
           in: "path"
@@ -3289,6 +3543,10 @@ paths:
       summary: "report completion to ASHA"
       description: ""
       operationId: "reportEnrollmentToAsha"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "enrollmentId"
           in: "path"
@@ -3324,6 +3582,8 @@ paths:
         - "Enrollments"
       summary: "Learner course completions"
       operationId: "getMemberTranscript"
+      produces:
+      - "application/json"
       parameters:
         - name: "companyId"
           in: "path"
@@ -3351,6 +3611,8 @@ paths:
         - "State"
       summary: "List all states"
       description: ""
+      produces:
+      - "application/json"
       responses:
         200:
           description: "Success"
@@ -3386,6 +3648,8 @@ paths:
         - "State"
       summary: "Returns StateLicenseReportsToCeBroker watermark"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "stateId"
           in: "path"
@@ -3436,6 +3700,8 @@ paths:
         - "State"
       summary: "Get state study limits for all courses"
       description: ""
+      produces:
+      - "application/json"
       parameters:
         - name: "offset"
           in: "query"
@@ -3465,6 +3731,8 @@ paths:
       summary: ""
       description: ""
       operationId: "getAccreditations"
+      produces:
+      - "application/json"
       parameters:
         - name: "filter[courseId]"
           in: "query"
@@ -5556,7 +5824,10 @@ definitions:
         example: "E2345"
       access_level: 
         type: "string"
-        enum: ["limited","limited-plus","unlimited"]
+        enum: 
+          - "limited"
+          - "limited-plus"
+          - "unlimited"
         example: "unlimited"
       is_active: 
         type: "boolean"
