@@ -5824,10 +5824,7 @@ definitions:
         example: "E2345"
       access_level: 
         type: "string"
-        enum: 
-          - "limited"
-          - "limited-plus"
-          - "unlimited"
+        enum: [limited, limited-plus, unlimited]
         example: "unlimited"
       is_active: 
         type: "boolean"
@@ -5874,7 +5871,7 @@ definitions:
         example: "555-555-5555"
       phone_number_type: 
         type: "string"
-        enum: ["primary","alternate","fax"]
+        enum: [primary, alternate, fax]
         example: "primary"
       phone_country: 
         description: "Country Code (ex: 'US')"
