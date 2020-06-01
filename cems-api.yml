@@ -446,10 +446,10 @@ paths:
                       example: 1
                     constant: 
                       type: "string"
-                      example: "rn"
+                      example: "pt-pta"
                     name: 
                       type: "string"
-                      example: "RN"
+                      example: "PT/PTA"
         401:
           description: "Not authenticated"
         403:
@@ -2465,10 +2465,10 @@ paths:
                       example: 26 
                     constant: 
                       type: string
-                      example: "rn"
+                      example: "pt-pta"
                     name:
                       type: string
-                      example: "RN"
+                      example: "PT/PTA"
         401:
           description: "Not authenticated"
         403:
@@ -2797,7 +2797,7 @@ paths:
         401:
           description: "Not authenticated"
           
-  /report_filter_type:
+  /reportFilterType:
     get:
       tags:
         - "Reports"
@@ -4021,17 +4021,17 @@ definitions:
                         example: 1
                       constant: 
                         type: "string"
-                        example: "rn"
+                        example: "pt-pta"
                       name: 
                         type: "string"
-                        example: "RN"
+                        example: "PT/PTA"
                     type: "object"
                   name: 
                     type: "string"
-                    example: "RN"
+                    example: "PT"
                   constant: 
                     type: "string"
-                    example: "rn"
+                    example: "pt"
             company_type: 
               type: "string"
               example: "SUBSCRIPTION"
@@ -4881,10 +4881,10 @@ definitions:
               example: 5
             name: 
               type: "string"
-              example: "RN"
+              example: "PT"
             constant: 
               type: "string"
-              example: "rn"
+              example: "pt"
   
   OrgUnit:   
     type: "object"
@@ -5992,17 +5992,17 @@ definitions:
                   properties: 
                     constant: 
                       type: "string"
-                      example: "rn"
+                      example: "pt-pta"
                     name: 
                       type: "string"
-                      example: "RN"
+                      example: "PT/PTA"
                   type: "object"
                 name: 
                   type: "string"
-                  example: "RN"
+                  example: "PT"
                 constant: 
                   type: "string"
-                  example: "rn"
+                  example: "pt"
               type: "object"
             state:
               type: "object"
@@ -6248,10 +6248,10 @@ definitions:
               properties: 
                 constant: 
                   type: "string"
-                  example: "rn"
+                  example: "pt-pta"
                 name: 
                   type: "string"
-                  example: "RN"
+                  example: "PT/PTA"
               type: "object"
             status: 
               type: "string"
