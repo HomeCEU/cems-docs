@@ -705,7 +705,55 @@ paths:
           description: "Not authorized"
         404:
           description: "Company not found"
-          
+
+  /company/{companyId}/corpadminreport/{corpAdminReportId}/getreportnow:
+    get:
+      tags:
+        - "Reports"
+      summary: "Get a filtered or unfiltered report"
+      description: ""
+      produces:
+      - "application/json"
+      parameters:
+        - name: "companyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "corpAdminReportId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "filteredReportId"
+          in: "query"
+          description: "The ID of the filtered report"
+          type: "integer"
+        - name: "dateInputForReport"
+          in: "query"
+          description: "Date input for reports with date input"
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Report request placed in queue."
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Company or Corp Admin Report not found"
+
   /company/{companyId}/filterset:
     get:
       tags:
