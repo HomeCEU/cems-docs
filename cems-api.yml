@@ -2415,7 +2415,60 @@ paths:
           description: "Not authenticated"
         403:
           description: "Access token was authenticated but not authorized"
-        
+
+  /user/filter:
+    post:
+      tags: 
+        - "Curriculum"
+      summary: "List of users that are affected by a given filter set"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "company_id"
+              - "filters"
+            properties: 
+              company_id: 
+                type: "string"
+                example: 4
+              filters: 
+                type: "string"
+                example: "[{\"type\": \"License Type\", \"attributes\": [3]}]"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    id: 
+                      type: "number"
+                      example: 99900
+                    username: 
+                      type: "string"
+                      example: "Jeff Smith"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        406:
+          description: "Invalid filters provided"
+
   /filteredreport:
     post:
       tags:
