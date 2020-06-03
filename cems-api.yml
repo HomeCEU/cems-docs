@@ -13,6 +13,10 @@ paths:
         - "User"
       summary: "Creates an Exam Response for  a given order item and exam, with the provided answers"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "body"
           in: "body"
@@ -2975,6 +2979,10 @@ paths:
         - "Reports"
       summary: "Create a relationship between a filter set and a corp admin report"
       description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
       parameters:
         - name: "body"
           in: "body"
@@ -3055,6 +3063,50 @@ paths:
         401:
           description: "Refresh token has expired"
   
+  /users/course/register:
+    post:
+      tags:
+        - "User"
+      summary: "Registers users to courses"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            $ref: "#/definitions/RegisterUsers"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+              - "messages"
+            properties: 
+              data: 
+                type: "string"
+                example: ""
+              messages:
+                type: "object" 
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Course registration successful"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "User not found"
+
   /user/email:
     get:
       tags:
@@ -7106,7 +7158,42 @@ definitions:
                   constant: 
                     type: "string"
                     example: "text"
-                    
+
+  RegisterUsers:
+    type: "object"
+    required: 
+      - "company_id"
+      - "course_ids"
+      - "user_ids"
+      - "due_date"
+      - "is_soft_due_date"
+      - "send_registration_emails"
+    properties: 
+      company_id: 
+        type: "number"
+        example: 4
+      course_ids: 
+        type: "array"
+        items: 
+          type: "number"
+        example: 
+          - 9900
+      user_ids: 
+        type: "array"
+        items: 
+          type: "number"
+        example: 
+          - 123456
+      due_date: 
+        type: "string"
+        example: "07/30/2020"
+      is_soft_due_date: 
+        type: "boolean"
+        example: true
+      send_registration_emails: 
+        type: "boolean"
+        example: true
+
   FeatureAccess:
     type: "object"
     required: 
