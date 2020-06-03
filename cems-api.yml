@@ -7,6 +7,50 @@ host: "api.hceu-sandbox.com"
 basePath: "/api/v2"
 
 paths:
+  /examresponse:
+    post:
+      tags:
+        - "User"
+      summary: "Creates an Exam Response for  a given order item and exam, with the provided answers"
+      description: ""
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            $ref: "#/definitions/CreateExamResponse"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                required: 
+                  - "examResponseId"
+                  - "additionalOrderItemIdsAffected"
+                properties: 
+                  examResponseId: 
+                    type: "number"
+                    example: 4240118
+                  additionalOrderItemIdsAffected: 
+                    type: "array"
+                    items: 
+                      type: "integer"
+                    example: []
+                type: "object"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Order item does not exist"
+        422:
+          description: "Exam response with a passing grade already exists"
+          
   /login:
     post:
       tags:
@@ -3900,6 +3944,28 @@ paths:
           description: "Not authorized"
 
 definitions:
+  CreateExamResponse:
+    type: "object"
+    required: 
+      - "order_item_id"
+      - "exam_id"
+      - "user_answers"
+    properties: 
+      order_item_id: 
+        type: "number"
+        example: 7036950
+      exam_id: 
+        type: "number"
+        example: 1820
+      user_answers: 
+        required: 
+          - "34605"
+        properties: 
+          34605: 
+            type: "number"
+            example: 131370
+        type: "object"
+
   LoginResponse:
     type: "object"
     required: 
