@@ -3847,7 +3847,25 @@ paths:
           description: "Not authorized"
         404:
           description: "Company or learner not found"
-          
+
+  /profile/enrollments:
+    get:
+      tags:
+        - "Enrollments"
+      summary: "Get exam enrollments for the current user"
+      description: ""
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GetExamEnrollments"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+
   /state:
     get:
       tags:
@@ -6204,6 +6222,80 @@ definitions:
                     certificate: 
                       type: "string"
                       example: "/api/v2/enrollment/1234567/certificate"
+
+  GetExamEnrollments:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "string"
+              example: "7036947"
+            userId: 
+              type: "string"
+              example: "999000"
+            courseId: 
+              type: "string"
+              example: "9999"
+            courseName: 
+              type: "string"
+              example: "Course Name"
+            companyId: 
+              type: "string"
+              example: "4"
+            companyName: 
+              type: "string"
+              example: "Demo University"
+            curriculumId: 
+              type: "string"
+              example: ""
+            curriculumName: 
+              type: "string"
+              example: ""
+            enrollmentType: 
+              type: "string"
+              example: "Assigned"
+            format: 
+              type: "string"
+              example: "Webinar"
+            hours: 
+              type: "string"
+              example: "1.00"
+            linkToReceipt: 
+              type: "string"
+              example: ""
+            completedOn: 
+              type: "string"
+              example: "06/03/2020"
+            attemptId: 
+              type: "string"
+              example: "0009999"
+            highestGrade: 
+              type: "string"
+              example: "1.00"
+            passingGrade: 
+              type: "string"
+              example: "1.00"
+            isPassing: 
+              type: "string"
+              example: "1"
+            assignmentDate: 
+              type: "string"
+              example: "06/03/2020"
+            dueDate: 
+              type: "string"
+              example: "06/30/2020"
+            expires: 
+              type: "string"
+              example: ""
+            examId: 
+              type: "string"
+              example: "1234"
 
   AddUserLicense:
     required: 
