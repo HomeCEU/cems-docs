@@ -50,7 +50,7 @@ paths:
           description: "Order item does not exist"
         422:
           description: "Exam response with a passing grade already exists"
-          
+
   /login:
     post:
       tags:
@@ -2968,7 +2968,53 @@ paths:
                       example: "license_type"
         401:
           description: "Not authenticated"
-   
+
+  /usercustomreport:
+    post:
+      tags:
+        - "Reports"
+      summary: "Create a relationship between a filter set and a corp admin report"
+      description: ""
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "corpAdminReportId"
+              - "filteredReportId"
+            properties: 
+              corpAdminReportId: 
+                type: "number"
+                example: 8
+              filteredReportId: 
+                type: "number"
+                example: 12345
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data:
+                type: "object"
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Association created successfully."
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Corp admin report or filtered report not found"
+
   /security/refresh:
     get:
       tags:
