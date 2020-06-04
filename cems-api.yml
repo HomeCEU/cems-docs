@@ -7,6 +7,54 @@ host: "api.hceu-sandbox.com"
 basePath: "/api/v2"
 
 paths:
+  /examresponse:
+    post:
+      tags:
+        - "User"
+      summary: "Creates an Exam Response for  a given order item and exam, with the provided answers"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            $ref: "#/definitions/CreateExamResponse"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                required: 
+                  - "examResponseId"
+                  - "additionalOrderItemIdsAffected"
+                properties: 
+                  examResponseId: 
+                    type: "number"
+                    example: 4240118
+                  additionalOrderItemIdsAffected: 
+                    type: "array"
+                    items: 
+                      type: "integer"
+                    example: []
+                type: "object"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Order item does not exist"
+        422:
+          description: "Exam response with a passing grade already exists"
+
   /login:
     post:
       tags:
@@ -33,7 +81,25 @@ paths:
           description: "Not authenticated"
         403:
           description: "Not authorized"
-          
+
+  /quick-login/{hash}:
+    post:
+      tags:
+        - "Login"
+      summary: "Grants API access to the current user based on the given hash"
+      description: ""
+      responses:
+        200: 
+          description: "Success"
+          schema:
+            $ref: "#/definitions/LoginResponse"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Quicklink with hash not found"
+
   /note:
     post:
       tags:
@@ -705,7 +771,55 @@ paths:
           description: "Not authorized"
         404:
           description: "Company not found"
-          
+
+  /company/{companyId}/corpadminreport/{corpAdminReportId}/getreportnow:
+    get:
+      tags:
+        - "Reports"
+      summary: "Get a filtered or unfiltered report"
+      description: ""
+      produces:
+      - "application/json"
+      parameters:
+        - name: "companyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "corpAdminReportId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "filteredReportId"
+          in: "query"
+          description: "The ID of the filtered report"
+          type: "integer"
+        - name: "dateInputForReport"
+          in: "query"
+          description: "Date input for reports with date input"
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Report request placed in queue."
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Company or Corp Admin Report not found"
+
   /company/{companyId}/filterset:
     get:
       tags:
@@ -2367,7 +2481,60 @@ paths:
           description: "Not authenticated"
         403:
           description: "Access token was authenticated but not authorized"
-        
+
+  /user/filter:
+    post:
+      tags: 
+        - "Curriculum"
+      summary: "List of users that are affected by a given filter set"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "company_id"
+              - "filters"
+            properties: 
+              company_id: 
+                type: "string"
+                example: 4
+              filters: 
+                type: "string"
+                example: "[{\"type\": \"License Type\", \"attributes\": [3]}]"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    id: 
+                      type: "number"
+                      example: 99900
+                    username: 
+                      type: "string"
+                      example: "Jeff Smith"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        406:
+          description: "Invalid filters provided"
+
   /filteredreport:
     post:
       tags:
@@ -2823,7 +2990,57 @@ paths:
                       example: "license_type"
         401:
           description: "Not authenticated"
-   
+
+  /usercustomreport:
+    post:
+      tags:
+        - "Reports"
+      summary: "Create a relationship between a filter set and a corp admin report"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "corpAdminReportId"
+              - "filteredReportId"
+            properties: 
+              corpAdminReportId: 
+                type: "number"
+                example: 8
+              filteredReportId: 
+                type: "number"
+                example: 12345
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+            properties: 
+              data:
+                type: "object"
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Association created successfully."
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Corp admin report or filtered report not found"
+
   /security/refresh:
     get:
       tags:
@@ -2864,6 +3081,50 @@ paths:
         401:
           description: "Refresh token has expired"
   
+  /users/course/register:
+    post:
+      tags:
+        - "User"
+      summary: "Registers users to courses"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            $ref: "#/definitions/RegisterUsers"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "data"
+              - "messages"
+            properties: 
+              data: 
+                type: "string"
+                example: ""
+              messages:
+                type: "object" 
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Course registration successful"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "User not found"
+
   /user/email:
     get:
       tags:
@@ -3604,7 +3865,25 @@ paths:
           description: "Not authorized"
         404:
           description: "Company or learner not found"
-          
+
+  /profile/enrollments:
+    get:
+      tags:
+        - "Enrollments"
+      summary: "Get exam enrollments for the current user"
+      description: ""
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/GetExamEnrollments"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+
   /state:
     get:
       tags:
@@ -3799,6 +4078,28 @@ paths:
           description: "Not authorized"
 
 definitions:
+  CreateExamResponse:
+    type: "object"
+    required: 
+      - "order_item_id"
+      - "exam_id"
+      - "user_answers"
+    properties: 
+      order_item_id: 
+        type: "number"
+        example: 7036950
+      exam_id: 
+        type: "number"
+        example: 1820
+      user_answers: 
+        required: 
+          - "34605"
+        properties: 
+          34605: 
+            type: "number"
+            example: 131370
+        type: "object"
+
   LoginResponse:
     type: "object"
     required: 
@@ -5940,6 +6241,80 @@ definitions:
                       type: "string"
                       example: "/api/v2/enrollment/1234567/certificate"
 
+  GetExamEnrollments:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "string"
+              example: "7036947"
+            userId: 
+              type: "string"
+              example: "999000"
+            courseId: 
+              type: "string"
+              example: "9999"
+            courseName: 
+              type: "string"
+              example: "Course Name"
+            companyId: 
+              type: "string"
+              example: "4"
+            companyName: 
+              type: "string"
+              example: "Demo University"
+            curriculumId: 
+              type: "string"
+              example: ""
+            curriculumName: 
+              type: "string"
+              example: ""
+            enrollmentType: 
+              type: "string"
+              example: "Assigned"
+            format: 
+              type: "string"
+              example: "Webinar"
+            hours: 
+              type: "string"
+              example: "1.00"
+            linkToReceipt: 
+              type: "string"
+              example: ""
+            completedOn: 
+              type: "string"
+              example: "06/03/2020"
+            attemptId: 
+              type: "string"
+              example: "0009999"
+            highestGrade: 
+              type: "string"
+              example: "1.00"
+            passingGrade: 
+              type: "string"
+              example: "1.00"
+            isPassing: 
+              type: "string"
+              example: "1"
+            assignmentDate: 
+              type: "string"
+              example: "06/03/2020"
+            dueDate: 
+              type: "string"
+              example: "06/30/2020"
+            expires: 
+              type: "string"
+              example: ""
+            examId: 
+              type: "string"
+              example: "1234"
+
   AddUserLicense:
     required: 
       - "license_type"
@@ -6893,7 +7268,42 @@ definitions:
                   constant: 
                     type: "string"
                     example: "text"
-                    
+
+  RegisterUsers:
+    type: "object"
+    required: 
+      - "company_id"
+      - "course_ids"
+      - "user_ids"
+      - "due_date"
+      - "is_soft_due_date"
+      - "send_registration_emails"
+    properties: 
+      company_id: 
+        type: "number"
+        example: 4
+      course_ids: 
+        type: "array"
+        items: 
+          type: "number"
+        example: 
+          - 9900
+      user_ids: 
+        type: "array"
+        items: 
+          type: "number"
+        example: 
+          - 123456
+      due_date: 
+        type: "string"
+        example: "07/30/2020"
+      is_soft_due_date: 
+        type: "boolean"
+        example: true
+      send_registration_emails: 
+        type: "boolean"
+        example: true
+
   FeatureAccess:
     type: "object"
     required: 
