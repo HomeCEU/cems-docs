@@ -2645,7 +2645,46 @@ paths:
           description: "Not authenticated"
         403:
           description: "Not authorized"
-          
+
+  /filteredreport/{filteredReportId}:
+    delete:
+      tags:
+        - "Reports"
+      summary: "Deletes a filtered report for a given Filtered Report ID"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "filteredReportId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages:
+                type: "object" 
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Filtered Report was removed successfully"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Filtered Report not found"
+
   /getUsers/{companyId}:
     get:
       deprecated: true
