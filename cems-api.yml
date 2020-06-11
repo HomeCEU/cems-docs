@@ -2684,6 +2684,48 @@ paths:
           description: "Not authorized"
         404:
           description: "Filtered Report not found"
+    put:
+      tags:
+        - "Reports"
+      summary: "Update a Filtered Report for a given company"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "filteredReportId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "body"
+          in: "body"
+          description: ""
+          schema:
+            $ref: "#/definitions/UpdateFilteredReport"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages:
+                type: "object"
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Filtered Report was edited successfully with ID 11394"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Filtered Report not found"
 
   /getUsers/{companyId}:
     get:
@@ -6493,6 +6535,44 @@ definitions:
         type: "string"
         example: "TX"
   
+  UpdateFilteredReport:
+    type: "object"
+    required: 
+      - "name"
+      - "companyId"
+      - "filterSetIds"
+      - "corpAdminReportId"
+      - "curriculumIds"
+      - "courseIds"
+    properties: 
+      name: 
+        type: "string"
+        example: "Example Report"
+      companyId: 
+        type: "number"
+        example: 4
+      filterSetIds: 
+        type: "array"
+        items: 
+          type: "number"
+        example: 
+          - 16938
+      corpAdminReportId: 
+        type: "number"
+        example: 14
+      curriculumIds: 
+        type: "array"
+        items: 
+          type: "number"
+        example: 
+          - 2024
+      courseIds: 
+        type: "array"
+        items: 
+          type: "number"
+        example: 
+          - 7390
+
   GetUserLicense:
     type: "object"
     required: 
