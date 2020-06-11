@@ -10,7 +10,7 @@ paths:
   /examresponse:
     post:
       tags:
-        - "User"
+        - "Enrollments"
       summary: "Creates an Exam Response for  a given order item and exam, with the provided answers"
       description: ""
       consumes:
@@ -938,7 +938,73 @@ paths:
           description: "Not authorized"
         406:
           description: "Company already has top-level organizational unit or company ID is invalid"
-          
+
+  /company/{companyId}/organizational-unit/import/add:
+    post:
+      tags:
+        - "Organizational Unit"
+      summary: "Import a CSV to add organizational units"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "import_file"
+          in: "formData"
+          description: ""
+          required: true
+          type: "file"
+      responses:
+        202:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ImportNotification"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        406:
+          description: "An error occurred while validating the file"
+
+  /company/{companyId}/organizational-unit/import/rename:
+    post:
+      tags:
+        - "Organizational Unit"
+      summary: "Import a CSV to rename organizational units"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "company_id"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "import_file"
+          in: "formData"
+          description: ""
+          required: true
+          type: "file"
+      responses:
+        202:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ImportNotification"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        406:
+          description: "An error occurred while validating the file"
+
   /company/{companyId}/organizational-unit/list:
     get:
       tags:
@@ -2579,7 +2645,88 @@ paths:
           description: "Not authenticated"
         403:
           description: "Not authorized"
-          
+
+  /filteredreport/{filteredReportId}:
+    delete:
+      tags:
+        - "Reports"
+      summary: "Deletes a filtered report for a given Filtered Report ID"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "filteredReportId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages:
+                type: "object" 
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Filtered Report was removed successfully"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Filtered Report not found"
+    put:
+      tags:
+        - "Reports"
+      summary: "Update a Filtered Report for a given company"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "filteredReportId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "body"
+          in: "body"
+          description: ""
+          schema:
+            $ref: "#/definitions/UpdateFilteredReport"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages:
+                type: "object"
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Filtered Report was edited successfully with ID 11394"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Filtered Report not found"
+
   /getUsers/{companyId}:
     get:
       deprecated: true
@@ -3326,6 +3473,47 @@ paths:
           description: "Not authenticated"
         403:
           description: "Not authorized"
+
+  /user/reset-password/password:
+    post:
+      tags:
+        - "User"
+      summary: "Updates the password of a user based on hash"
+      description: "Updates the password of a user based on the provided hash from a reset password request"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "user_hash"
+          in: "query"
+          description: ""
+          required: true
+          type: "string"
+        - name: "body"
+          in: "body"
+          description: ""
+          schema:
+            type: "object"
+            required: 
+              - "password"
+              - "company_id"
+            properties: 
+              password: 
+                type: "string"
+                example: "1234abcd"
+              company_id: 
+                type: "number"
+                example: 4
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Company not found or hash provided does not exist"
 
   /user/{userId}:
     put:
@@ -5264,7 +5452,19 @@ definitions:
           type: "string"
         example: 
           - "Successfully saved the organizational unit."
-    
+
+  ImportNotification:
+    type: "object"
+    required: 
+      - "messages"
+    properties: 
+      messages: 
+        type: "array"
+        items: 
+          type: "string"
+        example: 
+          - "The import was accepted. You will be notified when the process is complete."
+
   OrgUnitList:
     type: "object"
     required: 
@@ -6335,6 +6535,44 @@ definitions:
         type: "string"
         example: "TX"
   
+  UpdateFilteredReport:
+    type: "object"
+    required: 
+      - "name"
+      - "companyId"
+      - "filterSetIds"
+      - "corpAdminReportId"
+      - "curriculumIds"
+      - "courseIds"
+    properties: 
+      name: 
+        type: "string"
+        example: "Example Report"
+      companyId: 
+        type: "number"
+        example: 4
+      filterSetIds: 
+        type: "array"
+        items: 
+          type: "number"
+        example: 
+          - 16938
+      corpAdminReportId: 
+        type: "number"
+        example: 14
+      curriculumIds: 
+        type: "array"
+        items: 
+          type: "number"
+        example: 
+          - 2024
+      courseIds: 
+        type: "array"
+        items: 
+          type: "number"
+        example: 
+          - 7390
+
   GetUserLicense:
     type: "object"
     required: 
