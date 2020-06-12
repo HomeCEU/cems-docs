@@ -115,7 +115,7 @@ paths:
           name: "metadata"
           type: "string"
           required: false
-          description: "JSON string containing {\"userid\": \"536781\", \"first_name\": \"First name\", \"last_name\": \"Last name\", \"email\": \"test#@example.com\", \"phone\": \"123-456-1234\", \"companyid\": \"4\", \"note\": \"Note text\", \"source_constant\": \"store\"}"
+          description: ""
       responses:
         200:
           description: "Success"
@@ -3110,7 +3110,45 @@ paths:
                     example: false
         401:
           description: "Not authenticated"
-          
+
+  /report/sendtoqueue:
+    post:
+      tags:
+        - "Reports"
+      summary: "Sends a filtered report to be processed and generate report and send it"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            $ref: "#/definitions/SendToQueue"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Your report was successfully sent to the queue"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Corp Admin Report, Filtered Report, or Company not found"
+
   /reportFilterType:
     get:
       tags:
@@ -3670,6 +3708,8 @@ paths:
           description: "Not authenticated"
         403:
           description: "Not authorized"
+        409:
+          description: "Email already exists for another user"
   
   /user/{userId}/email/make-primary:
     post:
@@ -7506,6 +7546,27 @@ definitions:
                   constant: 
                     type: "string"
                     example: "text"
+
+  SendToQueue:
+    type: "object"
+    required: 
+      - "corpAdminReportId"
+      - "filteredReportId"
+      - "companyId"
+      - "emailRecipients"
+    properties: 
+      corpAdminReportId: 
+        type: "number"
+        example: 15
+      filteredReportId: 
+        type: "number"
+        example: 11000
+      companyId: 
+        type: "number"
+        example: 4
+      emailRecipients: 
+        type: "string"
+        example: "jsmith123@example.com"
 
   RegisterUsers:
     type: "object"
