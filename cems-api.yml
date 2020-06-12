@@ -1198,7 +1198,57 @@ paths:
           description: "Not authorized"
         404:
           description: "Company not found"
-          
+
+  /company/{companyId}/template/{typeConstant}:
+    get:
+      deprecated: true
+      tags:
+        - "Company"
+      summary: "Retrieve a company's email template"
+      description: ""
+      parameters:
+        - name: "companyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "typeConstant"
+          in: "path"
+          description: ""
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+    post:
+      deprecated: true
+      tags:
+        - "Company"
+      summary: "Save/Update a company's email template"
+      description: ""
+      parameters:
+        - name: "companyID"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "typeConstant"
+          in: "path"
+          description: ""
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+
   /company/{companyId}/user:
     get:
       tags:
