@@ -1,0 +1,108 @@
+flowchart TD
+%% TB BT RL LR
+
+
+
+  subgraph API [CEMS API]
+    ApiLogin(POST /profile/login)
+    CourseList(GET /courses/company/1)
+    CourseDetail(GET /company/1/course/COURSE_ID)
+    Approvals(GET /accreditations)
+  end
+
+  B(Bridge to sync course data)
+    B  --> Magento
+    B <--> CourseList
+    B <--> CourseDetail
+    B <--> Approvals
+
+
+
+  subgraph CP [Course Purchase Queue Processor]
+    CPUserExists{User Exists?}
+    CPCreateUser(Create User)
+    IsInDefaultCompany{Is in default company?}
+    Add2DefaultCompany(Add User to Default Company)
+    Enroll(Enroll user into course)
+
+    CPUserExists --no--> CPCreateUser --> Add2DefaultCompany
+    CPUserExists --yes--> IsInDefaultCompany
+    IsInDefaultCompany --no--> Add2DefaultCompany --> Enroll
+    IsInDefaultCompany --yes--> Enroll
+  end
+
+  subgraph SP [Subscription Queue Processor]
+    SPUserExists{User Exists?}
+    SPCreateUser(Create User)
+    IsInSpecificCompany{Is in specific company?}
+    Add2SpecificCompany(Add User to Specific Company)
+    SetExpDate(Set provided expiration date)
+
+    SPUserExists --no--> SPCreateUser --> Add2SpecificCompany
+    SPUserExists --yes--> IsInSpecificCompany
+    IsInSpecificCompany --no--> Add2SpecificCompany --> SetExpDate
+    IsInSpecificCompany --yes--> SetExpDate
+  end
+
+  subgraph SE [Subscription Expiration Queue Processor]
+    ExpireSub(Set expiration date to yesterday)
+  end
+
+  subgraph MQ [AWS MQ or SQS]
+    CoursePurchaseQ(Course Purchase)
+    SubPurchaseQ(Subscription Purchase or Renewal)
+    SubExpireQ(Expire Subscription)
+  end
+
+
+    CoursePurchaseQ --> CP
+    SubPurchaseQ --> SP
+    SubExpireQ --> SE
+
+  subgraph Magento
+    M(www.HomeCEU.com)
+    MSearch(Search for courses)
+    LSelect(Select disipline and state)
+    SubSel(Chose Subscription by discipline)
+    Add2Cart(Add Courses to Cart)
+    Checkout(Checkout)
+    IsLoggedIn{Is Logged In?}
+    EnterEmail(Enter Email)
+    EmailExists{Email Exists in CEMS?}
+    ForceLogin(Force Login)
+    SubRenewal(Subscription Renewal)
+    PayCancel(Payment canceled or reversed)
+    Payment(Payment)
+    IsSubscription{Is Subscription?}
+
+
+    M --> MSearch --> LSelect --> Add2Cart --> Checkout
+    M --> SubSel --> Checkout
+
+    Checkout --> IsLoggedIn
+      IsLoggedIn -- Yes --> Payment
+      IsLoggedIn -- No --> EnterEmail
+
+    EnterEmail --> EmailExists
+      EmailExists -- No --> Payment
+      EmailExists -- Yes --> ForceLogin --2--> IsLoggedIn
+
+    Payment --> IsSubscription
+      IsSubscription --no--> CoursePurchaseQ
+      IsSubscription --yes--> SubPurchaseQ
+
+    ForceLogin <--1--> ApiLogin
+    SubRenewal --> SubPurchaseQ
+    PayCancel --> SubExpireQ
+  end
+
+  Magento <--> ApiLogin
+
+
+
+  subgraph CEMS
+    C(lms.ceu360.com)
+    MS(specific microsite)
+
+    C --> MSearch
+  end
