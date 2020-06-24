@@ -863,6 +863,11 @@ paths:
       produces:
       - "application/json"
       parameters:
+        - name: "companyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
         - name: "body"
           in: "body"
           description: "NOTE: laterDate will be ignored if recurrenceRule is set"
@@ -879,6 +884,100 @@ paths:
           description: "Company not found"
         406:
           description: "Not acceptable format to create report schedule"
+
+  /company/{companyId}/reportschedule/{reportScheduleId}:
+    delete:
+      tags:
+        - "Reports"
+      summary: "Delete an existing report schedule for the given report schedule ID"
+      description: ""
+      produces:
+      - "application/json"
+      parameters:
+        - name: "companyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "reportScheduleId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Report schedule not found"
+    get:
+      tags:
+        - "Reports"
+      summary: "Gets a report schedule for the given report schedule ID"
+      description: ""
+      produces:
+      - "application/json"
+      parameters:
+        - name: "companyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "reportScheduleId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ReportScheduleResponse"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Report schedule not found"
+    put:
+      tags:
+        - "Reports"
+      summary: "Edits a report schedule for the given report schedule ID"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "companyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "reportScheduleId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "body"
+          in: "body"
+          description: "NOTE: laterDate will be ignored if recurrenceRule is set"
+          schema:
+            $ref: "#/definitions/ReportScheduleBody"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Report schedule not found"
+        406:
+          description: "Not acceptable format to edit the report schedule"
 
   /company/{companyId}/filterset:
     get:
