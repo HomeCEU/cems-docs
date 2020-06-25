@@ -1,0 +1,2707 @@
+{
+	"info": {
+		"_postman_id": "cf15b71b-48bb-4c4d-9f98-f18d34c61eff",
+		"name": "CEU Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{sandbox}}/examresponse",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"order_item_id\": 7036950,\n\t\"exam_id\": 1820,\n\t\"user_answers\": {\"34605\" : 131370}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/examresponse",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"examresponse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/login",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/quick-login/{hash}",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/quick-login/{hash}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"quick-login",
+						"{hash}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/note",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "metadata",
+							"value": "{\"userid\": \"999999\", \"first_name\": \"First name\", \"last_name\": \"Last name\", \"email\": \"test@example.com\", \"phone\": \"123-456-1234\", \"companyid\": \"0\", \"note\": \"Note text\", \"source_constant\": \"store\"}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{sandbox}}/note",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/email/send-confirmation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email_address\": \"{{email_address}}\",\n\t\"company_id\": {{company_id}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/email/send-confirmation",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"email",
+						"send-confirmation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/accesslevels",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/accesslevels",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"accesslevels"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/assignments/incomplete",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/assignments/incomplete",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"assignments",
+						"incomplete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/assignments/incomplete/metadata",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/assignments/incomplete/metadata",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"assignments",
+						"incomplete",
+						"metadata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/access_level/{{accessLevelConstant}}/courses",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [],
+					"options": {
+						"urlencoded": {}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/access_level/{{accessLevelConstant}}/courses",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"access_level",
+						"{{accessLevelConstant}}",
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/boc_instructional_level",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/boc_instructional_level",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"boc_instructional_level"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/clinical_topic",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/clinical_topic",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"clinical_topic"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/course_type",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/course_type",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"course_type"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/courses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/courses",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"courses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/curriculum",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/curriculum",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"curriculum"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/features",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/features",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"features"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/resource",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/resource",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"resource"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/resource/{{resourceConstant}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/resource/{{resourceConstant}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"resource",
+						"{{resourceConstant}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/resources",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/resources",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"resources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/corpadminreport",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/corpadminreport",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"corpadminreport"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/filteredreport",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/filteredreport",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"filteredreport"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/corpadminreport/{{corpAdminReportId}}/getreportnow",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/corpadminreport/{{corpAdminReportId}}/getreportnow",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"corpadminreport",
+						"{{corpAdminReportId}}",
+						"getreportnow"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/filteredreport",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"cmtestreport3\",\n\t\"companyId\": {{companyId}},\n\t\"filterSetIds\": [\n    \t2\n\t],\n\t\"corpAdminReportId\": 1,\n\t\"curriculumIds\": [\n\t\t35\n\t],\n\t\"courseIds\": [\n\t\t7390\n\t]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/filteredreport",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"filteredreport"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/reportFilterType",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/reportFilterType",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"reportFilterType"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/instructional_level",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/instructional_level",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"instructional_level"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/item_format",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/item_format",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"item_format"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{company_id}}/license_group",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/license_group",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"license_group"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{company_id}}/licensetype",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/licensetype",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"licensetype"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{company_id}}/organizational-unit",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/organizational-unit",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"organizational-unit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/organizational-unit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Region 1\",\n\t\"parentId\": 121\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/organizational-unit",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"organizational-unit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/organizational-unit/list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/organizational-unit/list",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"organizational-unit",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/organizational-unit/list/{prefix}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/organizational-unit/list/{prefix}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"organizational-unit",
+						"list",
+						"{prefix}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/organizational-unit/{{organizationalUnitId}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"District 1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/organizational-unit/{{organizationalUnitId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"organizational-unit",
+						"{{organizationalUnitId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/organizational-unit/{{organizationalUnitId}}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/organizational-unit/{{organizationalUnitId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"organizational-unit",
+						"{{organizationalUnitId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/supervisingusers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/supervisingusers",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"supervisingusers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/user/account-recovery",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email_address\": \"{{email_address}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/user/account-recovery",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"user",
+						"account-recovery"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/user/{{userId}}/send_welcome_email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/user/{{userId}}/send_welcome_email",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"user",
+						"{{userId}}",
+						"send_welcome_email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/user",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/group",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/group",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"group"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/group",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"names\": [\"Reynholm Industries\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/group",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"group"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/group/{{groupId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/group/{{groupId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"group",
+						"{{groupId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/group/{{groupId}}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Reynholm Industries\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/group/{{groupId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"group",
+						"{{groupId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/group/{{groupId}}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/group/{{groupId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"group",
+						"{{groupId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/group/{{groupId}}/member",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/group/{{groupId}}/member",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"group",
+						"{{groupId}}",
+						"member"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/group/{{groupId}}/member",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"unique_ids\": [\n\t\t\t\"{{unique_id}}\"\n\t\t]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/group/{{groupId}}/member",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"group",
+						"{{groupId}}",
+						"member"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/group/{{groupId}}/member/{{uniqueId}}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/group/{{groupId}}/member/{{uniqueId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"group",
+						"{{groupId}}",
+						"member",
+						"{{uniqueId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/enrollment/{{enrollmentId}}/exam-eligibility",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/enrollment/{{enrollmentId}}/exam-eligibility",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"enrollment",
+						"{{enrollmentId}}",
+						"exam-eligibility"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/enrollment/{{enrollmentId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/enrollment/{{enrollmentId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"enrollment",
+						"{{enrollmentId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/enrollment/{{enrollmentId}}/reportToAsha",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"ashaNumber\": \"999999\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/enrollment/{{enrollmentId}}/reportToAsha",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"enrollment",
+						"{{enrollmentId}}",
+						"reportToAsha"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/member/{{learnerId}}/completions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/member/{{learnerId}}/completions",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"member",
+						"{{learnerId}}",
+						"completions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{alias}}/config",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{alias}}/config",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{alias}}",
+						"config"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f26e087-e195-4010-acf0-a6fc46ed2d33",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"pm.globals.set(\"GlobalAccessToken\", data.data.access_token);",
+							"pm.globals.set(\"GlobalRefreshToken\",data.data.refresh_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"{{username}}\",\n\t\"password\": \"{{password}}\",\n\t\"client_id\": \"{{client_id}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/login",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/course/{{courseId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/course/{{courseId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"course",
+						"{{courseId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/user/{{userId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/user/{{userId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"user",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/courses/company/{{companyId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/courses/company/{{companyId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"courses",
+						"company",
+						"{{companyId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/getUsers/{{companyId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/getUsers/{{companyId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"getUsers",
+						"{{companyId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/course/self-enroll",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"course_id\": \"7390\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/course/self-enroll",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"course",
+						"self-enroll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"company_id\": 4,\n  \"first_name\": \"Test\",\n  \"last_name\": \"Testington\",\n  \"employee_id\": \"tt9999\",\n  \"access_level\": \"limited\",\n  \"is_active\": true,\n  \"is_coporate_admin\": false,\n  \"email_address\": \"testington@example.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/user",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/user/{{user_id}}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"company_id\": 4,\n\t\"email_address\": \"ttestington@example.com\",\n\t\"hire_date\": \"\",\n\t\"subscription_expires_on\": \"\",\n\t\"group_ids\": \"\",\n\t\"organizational_unit_id\": \"\",\n\t\"employee_id\": \"tt9999\",\n\t\"access_level\": \"limited\",\n\t\"is_active\": true,\n\t\"is_corporate_admin\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/user/{{userId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"user",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/profile/companies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/profile/companies",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"profile",
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/profile/companies/{{companyId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/profile/companies/{{companyId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"profile",
+						"companies",
+						"{{companyId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/profile/company/{{companyId}}/access/allowed/all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/profile/company/{{companyId}}/access/allowed/all",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"profile",
+						"company",
+						"{{companyId}}",
+						"access",
+						"allowed",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/profile/feature/{{featureConstant}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/profile/feature/{{featureConstant}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"profile",
+						"feature",
+						"{{featureConstant}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/profile/first-time-login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"{{username}}\",\n\t\"client_id\": \"{{client_id}}\",\n\t\"company_id\": \"{{company_id}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/profile/first-time-login",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"profile",
+						"first-time-login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/profile/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"{{username}}\",\n\t\"password\": \"{{password}}\",\n\t\"client_id\": \"{{client_id}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/profile/login",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"profile",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/profile/user/details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/profile/user/details",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"profile",
+						"user",
+						"details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/email",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/user/email?email_address={{email_address}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"email"
+					],
+					"query": [
+						{
+							"key": "email_address",
+							"value": "{{email_address}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/feature/{{featureId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/user/feature/{{featureId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"feature",
+						"{{featureId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/import/map",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/user/import/map",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"import",
+						"map"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\": \"{{password}}\",\n\t\"company_id\": {{companyId}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/user/password",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/password/reset",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email_address\": \"{{email_address}}\",\n\t\"company_id\": {{companyId}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/user/password/reset",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"password",
+						"reset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/{{userId}}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\": \"Testo\",\n\t\"last_name\": \"Testerino\",\n\t\"asha_code\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/user/{{userId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/{{userId}}/addresses",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"billing_address[address_1]\": \"101 Main St\",\n\t\"billing_address[address_2]\": \"\",\n\t\"billing_address[city]\": \"Vice City\",\n\t\"billing_address[state]\": \"FL\",\n\t\"billing_address[zip]\": 11222,\n\t\"billing_address[country]\": \"US\",\n\t\"shipping_address[address_1]\": \"Loop 900\",\n\t\"shipping_address[address_2]\": \"\",\n\t\"shipping_address[city]\": \"San Andreas\",\n\t\"shipping_address[state]\": \"CA\",\n\t\"shipping_address[zip]\": 99000,\n\t\"shipping_address[country]\": \"US\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/user/{{userId}}/addresses",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"{{userId}}",
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/{{userId}}/email",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email_address\": \"{{email_address}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/user/{{userId}}/email",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"{{userId}}",
+						"email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/{{userId}}/email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email_address\": \"{{email_address}}\",\n\t\"company_id\": {{companyId}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/user/{{userId}}/email",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"{{userId}}",
+						"email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/{{userId}}/email/make-primary",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email_address\": \"{{email_address}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/user/{{userId}}/email/make-primary",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"{{userId}}",
+						"email",
+						"make-primary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/user/{{userId}}/status-change",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"company_id\": {{companyId}},\n\t\"is_active\": \"true\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/user/{{userId}}/status-change",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"user",
+						"{{userId}}",
+						"status-change"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/{{userId}}/externalcoursecompletion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/user/{{userId}}/externalcoursecompletion",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"{{userId}}",
+						"externalcoursecompletion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/{{userId}}/fulltranscript/company/{{companyId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/user/{{userId}}/fulltranscript/company/{{companyId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"{{userId}}",
+						"fulltranscript",
+						"company",
+						"{{companyId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/{{userId}}/phone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"phone_number_type\": \"alternate\",\n\t\"phone_number\": \"123-555-9999\",\n\t\"phone_country\": \"US\",\n\t\"phone_extension\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/user/{{userId}}/phone",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"{{userId}}",
+						"phone"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/{{userId}}/phone/{{userPhoneId}}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/user/{{userId}}/phone/{{userPhoneId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"{{userId}}",
+						"phone",
+						"{{userPhoneId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/course/{{courseId}}/approval",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/course/{{courseId}}/approval",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"course",
+						"{{courseId}}",
+						"approval"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/course/{{courseId}}/materials",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/course/{{courseId}}/materials",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"course",
+						"{{courseId}}",
+						"materials"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/externalcoursecompletion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "course_name",
+							"value": "Test for testing",
+							"type": "text"
+						},
+						{
+							"key": "credit_hours",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "completion_date",
+							"value": "05/01/2020",
+							"type": "text"
+						},
+						{
+							"key": "proof_of_completion",
+							"type": "file",
+							"src": []
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/externalcoursecompletion",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"externalcoursecompletion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/externalcoursecompletion/{{externalCourseCompletionId}}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/externalcoursecompletion/{{externalCourseCompletionId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"externalcoursecompletion",
+						"{{externalCourseCompletionId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/externalcoursecompletion/{{externalCourseCompletionId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/externalcoursecompletion/{{externalCourseCompletionId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"externalcoursecompletion",
+						"{{externalCourseCompletionId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/orderitem/{{orderItemId}}/update_expiration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"expiration_date\": \"2020-06-30\",\n\t\"company_id\": {{companyId}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/orderitem/{{orderItemId}}/update_expiration",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"orderitem",
+						"{{orderItemId}}",
+						"update_expiration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/curriculum",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"allowPriorCompletion\": true,\n    \"companyId\": {{companyId}},\n    \"courses\": \"[{\\\"courseId\\\":\\\"183\\\",\\\"isSoftDueDate\\\":true,\\\"dueDate\\\":\\\"10/31/2020\\\",\\\"availableDate\\\":\\\"05/31/2020\\\"}]\",\n    \"deactivationDate\": \"09/30/2020 \",\n    \"description\": \"Test description for test curriculum\",\n    \"enrollmentType\": \"Absolute\",\n    \"filterSets\": \"[]\",\n    \"name\": \"Testing\",\n    \"priorCompletionThreshold\": 120,\n    \"sendCourseReminder\": false,\n    \"useAbsoluteDates\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/curriculum",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"curriculum"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/curriculum/{{curriculumId}}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/curriculum/{{curriculumId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"curriculum",
+						"{{curriculumId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/curriculum/{{curriculumId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/curriculum/{{curriculumId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"curriculum",
+						"{{curriculumId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/curriculum/{{curriculumId}}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"allowPriorCompletion\": true,\n    \"companyId\": {{companyId}},\n    \"courses\": \"[{\\\"courseId\\\":\\\"183\\\",\\\"isSoftDueDate\\\":true,\\\"dueDate\\\":\\\"12/31/2020\\\",\\\"availableDate\\\":\\\"05/31/2020\\\"}]\",\n    \"deactivationDate\": \"09/30/2020 \",\n    \"description\": \"Teaching to teach while teaching\",\n    \"enrollmentType\": \"Absolute\",\n    \"filterSets\": \"[]\",\n    \"name\": \"Teaching Yourself and Others\",\n    \"priorCompletionThreshold\": 120,\n    \"sendCourseReminder\": false,\n    \"useAbsoluteDates\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/curriculum/{{curriculumId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"curriculum",
+						"{{curriculumId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/filterset",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/filterset",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"filterset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/filterset",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Test Example Filterset\",\n\t\"description\": \"Description of example filterset\",\n\t\"isViewableByCorpAdmin\": false,\n\t\"isEditableByCorpAdmin\": false,\n\t\"filters\": \"[{\\\"type\\\": \\\"Group\\\",\\\"attributes\\\": [{\\\"id\\\": 273,\\\"before_date\\\":null,\\\"after_date\\\":null}]}]\",\n\t\"curricula\": \"[9]\",\n\t\"company_id\": {{companyId}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/filterset",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"filterset"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/filterset/{{filterSetId}}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"company_id\": {{company_id}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/filterset/{{filterSetId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"filterset",
+						"{{filterSetId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/filterset/{{filterSetId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/filterset/{{filterSetId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"filterset",
+						"{{filterSetId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/filterset/{{filterSetId}}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Updated Test Example Filterset\",\n\t\"description\": \"Description of example filterset\",\n\t\"isViewableByCorpAdmin\": false,\n\t\"isEditableByCorpAdmin\": false,\n\t\"filters\": \"[{\\\"type\\\": \\\"Group\\\",\\\"attributes\\\": [{\\\"id\\\": 273,\\\"before_date\\\":null,\\\"after_date\\\":null}]}]\",\n\t\"curricula\": \"[]\",\n\t\"company_id\": {{company_id}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/filterset/{{filter_set_id}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"filterset",
+						"{{filter_set_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/filter",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"company_id\": {{companyId}},\n\t\"filters\": \"[{\\\"type\\\": \\\"License Type\\\", \\\"attributes\\\": [3]}]\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/user/filter",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"filter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/license-type",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/license-type",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"license-type"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/me/license",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/user/me/license",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"me",
+						"license"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user/{{userId}}/license",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"license_type\": \"rn\",\n  \"license_number\": 123456,\n  \"license_expires_on\": \"2020-03-31T05:00:00.000Z\",\n  \"license_state\": \"TX\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/user/{{userId}}/license",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"{{userId}}",
+						"license"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/{{userId}}/license/{{userLicenseId}}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/user/{{userId}}/license/{{userLicenseId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"{{userId}}",
+						"license",
+						"{{userLicenseId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/security/refresh",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5d8a19d1-ea75-46a3-b75e-c030c03f3c4a",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "{{sandbox}}/security/refresh?refresh_token={{GlobalRefreshToken}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"security",
+						"refresh"
+					],
+					"query": [
+						{
+							"key": "refresh_token",
+							"value": "{{GlobalRefreshToken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/state",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/state",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/state/cebroker/state/{{stateId}}}/license/{{licenseTypeId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/state/cebroker/state/{{stateId}}/license/{{licenseTypeId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"state",
+						"cebroker",
+						"state",
+						"{{stateId}}",
+						"license",
+						"{{licenseTypeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/state-study-limits",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/state-study-limits",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"state-study-limits"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/accreditations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/accreditations",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"accreditations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/filteredreport/{{filteredReportId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/filteredreport/{{filteredReportId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"filteredreport",
+						"{{filteredReportId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/reportschedule",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/reportschedule",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"reportschedule"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/template/{typeConstant}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/template/{{typeConstant}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"template",
+						"{{typeConstant}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{company_id}/user/{user_id}/courses/{status}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/user/{{userId}}/courses/{{status}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"user",
+						"{{userId}}",
+						"courses",
+						"{{status}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/register-course",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "metadata",
+							"value": "{\"userid\": \"999999\", \"first_name\": \"First name\", \"last_name\": \"Last name\", \"email\": \"test@test.com\", \"phone\": \"123-456-1234\", \"companyid\": \"0\", \"billing_address\": { \"address1\": \"123 Main Street\", \"address2\": \"Suite 200\", \"city\": \"City\", \"state\": \"KS\", \"zip\": \"12345\", \"country\": \"US\" }, \"shipping_address\": { \"address1\": \"123 Main Street\", \"address2\": \"Suite 200\", \"city\": \"City\", \"state\": \"KS\", \"zip\": \"12345\", \"country\": \"US\" }, \"completed_on\": \"2016-02-28 06:00:00\", \"link_to_receipt\": \"https://yourhost.com/receipt_id\" \"courses\": [ { \"course_id\": \"7390\", \"delivery_type\": \"mail\" } ] }",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{sandbox}}/register-course",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"register-course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/usercustomreport",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"corpAdminReportId\": {{corpAdminReportId}},\n\t\"filteredReportId\": {{filteredReportId}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/usercustomreport",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"usercustomreport"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/users/course/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"company_id\": {{companyId}},\n  \"course_ids\": [\n    8074\n  ],\n  \"user_ids\": [\n    {{userId}}\n  ],\n  \"due_date\": \"07/30/2020\",\n  \"is_soft_due_date\": true,\n  \"send_registration_emails\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/users/course/register",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"users",
+						"course",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}company/{{companyId}}/organizational-unit/import/add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "import_file",
+							"type": "file",
+							"src": "/home/cory/Documents/test.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{sandbox}}company/{{companyId}}/organizational-unit/import/add",
+					"host": [
+						"{{sandbox}}company"
+					],
+					"path": [
+						"{{companyId}}",
+						"organizational-unit",
+						"import",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/filteredreport/{{filteredReportId}}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/filteredreport/{{filteredReportId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"filteredreport",
+						"{{filteredReportId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/profile/enrollments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/profile/enrollments",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"profile",
+						"enrollments"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "66ad1c0a-facc-46d0-901e-92497053a1ab",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "957296be-c273-4f60-95a1-88b37f61cc95",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
