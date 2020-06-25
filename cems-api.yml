@@ -115,7 +115,7 @@ paths:
           name: "metadata"
           type: "string"
           required: false
-          description: "JSON string containing {\"userid\": \"536781\", \"first_name\": \"First name\", \"last_name\": \"Last name\", \"email\": \"test#@example.com\", \"phone\": \"123-456-1234\", \"companyid\": \"4\", \"note\": \"Note text\", \"source_constant\": \"store\"}"
+          description: ""
       responses:
         200:
           description: "Success"
@@ -820,6 +820,165 @@ paths:
         404:
           description: "Company or Corp Admin Report not found"
 
+  /company/{companyId}/reportschedule:
+    get:
+      tags:
+        - "Reports"
+      summary: "Retrieve all report schedule objects for the logged in user"
+      description: ""
+      produces:
+      - "application/json"
+      parameters:
+        - name: "companyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "corp_admin_report_id"
+          in: "query"
+          description: "Required if sending filtered_report_id"
+          type: "integer"
+        - name: "filtered_report_id"
+          in: "query"
+          description: ""
+          type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ReportScheduleResponse"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Company, Corp Admin Report, or Filtered Report not found"
+    post:
+      tags:
+        - "Reports"
+      summary: "Sets a new report schedule"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "companyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "body"
+          in: "body"
+          description: "NOTE: laterDate will be ignored if recurrenceRule is set"
+          schema:
+            $ref: "#/definitions/ReportScheduleBody"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Company not found"
+        406:
+          description: "Not acceptable format to create report schedule"
+
+  /company/{companyId}/reportschedule/{reportScheduleId}:
+    delete:
+      tags:
+        - "Reports"
+      summary: "Delete an existing report schedule for the given report schedule ID"
+      description: ""
+      produces:
+      - "application/json"
+      parameters:
+        - name: "companyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "reportScheduleId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Report schedule not found"
+    get:
+      tags:
+        - "Reports"
+      summary: "Gets a report schedule for the given report schedule ID"
+      description: ""
+      produces:
+      - "application/json"
+      parameters:
+        - name: "companyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "reportScheduleId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/ReportScheduleResponse"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Report schedule not found"
+    put:
+      tags:
+        - "Reports"
+      summary: "Edits a report schedule for the given report schedule ID"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "companyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "reportScheduleId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "body"
+          in: "body"
+          description: "NOTE: laterDate will be ignored if recurrenceRule is set"
+          schema:
+            $ref: "#/definitions/ReportScheduleBody"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Report schedule not found"
+        406:
+          description: "Not acceptable format to edit the report schedule"
+
   /company/{companyId}/filterset:
     get:
       tags:
@@ -1198,7 +1357,57 @@ paths:
           description: "Not authorized"
         404:
           description: "Company not found"
-          
+
+  /company/{companyId}/template/{typeConstant}:
+    get:
+      deprecated: true
+      tags:
+        - "Company"
+      summary: "Retrieve a company's email template"
+      description: ""
+      parameters:
+        - name: "companyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "typeConstant"
+          in: "path"
+          description: ""
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+    post:
+      deprecated: true
+      tags:
+        - "Company"
+      summary: "Save/Update a company's email template"
+      description: ""
+      parameters:
+        - name: "companyID"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "typeConstant"
+          in: "path"
+          description: ""
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+
   /company/{companyId}/user:
     get:
       tags:
@@ -3110,7 +3319,45 @@ paths:
                     example: false
         401:
           description: "Not authenticated"
-          
+
+  /report/sendtoqueue:
+    post:
+      tags:
+        - "Reports"
+      summary: "Sends a filtered report to be processed and generate report and send it"
+      description: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: ""
+          required: true
+          schema:
+            $ref: "#/definitions/SendToQueue"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required: 
+              - "messages"
+            properties: 
+              messages: 
+                type: "array"
+                items: 
+                  type: "string"
+                example: 
+                  - "Your report was successfully sent to the queue"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Corp Admin Report, Filtered Report, or Company not found"
+
   /reportFilterType:
     get:
       tags:
@@ -3670,6 +3917,8 @@ paths:
           description: "Not authenticated"
         403:
           description: "Not authorized"
+        409:
+          description: "Email already exists for another user"
   
   /user/{userId}/email/make-primary:
     post:
@@ -5238,6 +5487,100 @@ definitions:
                 type: "number"
               example: 
                 - 1
+
+  ReportScheduleResponse:
+    type: "object"
+    required: 
+      - "data"
+    properties: 
+      data: 
+        type: "array"
+        items: 
+          type: "object"
+          properties: 
+            id: 
+              type: "number"
+              example: 4342
+            corp_admin_report_id: 
+              type: "number"
+              example: 14
+            filtered_report_id: 
+              type: "number"
+              example: 11394
+            recipients: 
+              type: "string"
+              example: "jsmith123@example.com"
+            next_occurrence: 
+              type: "string"
+              example: "07/06/2020"
+            recurrence: 
+              required: 
+                - "freq"
+                - "count"
+                - "interval"
+                - "byday"
+              properties: 
+                freq: 
+                  type: "string"
+                  example: "WEEKLY"
+                count: 
+                  type: "number"
+                  example: 2
+                interval: 
+                  type: "number"
+                  example: 2
+                byday: 
+                  type: "string"
+                  example: "MO"
+              type: "object"
+            human_readable_rule: 
+              type: "string"
+              example: "every other week on Monday, starting from 6/24/20, 2 times"
+
+  ReportScheduleBody:
+    type: "object"
+    required: 
+      - "corpAdminReportId"
+      - "filteredReportId"
+      - "recipients"
+      - "recurrenceRule"
+    properties: 
+      corpAdminReportId: 
+        type: "number"
+        example: 14
+      filteredReportId: 
+        type: "number"
+        example: 11394
+      recipients: 
+        type: "array"
+        items: 
+          type: "string"
+        example: 
+          - "jsmith123@example.com"
+          - "jdoe987@example.com"
+      laterDate: 
+        type: "string"
+        example: "07/01/2020"
+      recurrenceRule:
+        type: "object"
+        required: 
+          - "FREQ"
+          - "INTERVAL"
+          - "BYDAY"
+          - "DSTART"
+        properties: 
+          FREQ: 
+            type: "string"
+            example: "weekly"
+          INTERVAL: 
+            type: "number"
+            example: 2
+          BYDAY: 
+            type: "string"
+            example: "mo"
+          DSTART: 
+            type: "string"
+            example: "09/01/2020"
 
   CompanyFilterSet:
     type: "object"
@@ -7506,6 +7849,27 @@ definitions:
                   constant: 
                     type: "string"
                     example: "text"
+
+  SendToQueue:
+    type: "object"
+    required: 
+      - "corpAdminReportId"
+      - "filteredReportId"
+      - "companyId"
+      - "emailRecipients"
+    properties: 
+      corpAdminReportId: 
+        type: "number"
+        example: 15
+      filteredReportId: 
+        type: "number"
+        example: 11000
+      companyId: 
+        type: "number"
+        example: 4
+      emailRecipients: 
+        type: "string"
+        example: "jsmith123@example.com"
 
   RegisterUsers:
     type: "object"
