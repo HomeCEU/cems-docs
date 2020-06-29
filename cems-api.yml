@@ -88,6 +88,12 @@ paths:
         - "Login"
       summary: "Grants API access to the current user based on the given hash"
       description: ""
+      parameters:
+        - name: "hash"
+          in: "path"
+          description: ""
+          required: true
+          type: "string"
       responses:
         200: 
           description: "Success"
@@ -1109,7 +1115,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
@@ -1142,7 +1148,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
