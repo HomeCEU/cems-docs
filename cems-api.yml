@@ -1396,7 +1396,7 @@ paths:
       summary: "Save/Update a company's email template"
       description: ""
       parameters:
-        - name: "companyID"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
