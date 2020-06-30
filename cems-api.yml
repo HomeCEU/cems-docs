@@ -91,7 +91,7 @@ paths:
       parameters:
         - name: "hash"
           in: "path"
-          description: ""
+          description: "Uses hash from password reset, email confirmation, or merge requests"
           required: true
           type: "string"
       responses:
