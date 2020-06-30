@@ -2899,6 +2899,26 @@ paths:
           description: "Not authorized"
         404:
           description: "Filtered Report not found"
+    get:
+      tags:
+        - "Reports"
+      summary: "Gets a filtered report for a company"
+      description: ""
+      produces:
+      - "application/json"
+      parameters:
+        - name: "filteredReportId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
     put:
       tags:
         - "Reports"
