@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "cf15b71b-48bb-4c4d-9f98-f18d34c61eff",
+		"_postman_id": "48ae33de-e9ad-46fe-aa34-38433e85d8b0",
 		"name": "CEU Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -76,7 +76,7 @@
 					"urlencoded": [
 						{
 							"key": "metadata",
-							"value": "{\"userid\": \"999999\", \"first_name\": \"First name\", \"last_name\": \"Last name\", \"email\": \"test@example.com\", \"phone\": \"123-456-1234\", \"companyid\": \"0\", \"note\": \"Note text\", \"source_constant\": \"store\"}",
+							"value": "{\"userid\": \"123456\", \"first_name\": \"First name\", \"last_name\": \"Last name\", \"email\": \"test@example.com\", \"phone\": \"123-456-1234\", \"companyid\": \"00\", \"note\": \"Note text\", \"source_constant\": \"store\"}",
 							"type": "text"
 						}
 					]
@@ -100,7 +100,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email_address\": \"{{email_address}}\",\n\t\"company_id\": {{company_id}}\n}",
+					"raw": "{\n\t\"email_address\": \"{{email_address}}\",\n\t\"company_id\": \"{{company_id}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -115,6 +115,48 @@
 					"path": [
 						"email",
 						"send-confirmation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/login test account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36cc305e-d294-421e-842a-63b004bf4121",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"pm.globals.set(\"GlobalAccessToken\", data.data.access_token);",
+							"pm.globals.set(\"GlobalRefreshToken\",data.data.refresh_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"{{username}}\",\n\t\"password\": \"{{password}}\",\n\t\"client_id\": \"{{client_id}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/1/login",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"1",
+						"login"
 					]
 				}
 			},
@@ -504,7 +546,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"cmtestreport3\",\n\t\"companyId\": {{companyId}},\n\t\"filterSetIds\": [\n    \t2\n\t],\n\t\"corpAdminReportId\": 1,\n\t\"curriculumIds\": [\n\t\t35\n\t],\n\t\"courseIds\": [\n\t\t7390\n\t]\n}",
+					"raw": "{\n\t\"name\": \"cmtestreport4\",\n\t\"companyId\": {{companyId}},\n\t\"filterSetIds\": [\n    \t\"2\"\n\t],\n\t\"corpAdminReportId\": \"1\",\n\t\"curriculumIds\": [\n\t\t\"35\"\n\t],\n\t\"courseIds\": [\n\t\t\"7390\"\n\t]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -642,7 +684,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Region 1\",\n\t\"parentId\": 121\n}",
+					"raw": "{\n\t\"name\": \"Region 1\",\n\t\"parentId\": \"121\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1074,7 +1116,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"ashaNumber\": \"999999\"\n}",
+					"raw": "{\n  \"ashaNumber\": \"271930\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1141,7 +1183,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5f26e087-e195-4010-acf0-a6fc46ed2d33",
+						"id": "2b8a8555-6687-4d1d-bba6-3e112998b5b5",
 						"exec": [
 							"var data = JSON.parse(responseBody);",
 							"pm.globals.set(\"GlobalAccessToken\", data.data.access_token);",
@@ -1290,7 +1332,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"company_id\": 4,\n  \"first_name\": \"Test\",\n  \"last_name\": \"Testington\",\n  \"employee_id\": \"tt9999\",\n  \"access_level\": \"limited\",\n  \"is_active\": true,\n  \"is_coporate_admin\": false,\n  \"email_address\": \"testington@example.com\"\n}",
+					"raw": "{\n  \"company_id\": {{companyId}},\n  \"first_name\": \"First_Name\",\n  \"last_name\": \"Last_Name\",\n  \"employee_id\": \"123456\",\n  \"access_level\": \"limited\",\n  \"is_active\": true,\n  \"is_coporate_admin\": false,\n  \"email_address\": \"{{email_address}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1317,7 +1359,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"company_id\": 4,\n\t\"email_address\": \"ttestington@example.com\",\n\t\"hire_date\": \"\",\n\t\"subscription_expires_on\": \"\",\n\t\"group_ids\": \"\",\n\t\"organizational_unit_id\": \"\",\n\t\"employee_id\": \"tt9999\",\n\t\"access_level\": \"limited\",\n\t\"is_active\": true,\n\t\"is_corporate_admin\": false\n}",
+					"raw": "{\n\t\"company_id\": {{companyId}},\n\t\"email_address\": \"{{email_address}}\",\n\t\"hire_date\": \"\",\n\t\"subscription_expires_on\": \"\",\n\t\"group_ids\": \"\",\n\t\"organizational_unit_id\": \"\",\n\t\"employee_id\": \"123456\",\n\t\"access_level\": \"limited\",\n\t\"is_active\": true,\n\t\"is_corporate_admin\": false\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1585,7 +1627,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email_address\": \"{{email_address}}\",\n\t\"company_id\": {{companyId}}\n}",
+					"raw": "{\n\t\"email_address\": \"{{email_address}}\",\n\t\"company_id\": \"{{companyId}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1613,7 +1655,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"first_name\": \"Testo\",\n\t\"last_name\": \"Testerino\",\n\t\"asha_code\": \"\"\n}",
+					"raw": "{\n\t\"first_name\": \"First_Name\",\n\t\"last_name\": \"Last_Name\",\n\t\"asha_code\": \"\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1640,7 +1682,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"billing_address[address_1]\": \"101 Main St\",\n\t\"billing_address[address_2]\": \"\",\n\t\"billing_address[city]\": \"Vice City\",\n\t\"billing_address[state]\": \"FL\",\n\t\"billing_address[zip]\": 11222,\n\t\"billing_address[country]\": \"US\",\n\t\"shipping_address[address_1]\": \"Loop 900\",\n\t\"shipping_address[address_2]\": \"\",\n\t\"shipping_address[city]\": \"San Andreas\",\n\t\"shipping_address[state]\": \"CA\",\n\t\"shipping_address[zip]\": 99000,\n\t\"shipping_address[country]\": \"US\"\n}",
+					"raw": "{\n\t\"billing_address[address_1]\": \"101 Main St\",\n\t\"billing_address[address_2]\": \"\",\n\t\"billing_address[city]\": \"Vice City\",\n\t\"billing_address[state]\": \"FL\",\n\t\"billing_address[zip]\": \"11222\",\n\t\"billing_address[country]\": \"US\",\n\t\"shipping_address[address_1]\": \"Loop 900\",\n\t\"shipping_address[address_2]\": \"\",\n\t\"shipping_address[city]\": \"San Andreas\",\n\t\"shipping_address[state]\": \"CA\",\n\t\"shipping_address[zip]\": \"99000\",\n\t\"shipping_address[country]\": \"US\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1704,13 +1746,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{sandbox}}/user/{{userId}}/email",
+					"raw": "{{sandbox}}/user/541499/email",
 					"host": [
 						"{{sandbox}}"
 					],
 					"path": [
 						"user",
-						"{{userId}}",
+						"541499",
 						"email"
 					]
 				}
@@ -2019,7 +2061,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"allowPriorCompletion\": true,\n    \"companyId\": {{companyId}},\n    \"courses\": \"[{\\\"courseId\\\":\\\"183\\\",\\\"isSoftDueDate\\\":true,\\\"dueDate\\\":\\\"10/31/2020\\\",\\\"availableDate\\\":\\\"05/31/2020\\\"}]\",\n    \"deactivationDate\": \"09/30/2020 \",\n    \"description\": \"Test description for test curriculum\",\n    \"enrollmentType\": \"Absolute\",\n    \"filterSets\": \"[]\",\n    \"name\": \"Testing\",\n    \"priorCompletionThreshold\": 120,\n    \"sendCourseReminder\": false,\n    \"useAbsoluteDates\": true\n}",
+					"raw": "{\n    \"allowPriorCompletion\": true,\n    \"companyId\": {{companyId}},\n    \"courses\": \"[{\\\"courseId\\\":\\\"183\\\",\\\"isSoftDueDate\\\":true,\\\"dueDate\\\":\\\"10/31/2020\\\",\\\"availableDate\\\":\\\"05/31/2020\\\"}]\",\n    \"deactivationDate\": \"09/30/2020 \",\n    \"description\": \"Test description for test another curriculum\",\n    \"enrollmentType\": \"Absolute\",\n    \"filterSets\": \"[]\",\n    \"name\": \"Double Testing\",\n    \"priorCompletionThreshold\": 120,\n    \"sendCourseReminder\": false,\n    \"useAbsoluteDates\": true\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2136,7 +2178,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Test Example Filterset\",\n\t\"description\": \"Description of example filterset\",\n\t\"isViewableByCorpAdmin\": false,\n\t\"isEditableByCorpAdmin\": false,\n\t\"filters\": \"[{\\\"type\\\": \\\"Group\\\",\\\"attributes\\\": [{\\\"id\\\": 273,\\\"before_date\\\":null,\\\"after_date\\\":null}]}]\",\n\t\"curricula\": \"[9]\",\n\t\"company_id\": {{companyId}}\n}",
+					"raw": "{\n\t\"name\": \"FilterSetId Test\",\n\t\"description\": \"Description of example filterset\",\n\t\"isViewableByCorpAdmin\": false,\n\t\"isEditableByCorpAdmin\": false,\n\t\"filters\": \"[{\\\"type\\\": \\\"Group\\\",\\\"attributes\\\": [{\\\"id\\\": 273,\\\"before_date\\\":null,\\\"after_date\\\":null}]}]\",\n\t\"curricula\": \"[9]\",\n\t\"company_id\": {{companyId}}\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2162,7 +2204,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"company_id\": {{company_id}}\n}",
+					"raw": "{\n\t\"company_id\": \"{{company_id}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2207,7 +2249,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Updated Test Example Filterset\",\n\t\"description\": \"Description of example filterset\",\n\t\"isViewableByCorpAdmin\": false,\n\t\"isEditableByCorpAdmin\": false,\n\t\"filters\": \"[{\\\"type\\\": \\\"Group\\\",\\\"attributes\\\": [{\\\"id\\\": 273,\\\"before_date\\\":null,\\\"after_date\\\":null}]}]\",\n\t\"curricula\": \"[]\",\n\t\"company_id\": {{company_id}}\n}",
+					"raw": "{\n\t\"name\": \"Updated Test Example Filterset\",\n\t\"description\": \"Description of example filterset\",\n\t\"isViewableByCorpAdmin\": false,\n\t\"isEditableByCorpAdmin\": false,\n\t\"filters\": \"[{\\\"type\\\": \\\"Group\\\",\\\"attributes\\\": [{\\\"id\\\": 273,\\\"before_date\\\":null,\\\"after_date\\\":null}]}]\",\n\t\"curricula\": \"[]\",\n\t\"company_id\": \"{{company_id}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2234,7 +2276,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"company_id\": {{companyId}},\n\t\"filters\": \"[{\\\"type\\\": \\\"License Type\\\", \\\"attributes\\\": [3]}]\"\n}",
+					"raw": "{\n\t\"company_id\": \"{{companyId}}\",\n\t\"filters\": \"[{\\\"type\\\": \\\"License Type\\\", \\\"attributes\\\": [3]}]\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2297,7 +2339,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"license_type\": \"rn\",\n  \"license_number\": 123456,\n  \"license_expires_on\": \"2020-03-31T05:00:00.000Z\",\n  \"license_state\": \"TX\"\n}",
+					"raw": "{\n  \"license_type\": \"rn\",\n  \"license_number\": \"123456\",\n  \"license_expires_on\": \"2020-03-31T05:00:00.000Z\",\n  \"license_state\": \"TX\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2344,9 +2386,11 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5d8a19d1-ea75-46a3-b75e-c030c03f3c4a",
+						"id": "33c38adb-d5ef-43a2-931a-b32346727ff8",
 						"exec": [
-							""
+							"var data = JSON.parse(responseBody);",
+							"pm.globals.set(\"GlobalAccessToken\", data.data.access_token);",
+							"pm.globals.set(\"GlobalRefreshToken\", data.data.refresh_token);"
 						],
 						"type": "text/javascript"
 					}
@@ -2543,7 +2587,7 @@
 					"urlencoded": [
 						{
 							"key": "metadata",
-							"value": "{\"userid\": \"999999\", \"first_name\": \"First name\", \"last_name\": \"Last name\", \"email\": \"test@test.com\", \"phone\": \"123-456-1234\", \"companyid\": \"0\", \"billing_address\": { \"address1\": \"123 Main Street\", \"address2\": \"Suite 200\", \"city\": \"City\", \"state\": \"KS\", \"zip\": \"12345\", \"country\": \"US\" }, \"shipping_address\": { \"address1\": \"123 Main Street\", \"address2\": \"Suite 200\", \"city\": \"City\", \"state\": \"KS\", \"zip\": \"12345\", \"country\": \"US\" }, \"completed_on\": \"2016-02-28 06:00:00\", \"link_to_receipt\": \"https://yourhost.com/receipt_id\" \"courses\": [ { \"course_id\": \"7390\", \"delivery_type\": \"mail\" } ] }",
+							"value": "{\"userid\": \"123456\", \"first_name\": \"First name\", \"last_name\": \"Last name\", \"email\": \"test@test.com\", \"phone\": \"123-456-1234\", \"companyid\": \"00\", \"billing_address\": { \"address1\": \"123 Main Street\", \"address2\": \"Suite 200\", \"city\": \"Plano\", \"state\": \"TX\", \"zip\": \"75074\", \"country\": \"US\" }, \"shipping_address\": { \"address1\": \"123 Main Street\", \"address2\": \"Suite 200\", \"city\": \"Plano\", \"state\": \"TX\", \"zip\": \"75074\", \"country\": \"US\" }, \"completed_on\": \"2016-02-28 06:00:00\", \"link_to_receipt\": \"https://yourhost.com/receipt_id\" \"courses\": [ { \"course_id\": \"7390\", \"delivery_type\": \"mail\" } ] }",
 							"type": "text"
 						}
 					]
@@ -2567,7 +2611,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"corpAdminReportId\": {{corpAdminReportId}},\n\t\"filteredReportId\": {{filteredReportId}}\n}",
+					"raw": "{\n\t\"corpAdminReportId\": 8,\n\t\"filteredReportId\": {{filteredReportId}}\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -2615,7 +2659,7 @@
 			"response": []
 		},
 		{
-			"name": "{{sandbox}}company/{{companyId}}/organizational-unit/import/add",
+			"name": "{{sandbox}}/company/{{companyId}}/organizational-unit/import/add",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -2627,14 +2671,18 @@
 							"type": "file",
 							"src": "/home/cory/Documents/test.csv"
 						}
-					]
+					],
+					"options": {
+						"formdata": {}
+					}
 				},
 				"url": {
-					"raw": "{{sandbox}}company/{{companyId}}/organizational-unit/import/add",
+					"raw": "{{sandbox}}/company/{{companyId}}/organizational-unit/import/add",
 					"host": [
-						"{{sandbox}}company"
+						"{{sandbox}}"
 					],
 					"path": [
+						"company",
 						"{{companyId}}",
 						"organizational-unit",
 						"import",
@@ -2649,6 +2697,15 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"cmtestreport4\",\n\t\"companyId\": {{companyId}},\n\t\"filterSetIds\": [16938],\n\t\"corpAdminReportId\": 14,\n\t\"curriculumIds\": [2024],\n\t\"courseIds\": [7390]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "{{sandbox}}/filteredreport/{{filteredReportId}}",
 					"host": [
@@ -2679,13 +2736,312 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/organizational-unit/import/rename",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "import_file",
+							"type": "file",
+							"src": "/home/cory/Documents/test.csv"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/organizational-unit/import/rename",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"organizational-unit",
+						"import",
+						"rename"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/user/reset-password/password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"password\": \"{{password}}\",\n\t\"company_id\": {{companyId}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/user/reset-password/password?user_hash={{user_hash}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"user",
+						"reset-password",
+						"password"
+					],
+					"query": [
+						{
+							"key": "user_hash",
+							"value": "{{user_hash}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/filteredreport/{{filteredReportId}}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/filteredreport/{{filteredReportId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"filteredreport",
+						"{{filteredReportId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/notification/unread",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/notification/unread",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"notification",
+						"unread"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/profile/merge",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": {{userId}},\n    \"company_id\": {{companyId}},\n    \"email_id\": 218771\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/profile/merge",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"profile",
+						"merge"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/report/sendtoqueue",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"corpAdminReportId\": {{corpAdminReportId}},\n    \"filteredReportId\": {{filteredReportId}},\n    \"companyId\": {{companyId}},\n    \"emailRecipients\": \"{{email_address}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/report/sendtoqueue",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"report",
+						"sendtoqueue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/reportschedule",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"corpAdminReportId\": 14,\n    \"filteredReportId\": 11394,\n    \"recipients\": [\"email1@example.com\", \"email2@example.com\"],\n    \"laterDate\": \"07/01/2020\",\n    \"recurrenceRule\": {\n        \"FREQ\": \"weekly\",\n        \"INTERVAL\": 2,\n        \"BYDAY\": \"mo\",\n        \"DSTART\": \"09/01/2020\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/reportschedule",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"reportschedule"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/reportschedule/{{reportScheduleId}}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/reportschedule/{{reportScheduleId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"reportschedule",
+						"{{reportScheduleId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/reportschedule/{{reportScheduleId}}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/reportschedule/{{reportScheduleId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"reportschedule",
+						"{{reportScheduleId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/reportschedule/{{reportSchedule}}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"corpAdminReportId\": 14,\n    \"filteredReportId\": 11394,\n    \"recipients\": [\"email1@example.com\", \"email2@example.com\", \"email3@example.com\"],\n    \"recurrenceRule\": {\n        \"FREQ\": \"weekly\",\n        \"INTERVAL\": 2,\n        \"BYDAY\": \"mo\",\n        \"DSTART\": \"09/05/2020\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/reportschedule/{{reportScheduleId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"reportschedule",
+						"{{reportScheduleId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{sandbox}}/company/{{companyId}}/user/{{userId}}",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"lastname\": \"Smith\",\n    \"email_address\": \"jsmith123@example.com\",\n    \"user_companies\": [\n        {\n        \"employee_id\": \"abc123\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{sandbox}}/company/{{companyId}}/user/{{userId}}",
+					"host": [
+						"{{sandbox}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"user",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
 		}
 	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "accessToken",
+				"value": "{{GlobalAccessToken}}",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "queryParams",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "66ad1c0a-facc-46d0-901e-92497053a1ab",
+				"id": "2a32506c-38a5-4e09-ac84-b509270d1bb8",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -2695,7 +3051,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "957296be-c273-4f60-95a1-88b37f61cc95",
+				"id": "2e164148-67bd-49fe-a818-8a87bddb7d20",
 				"type": "text/javascript",
 				"exec": [
 					""
