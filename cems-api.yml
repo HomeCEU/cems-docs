@@ -61,6 +61,17 @@ paths:
         - "Login"
       summary: "Login for applications requesting non-user related endpoints"
       description: ""
+      parameters:
+        - name: "client_id"
+          in: "formData"
+          description: ""
+          required: true
+          type: "string"
+        - name: "client_secret"
+          in: "formData"
+          description: ""
+          required: true
+          type: "string"
       responses:
         200:
           description: "Success"
@@ -3295,7 +3306,55 @@ paths:
         200:
           description: "Success"
           schema:
-            $ref: "#/definitions/LoginResponse"
+            type: "object"
+            required: 
+              - "data"
+              - "messages"
+            properties: 
+              data: 
+                required: 
+                  - "access_token"
+                  - "refresh_token"
+                  - "first_name"
+                  - "last_name"
+                  - "email_address"
+                  - "is_admin"
+                  - "user_id"
+                  - "account_setup_complete"
+                properties: 
+                  access_token: 
+                    type: "string"
+                    example: "access_token"
+                  refresh_token: 
+                    type: "string"
+                    example: "refresh_token"
+                  first_name: 
+                    type: "string"
+                    example: "Jeff"
+                  last_name: 
+                    type: "string"
+                    example: "Smith"
+                  email_address: 
+                    type: "string"
+                    example: "jsmith123@example.com"
+                  is_admin: 
+                    type: "boolean"
+                    example: true
+                  user_id: 
+                    type: "number"
+                    example: 123456
+                  account_setup_complete: 
+                    type: "boolean"
+                    example: false
+                type: "object"
+              messages: 
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "User was authenticated"
+                type: "object"
         401:
           description: "Not authenticated"
         403:
