@@ -61,6 +61,17 @@ paths:
         - "Login"
       summary: "Login for applications requesting non-user related endpoints"
       description: ""
+      parameters:
+        - name: "client_id"
+          in: "formData"
+          description: ""
+          required: true
+          type: "string"
+        - name: "client_secret"
+          in: "formData"
+          description: ""
+          required: true
+          type: "string"
       responses:
         200:
           description: "Success"
@@ -88,6 +99,12 @@ paths:
         - "Login"
       summary: "Grants API access to the current user based on the given hash"
       description: ""
+      parameters:
+        - name: "hash"
+          in: "path"
+          description: "Uses hash from password reset, email confirmation, or merge requests"
+          required: true
+          type: "string"
       responses:
         200: 
           description: "Success"
@@ -1109,7 +1126,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
@@ -1142,7 +1159,7 @@ paths:
       produces:
       - "application/json"
       parameters:
-        - name: "company_id"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
@@ -1390,7 +1407,7 @@ paths:
       summary: "Save/Update a company's email template"
       description: ""
       parameters:
-        - name: "companyID"
+        - name: "companyId"
           in: "path"
           description: ""
           required: true
@@ -2893,6 +2910,28 @@ paths:
           description: "Not authorized"
         404:
           description: "Filtered Report not found"
+    get:
+      tags:
+        - "Reports"
+      summary: "Gets a filtered report for a company"
+      description: ""
+      produces:
+      - "application/json"
+      parameters:
+        - name: "filteredReportId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Filtered Report not found"
     put:
       tags:
         - "Reports"
@@ -3267,12 +3306,95 @@ paths:
         200:
           description: "Success"
           schema:
-            $ref: "#/definitions/LoginResponse"
+            type: "object"
+            required: 
+              - "data"
+              - "messages"
+            properties: 
+              data: 
+                required: 
+                  - "access_token"
+                  - "refresh_token"
+                  - "first_name"
+                  - "last_name"
+                  - "email_address"
+                  - "is_admin"
+                  - "user_id"
+                  - "account_setup_complete"
+                properties: 
+                  access_token: 
+                    type: "string"
+                    example: "access_token"
+                  refresh_token: 
+                    type: "string"
+                    example: "refresh_token"
+                  first_name: 
+                    type: "string"
+                    example: "Jeff"
+                  last_name: 
+                    type: "string"
+                    example: "Smith"
+                  email_address: 
+                    type: "string"
+                    example: "jsmith123@example.com"
+                  is_admin: 
+                    type: "boolean"
+                    example: true
+                  user_id: 
+                    type: "number"
+                    example: 123456
+                  account_setup_complete: 
+                    type: "boolean"
+                    example: false
+                type: "object"
+              messages: 
+                required: 
+                  - "message"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "User was authenticated"
+                type: "object"
         401:
           description: "Not authenticated"
         403:
           description: "Not authorized"
-  
+
+  /profile/merge:
+    post:
+      tags:
+        - "User"
+      summary: "Sets a merge request for a provided user and the current user"
+      description: ""
+      parameters:
+        - name: "body"
+          in: "body"
+          description: "user_id is the account to merge from<br>company_id is the account to merge from<br>email_id is the currently logged in user(merging to)"
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "user_id"
+              - "company_id"
+              - "email_id"
+            properties: 
+              user_id: 
+                type: "number"
+                example: 999999
+              company_id: 
+                type: "number"
+                example: 4
+              email_id: 
+                type: "number"
+                example: 218771
+      responses:
+        200:
+          description: "Success"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+
   /profile/user/details:
     get:
       tags:
