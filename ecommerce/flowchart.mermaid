@@ -61,6 +61,7 @@ flowchart TD
 
   subgraph Magento
     M(www.HomeCEU.com)
+    AD(Account Dashboard)
     MSearch(Search for courses)
     LSelect(Select disipline and state)
     SubSel(Chose Subscription by discipline)
@@ -102,7 +103,12 @@ flowchart TD
 
   subgraph CEMS
     C(lms.ceu360.com)
-    MS(specific microsite)
+    MS(subscription university)
+    Orders(Orders)
 
-    C --> MSearch
+    C --> Orders
+    MS --> Orders
+    Orders --pass access token--> AD
+
+    C --Course Search--> MSearch
   end
