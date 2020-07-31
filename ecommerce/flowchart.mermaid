@@ -102,12 +102,12 @@ flowchart TD
 
 
   subgraph CEMS
-    C(lms.ceu360.com)
     MS(subscription university)
+    C(lms.ceu360.com)
     Orders(Orders)
 
-    C --> Orders
     MS --> Orders
+    C --> Orders
     Orders --pass access token--> AD
 
     C --Course Search--> MSearch
