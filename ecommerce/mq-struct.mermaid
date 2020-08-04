@@ -1,0 +1,28 @@
+graph TD
+  Subscribe(Subscribe)
+  Enroll(Enroll)
+  Revert(Revert)
+  PurchaseStruct(Purchase Struct for MQ)
+  RevertStruct(Revert Struct for MQ)
+
+  Subscribe --action: subscribe--> PurchaseStruct
+  Enroll --action: enroll--> PurchaseStruct
+  Revert --action: revert--> RevertStruct
+
+  PurchaseStruct
+  -->GenID(Generate and set externalId)
+  -->SetStructFields(set action, companyId, date, note, link)
+  -->SetVars(Variable Fields)
+  
+  SetVars --> IsSubscription{Is Subscription?}
+    IsSubscription --no--> SetExp(Set expireationDate)
+    IsSubscription --yes--> SetCrs(Set courses)
+
+  SetVars --> KnowUserId{known userId?}
+    KnowUserId --yes--> Suid(set userId)
+    KnowUserId
+    --no-->SetGuest(Set name, email, addrs, phone)
+
+  RevertStruct
+    -->SetRevert(Set action, externalId, date, note)
+
