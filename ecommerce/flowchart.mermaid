@@ -17,47 +17,35 @@ flowchart TD
     B <--> Approvals
 
 
-
-  subgraph CP [Course Purchase Queue Processor]
-    CPUserExists{User Exists?}
-    CPCreateUser(Create User)
-    IsInDefaultCompany{Is in default company?}
-    Add2DefaultCompany(Add User to Default Company)
-    Enroll(Enroll user into course)
-
-    CPUserExists --no--> CPCreateUser --> Add2DefaultCompany
-    CPUserExists --yes--> IsInDefaultCompany
-    IsInDefaultCompany --no--> Add2DefaultCompany --> Enroll
-    IsInDefaultCompany --yes--> Enroll
+  subgraph AWSMQ[AWS MQ or SQS]
+    MQPost(Post Message)
+    MQGet(Get Message)
   end
 
-  subgraph SP [Subscription Queue Processor]
-    SPUserExists{User Exists?}
-    SPCreateUser(Create User)
-    IsInSpecificCompany{Is in specific company?}
-    Add2SpecificCompany(Add User to Specific Company)
+  subgraph AQP [Action Queue Processor]
+    MQGet <-->
+    FetchAction(Get message from queue) -->
+    RecordRequest(Record Request) -->
+    ProcessRequest(Process Request) -->
+    UserExists{User Exists?}
+    CreateUser(Create User)
+    IsInCompany{Is in company?}
+    AddUserToCompany(Add User to Company)
+    ProcessAction{Action?}
+    Enroll(Enroll user into courses)
     SetExpDate(Set provided expiration date)
+    Revert(Undo previous action by ID)
 
-    SPUserExists --no--> SPCreateUser --> Add2SpecificCompany
-    SPUserExists --yes--> IsInSpecificCompany
-    IsInSpecificCompany --no--> Add2SpecificCompany --> SetExpDate
-    IsInSpecificCompany --yes--> SetExpDate
+    UserExists --no--> CreateUser --> AddUserToCompany
+    UserExists --yes--> IsInCompany
+
+    IsInCompany --no--> AddUserToCompany --> ProcessAction
+    IsInCompany --yes--> ProcessAction
+
+    ProcessAction --subscribe--> SetExpDate
+    ProcessAction --enroll--> Enroll
+    ProcessAction --revert--> Revert
   end
-
-  subgraph SE [Subscription Expiration Queue Processor]
-    ExpireSub(Set expiration date to yesterday)
-  end
-
-  subgraph MQ [AWS MQ or SQS]
-    CoursePurchaseQ(Course Purchase)
-    SubPurchaseQ(Subscription Purchase or Renewal)
-    SubExpireQ(Expire Subscription)
-  end
-
-
-    CoursePurchaseQ --> CP
-    SubPurchaseQ --> SP
-    SubExpireQ --> SE
 
   subgraph Magento
     M(www.HomeCEU.com)
@@ -74,8 +62,8 @@ flowchart TD
     SubRenewal(Subscription Renewal)
     PayCancel(Payment canceled or reversed)
     Payment(Payment)
-    IsSubscription{Is Subscription?}
 
+    
 
     M --> MSearch --> LSelect --> Add2Cart --> Checkout
     M --> SubSel --> Checkout
@@ -88,16 +76,55 @@ flowchart TD
       EmailExists -- No --> Payment
       EmailExists -- Yes --> ForceLogin --2--> IsLoggedIn
 
-    Payment --> IsSubscription
-      IsSubscription --no--> CoursePurchaseQ
-      IsSubscription --yes--> SubPurchaseQ
+    PurchaseStruct(Purchase Struct for MQ)
+    RevertStruct(Revert Struct for MQ)
+    Post2MQ(Post to MQ) --> MQPost
+
+    PurchaseStruct
+    -->GenID(Generate and set externalId)
+    -->SetStructFields(set action, companyId, date, note, link)
+    -->KnowUserId(Variable Fields)
+    
+    IsSubscription{Is Subscription?}
+      IsSubscription 
+        --no--> SetActionSubscribe(Set action:subscribe)
+        --> SetExp(Set expireationDate)
+        --> Post2MQ
+      IsSubscription
+        --yes--> SetActionEnroll(Set action:enroll)
+        --> SetCrs(Set courses)
+        --> Post2MQ
+
+    KnowUserId{known userId?}
+      KnowUserId
+        --yes--> Suid(set userId)
+        --> IsSubscription
+      KnowUserId
+        --no-->SetGuest(Set name, email, addrs, phone)
+        --> IsSubscription
+
+    RevertStruct
+      --> SetActionRevert(Set action:revert)
+      --> SetRevert(Set externalId, date, note)
+      --> Post2MQ
+
+
+    Payment --> PurchaseStruct
 
     ForceLogin <--1--> ApiLogin
-    SubRenewal --> SubPurchaseQ
-    PayCancel --> SubExpireQ
+    SubRenewal --> PurchaseStruct
+    PayCancel --> RevertStruct
+
+    M --> CemsLogin(Login) <--> ApiLogin
+    CemsLogin --> AD
+
+    AD --> OrderHistory(Order History)
+    AD --> SubRenewal
+    AD --> ToggleAutoRenewal(Toggle Auto Renewal)
+    AD --> UpdateCC(Update CreditCard Info)
+
   end
 
-  Magento <--> ApiLogin
 
 
 
