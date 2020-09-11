@@ -4335,7 +4335,7 @@ paths:
     get:
       tags:
         - "Company"
-      summary: "Providers associated with a company"
+      summary: "Get a list of Providers for a company"
       description: ""
       produces:
         - "application/json"
