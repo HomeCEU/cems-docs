@@ -4331,11 +4331,11 @@ paths:
         404:
           description: "Company or course not found"
           
-  /company/{companyId}/providers:
+  /sso/company/{companyId}/providers:
     get:
       tags:
         - "Company"
-      summary: "Get a list of Providers for a company"
+      summary: "Get a list of SSO Providers for a company"
       description: ""
       produces:
         - "application/json"
