@@ -1,0 +1,21 @@
+{
+  "GET": "/enrollment/2048/exam/123",
+
+  "meta": {
+    "totalQuestions": 3,
+    "required": true,
+    "completed": false,
+    "attempts": [
+      {"id": 6010, "link": "/exam/response/6010/results"}
+    ]
+  },
+  "data": {
+    "id": 123,
+    "name": "foo"
+  },
+  "links": {
+    "detail": "/exam/123",
+    "continue": "/enrollment/2048/exam/123/continue",
+    "results": "/exam/response/6010/results"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "GET": "/exam/question",
+  "query": [
+    "filter[search]",
+    "filter[examId]",
+    "sort",
+    "page[number]",
+    "page[size]"
+  ],
+
+  "meta": {
+    "filter": {
+      "examId": 123
+    },
+    "page": {
+      "number": 4,
+      "size": 20,
+      "count": 7
+    },
+    "sort": "displayOrder"
+  },
+  "items": [
+    {
+      "id": 1102,
+      "examId": 123,
+      "text": "Which of the following is a prime number",
+      "displayOrder": 2,
+      "link": "/exam/question/1102"
+    }
+  ],
+  "links": {
+    "first": "/exam/question?filter[examId]=123&sort=displayOrder&page[number]=1&page[size]=20",
+    "prev":  "/exam/question?filter[examId]=123&sort=displayOrder&page[number]=3&page[size]=20",
+    "self":  "/exam/question?filter[examId]=123&sort=displayOrder&page[number]=4&page[size]=20",
+    "next":  "/exam/question?filter[examId]=123&sort=displayOrder&page[number]=5&page[size]=20",
+    "last":  "/exam/question?filter[examId]=123&sort=displayOrder&page[number]=7&page[size]=20"
+  }
+}

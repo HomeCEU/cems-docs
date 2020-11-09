@@ -1,0 +1,19 @@
+{
+  "GET": "/enrollment/2048/survey/321",
+
+  "meta": {
+    "totalQuestions": 3,
+    "required": true,
+    "completed": false
+  },
+  "data": {
+    "id": 123,
+    "name": "foo",
+    "description": ""
+  },
+  "links": {
+    "detail": "/survey/321",
+    "continue": "/enrollment/2048/survey/321/continue",
+    "results": "/survey/response/8010/results"
+  }
+}

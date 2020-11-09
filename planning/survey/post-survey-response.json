@@ -1,0 +1,22 @@
+{
+  "POST": "/survey/response/8010",
+  
+  "request": {
+    "questionId": 1101,
+    "optionId": 3013,
+    "answerText": "used for text questions only"
+  },
+  "response": {
+    "data": {
+      "surveyId": 321,
+      "responseId": 8010,
+      "questionId": 1101,
+      "optionId": 3013,
+      "ok": true
+    },
+    "links": {
+      "nextQuestion": "/suvey/question/1102?response=8010",
+      "results": "/survey/response/8010/results"
+    }
+  }
+}

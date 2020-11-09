@@ -1,0 +1,30 @@
+{
+  "GET": "/exam",
+  "query": [
+    "filter[search]",
+    "filter[isActive]",
+    "sort",
+    "page[number]",
+    "page[size]"
+  ],
+
+  "meta": {
+    "page": {
+      "number": 4,
+      "size": 20,
+      "count": 7
+    },
+    "sort": "-createdAt"
+  },
+  "items": [
+    {"id": 2010, "name": "ppe", "isActive": 1, "link": "/exam/2010"},
+    {"id": 2011, "name": "gtp", "isActive": 1, "link": "/exam/2011"}
+  ],
+  "links": {
+    "first": "/exam?sort=-createdAt&page[number]=1&page[size]=20",
+    "prev":  "/exam?sort=-createdAt&page[number]=3&page[size]=20",
+    "self":  "/exam?sort=-createdAt&page[number]=4&page[size]=20",
+    "next":  "/exam?sort=-createdAt&page[number]=5&page[size]=20",
+    "last":  "/exam?sort=-createdAt&page[number]=7&page[size]=20"
+  }
+}

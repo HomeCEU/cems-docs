@@ -1,0 +1,15 @@
+{
+  "GET": "/enrollment/2048/exam/123/continue",
+  "note": "if an exam-response does not yet exist one is created",
+
+  "data": {
+    "enrollmentId": 2048,
+    "examId": 123,
+    "responseId": 6010,
+    "completed": false
+  },
+  "links": {
+    "nextQuestion": "/exam/question/1101?response=6010",
+    "results": "/exam/response/6010/results"
+  }
+}

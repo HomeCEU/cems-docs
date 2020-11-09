@@ -1,0 +1,25 @@
+{
+  "GET": "/survey/response/8010/results",
+
+  "meta": {
+    "enrollments": [
+      {"id": 2048, "link": "/enrollment/2048"}
+    ]
+  },
+  "data": {
+    "surveyId": 321,
+    "responseId": 8010,
+    "completed": true,
+    "ok": true,
+    "answers": [
+      {
+        "questionId": 1101,
+        "questionText": "some text",
+        "optionId": 3014,
+        "answerText": "typed user response when question type is text",
+        "ok": true,
+        "link": "/survey/question/1101"
+      }
+    ]
+  }
+}

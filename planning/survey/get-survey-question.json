@@ -1,0 +1,22 @@
+{
+  "GET": "/survey/question/1101?response=8010",
+  
+  "data": {
+    "id": 1101,
+    "surveyId": 321
+    "text": "How likely is it that you would recommend HomeCEU.com to a friend or colleague?",
+    "displayOrder": 1,
+    "type": "multiple_choice",
+    "options": [
+      {"id": 3011, "displayOrder": 1, "text": "5 - Extremely Likely"},
+      {"id": 3012, "displayOrder": 2, "text": "4"},
+      {"id": 3013, "displayOrder": 3, "text": "3"},
+      {"id": 3014, "displayOrder": 4, "text": "2"},
+      {"id": 3015, "displayOrder": 5, "text": "1 - Not Likely At All"}
+    ]
+  },
+  "links": {
+    "parent": "/survey/321",
+    "postAnswer": "/survey/response/8010"
+  }
+}

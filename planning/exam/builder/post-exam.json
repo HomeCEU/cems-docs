@@ -1,0 +1,22 @@
+{
+  "POST": "/exam",
+
+  "request": {
+    "name": "mcat",
+    "isActive": 0,
+    "passingGrade": 0.7
+  },
+
+  "response": {
+    "data": {
+      "id": 123,
+      "name": "mcat",
+      "isActive": 0,
+      "passingGrade": 0.7
+    },
+    "links": {
+      "record": "/exam/123",
+      "addQuestion": "/exam/question"
+    }
+  }
+}

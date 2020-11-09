@@ -1,0 +1,523 @@
+swagger: "2.0"
+info:
+  version: "2.0.0"
+  title: "CEMS exam and survey API"
+host: "api.hceu-sandbox.com"
+basePath: "/api/v2"
+
+paths:
+  /survey/{surveyId}:
+    get:
+      tags:
+        - "Survey"
+      summary: "Get survey by id"
+      description: ""
+      operationId: "getSurveyById"
+      parameters:
+        - name: "surveyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "success"
+          schema:
+            required: 
+              - "data"
+            properties: 
+              data: 
+                required: 
+                  - "id"
+                  - "name"
+                  - "isActive"
+                  - "questions"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 123
+                  name: 
+                    type: "string"
+                    example: "foo"
+                  isActive: 
+                    type: "number"
+                    example: 1
+                  description: 
+                    type: "string"
+                    example: "net provider score"
+                  created: 
+                    required: 
+                      - "datetime"
+                      - "user"
+                    properties: 
+                      datetime: 
+                        type: "string"
+                        format: "date-time"
+                      user: 
+                        required: 
+                          - "userId"
+                          - "name"
+                        properties: 
+                          userId: 
+                            type: "number"
+                            example: 20
+                          name: 
+                            type: "string"
+                            example: "John Smith"
+                        type: "object"
+                    type: "object"
+                  updated: 
+                    required: 
+                      - "datetime"
+                      - "user"
+                    properties: 
+                      datetime: 
+                        type: "string"
+                        format: "date-time"
+                      user: 
+                        required: 
+                          - "userId"
+                          - "name"
+                        properties: 
+                          userId: 
+                            type: "number"
+                            example: 20
+                          name: 
+                            type: "string"
+                            example: "John Smith"
+                        type: "object"
+                    type: "object"
+                  questions: 
+                    type: "array"
+                    items: 
+                      type: "object"
+                      properties: 
+                        id: 
+                          type: "number"
+                          example: 1101
+                        link: 
+                          type: "string"
+                          example: "/survey/question/1101"
+                type: "object"
+        401:
+          description: "not authenticated"
+        403:
+          description: "user was authenticated but not authorized"
+        404:
+          description: "Survey not found"
+      
+  /enrollment/{enrollmentId}/survey/{surveyId}:
+    get:
+      tags:
+        - "Survey"
+        - "Enrollment"
+      summary: ""
+      description: ""
+      operationId: "getEnrollmentSurvey"
+      parameters:
+        - name: "enrollmentId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "surveyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "success"
+          schema:
+            required:
+              - "meta"
+              - "data"
+              - "links"
+            properties:
+              meta: 
+                required: 
+                  - "totalQuestions"
+                  - "required"
+                  - "completed"
+                properties: 
+                  totalQuestions: 
+                    type: "number"
+                    example: 3
+                  required: 
+                    type: "boolean"
+                    example: true
+                  completed: 
+                    type: "boolean"
+                    example: false
+                type: "object"
+              data: 
+                required: 
+                  - "id"
+                  - "name"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 123
+                  name: 
+                    type: "string"
+                    example: "foo"
+                  description:
+                    type: "string"
+                    example: "net provider score"
+                type: "object"
+              links: 
+                required: 
+                  - "detail"
+                  - "continue"
+                  - "results"
+                properties: 
+                  detail: 
+                    type: "string"
+                    example: "/survey/123"
+                  continue: 
+                    type: "string"
+                    example: "/enrollment/2048/survey/123/continue"
+                  results: 
+                    type: "string"
+                    example: "/survey/response/6010/results"
+                type: "object"
+        401:
+          description: "not authenticated"
+        403:
+          description: "user was authenticated but not authorized"
+        404:
+          description: "not found"
+ 
+  /enrollment/{enrollmentId}/survey/{surveyId}/continue:
+    get:
+      tags:
+        - "Survey"
+        - "Enrollment"
+      summary: ""
+      description: "if an survey-response does not yet exist one is created"
+      operationId: "continueSurvey"
+      parameters:
+        - name: "enrollmentId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "surveyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "success"
+          schema:
+            required: 
+              - "data"
+              - "links"
+            properties: 
+              data: 
+                required: 
+                  - "enrollmentId"
+                  - "surveyId"
+                  - "responseId"
+                  - "completed"
+                properties: 
+                  enrollmentId: 
+                    type: "number"
+                    example: 2048
+                  surveyId: 
+                    type: "number"
+                    example: 123
+                  responseId: 
+                    type: "number"
+                    example: 6010
+                  completed: 
+                    type: "boolean"
+                    example: false
+                type: "object"
+              links: 
+                required: 
+                  - "nextQuestion"
+                  - "results"
+                properties: 
+                  nextQuestion: 
+                    type: "string"
+                    example: "/survey/question/1101?response=6010"
+                  results: 
+                    type: "string"
+                    example: "/survey/response/6010/results"
+                type: "object"
+        401:
+          description: "not authenticated"
+        403:
+          description: "user was authenticated but not authorized"
+        404:
+          description: "Survey not found"
+          
+  /survey/question/{surveyQuestionId}:
+    get:
+      tags:
+        - "Survey"
+      summary: ""
+      description: ""
+      operationId: "getSurveyQuestion"
+      parameters:
+        - name: "surveyQuestionId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "responseId"
+          in: "query"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "success"
+          schema:
+            required: 
+              - "meta"
+              - "data"
+              - "links"
+            properties: 
+              meta: 
+                required: 
+                  - "surveyId"
+                properties: 
+                  surveyId: 
+                    type: "number"
+                    example: 123
+                type: "object"
+              data: 
+                required: 
+                  - "id"
+                  - "text"
+                  - "displayOrder"
+                  - "type"
+                  - "options"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 1102
+                  text: 
+                    type: "string"
+                    example: "Which of the following is a prime number"
+                  displayOrder: 
+                    type: "number"
+                    example: 2
+                  type: 
+                    type: "string"
+                    example: "multiple_choice"
+                  options: 
+                    type: "array"
+                    items: 
+                      type: "object"
+                      properties: 
+                        id: 
+                          type: "number"
+                          example: 3011
+                        displayOrder: 
+                          type: "number"
+                          example: 1
+                        text: 
+                          type: "string"
+                          example: "21"
+                type: "object"
+              links: 
+                required: 
+                  - "parent"
+                  - "postAnswer"
+                properties: 
+                  parent:
+                    type: "string"
+                    format: "uri"
+                    example: "/survey/321"
+                  postAnswer: 
+                    type: "string"
+                    description: "Used to point where the question answer should be sent to.  Only privided when responseId query param is set"
+                    example: "/survey/response/6010"
+                    format: "uri"
+                type: "object"
+        401:
+          description: "not authenticated"
+        403:
+          description: "user was authenticated but not authorized"
+        404:
+          description: "not found"
+          
+  /survey/response/{responseId}:
+    post:
+      tags:
+        - "Survey"
+      summary: ""
+      description: ""
+      operationId: "answerSurveyQuestion"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "responseId"
+          in: "path"
+          description: "identifies this isntance of the survey"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "docData"
+          description: "Required: docType, dataKey, data"
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "questionId"
+            properties: 
+              questionId: 
+                type: "number"
+                example: 1102
+              optionId: 
+                type: "number"
+                example: 3014
+                description: "used with multiple-choice questions"
+              answerText: 
+                type: "string"
+                example: "Trump 2020"
+                description: "used with text questions"
+      responses:
+        200:
+          description: "success"
+          schema:
+            required: 
+              - "data"
+              - "links"
+            properties: 
+              data: 
+                required: 
+                  - "surveyId"
+                  - "responseId"
+                  - "questionId"
+                  - "ok"
+                properties: 
+                  surveyId: 
+                    type: "number"
+                    example: 123
+                  responseId: 
+                    type: "number"
+                    example: 6010
+                  questionId: 
+                    type: "number"
+                    example: 1102
+                  optionId: 
+                    type: "number"
+                    example: 3014
+                    description: "this is only returned for multiple-choice questions"
+                  ok: 
+                    type: "boolean"
+                    example: true
+                type: "object"
+              links: 
+                required: 
+                  - "nextQuestion"
+                  - "results"
+                properties: 
+                  nextQuestion: 
+                    type: "string"
+                    example: "/survey/question/1103?response=6010"
+                    format: "uri"
+                  results: 
+                    type: "string"
+                    example: "/survey/response/6010/results"
+                    format: "uri"
+                type: "object"
+        401:
+          description: "not authenticated"
+        403:
+          description: "user was authenticated but not authorized"
+        404:
+          description: "not found"
+          
+  /survey/response/{responseId}/results:
+    get:
+      tags:
+        - "Survey"
+      summary: ""
+      description: ""
+      operationId: "getSurveyResponseResults"
+      parameters:
+        - name: "responseId"
+          in: "path"
+          description: "identifies a specific survey completion"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "success"
+          schema:
+            required:
+              - "data"
+            properties: 
+              meta:
+                properties: 
+                  enrollments: 
+                    type: "array"
+                    items: 
+                      type: "object"
+                      properties: 
+                        id: 
+                          type: "number"
+                          example: 2048
+                        link: 
+                          type: "string"
+                          example: "/enrollment/2048"
+                type: "object"
+              data: 
+                required: 
+                  - "surveyId"
+                  - "responseId"
+                  - "completed"
+                  - "ok"
+                  - "answers"
+                properties: 
+                  surveyId: 
+                    type: "number"
+                    example: 123
+                  responseId: 
+                    type: "number"
+                    example: 6010
+                  completed: 
+                    type: "boolean"
+                    example: true
+                  ok: 
+                    type: "boolean"
+                    example: true
+                  answers: 
+                    type: "array"
+                    items: 
+                      type: "object"
+                      properties: 
+                        questionId: 
+                          type: "number"
+                          example: 1102
+                        questionText: 
+                          type: "string"
+                          example: "some text"
+                        optionId: 
+                          type: "number"
+                          example: 3014
+                        answerText: 
+                          type: "string"
+                          example: "used for free text field answers"
+                        ok: 
+                          type: "boolean"
+                          example: true
+                        link: 
+                          type: "string"
+                          example: "/survey/question/1102"
+                          format: "uri"
+                type: "object"
+        401:
+          description: "not authenticated"
+        403:
+          description: "user was authenticated but not authorized"
+        404:
+          description: "not found"
+          
+

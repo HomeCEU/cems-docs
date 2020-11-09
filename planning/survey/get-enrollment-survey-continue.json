@@ -1,0 +1,15 @@
+{
+  "GET": "/enrollment/2048/survey/321/continue",
+  "note": "if a survey-response does not yet exist one is created",
+
+  "data": {
+    "enrollmentId": 2048,
+    "surveyId": 321,
+    "responseId": 8010,
+    "completed": false
+  },
+  "links": {
+    "nextQuestion": "/suvey/question/1101?response=8010",
+    "results": "/survey/response/8010/results"
+  }
+}

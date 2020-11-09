@@ -1,0 +1,31 @@
+{
+  "POST": "/exam/question",
+  
+  "request": {
+    "examId": 123,
+    "text": "Which of the following is a prime number",
+    "type": "multiple_choice",
+    "displayOrder": 2,
+    "options": [
+      {"displayOrder": 1, "text": "21"},
+      {"displayOrder": 2, "text": "27"},
+      {"displayOrder": 3, "text": "51"},
+      {"displayOrder": 4, "text": "83"},
+      {"displayOrder": 5, "text": "None of the above"}
+    ]
+  },
+  
+  "response": {
+    "data": {
+      "id": 1010,
+      "examId": 123,
+      "text": "Which of the following is a prime number",
+      "type": "multiple_choice",
+      "displayOrder": 2
+    },
+    "links": {
+      "record": "/exam/question/1010",
+      "exam": "/exam/123"
+    }
+  }
+}

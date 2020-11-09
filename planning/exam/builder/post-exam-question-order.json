@@ -1,0 +1,19 @@
+{
+  "POST": "/exam/123/question-order",
+
+  "request": [
+    {"id": 1102},
+    {"id": 1101},
+    {"id": 1103}
+  ],
+
+  "response": {
+    "data": {
+      "questions": [
+        {"id": 1102, "displayOrder": 1, "link": "/exam/question/1102"},
+        {"id": 1101, "displayOrder": 2, "link": "/exam/question/1101"},
+        {"id": 1103, "displayOrder": 3, "link": "/exam/question/1103"}
+      ]
+    }
+  }
+}

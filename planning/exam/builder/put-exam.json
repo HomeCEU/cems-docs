@@ -1,0 +1,22 @@
+{
+  "PUT": "/exam/123",
+
+  "request": {
+    "name": "mcat",
+    "isActive": 1,
+    "passingGrade": 0.7
+  },
+
+  "response": {
+    "data": {
+      "id": 123,
+      "name": "mcat",
+      "isActive": 1,
+      "passingGrade": 0.7
+    },
+    "links": {
+      "record": "/exam/123",
+      "addQuestion": "/exam/question"
+    }
+  }
+}

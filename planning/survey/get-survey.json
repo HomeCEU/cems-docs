@@ -1,0 +1,29 @@
+{
+  "GET": "/survey/321",
+
+  "data": {
+    "id": 321,
+    "name": "foo",
+    "description": "",
+    "isActive": 1,
+    "created": {
+      "datetime": "2014-09-27T18:30:49-0500",
+      "user": {
+        "userId": 20,
+        "name": "John Smith"
+      }
+    },
+    "updated": {
+      "datetime": "2014-09-27T18:30:49-0500",
+      "user": {
+        "userId": 20,
+        "name": "John Smith"
+      }
+    },
+    "questions": [
+      {"id": 1101, "link": "/survey/question/1101"},
+      {"id": 1102, "link": "/survey/question/1102"},
+      {"id": 1103, "link": "/survey/question/1103"}
+    ]
+  }
+}

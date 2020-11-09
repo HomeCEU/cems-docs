@@ -1,0 +1,22 @@
+{
+  "GET": "/exam/question/1102?response=6010",
+  
+  "data": {
+    "id": 1102,
+    "examId": 123,
+    "text": "Which of the following is a prime number",
+    "displayOrder": 2,
+    "type": "multiple_choice",
+    "options": [
+      {"id": 3011, "displayOrder": 1, "text": "21"},
+      {"id": 3012, "displayOrder": 2, "text": "27"},
+      {"id": 3013, "displayOrder": 3, "text": "51"},
+      {"id": 3014, "displayOrder": 4, "text": "83"},
+      {"id": 3015, "displayOrder": 5, "text": "None of the above"}
+    ]
+  },
+  "links": {
+    "parent": "/exam/123",
+    "postAnswer": "/exam/response/6010"
+  }
+}

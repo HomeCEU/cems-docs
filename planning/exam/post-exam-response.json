@@ -1,0 +1,22 @@
+{
+  "POST": "/exam/response/6010",
+  
+  "request": {
+    "questionId": 1102,
+    "optionId": 3014,
+    "answerText": "used for text questions only"
+  },
+  "response": {
+    "data": {
+      "examId": 123,
+      "responseId": 6010,
+      "questionId": 1102,
+      "optionId": 3014,
+      "ok": true
+    },
+    "links": {
+      "nextQuestion": "/exam/question/1103?response=6010",
+      "results": "/exam/response/6010/results"
+    }
+  }
+}

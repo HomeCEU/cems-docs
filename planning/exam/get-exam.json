@@ -1,0 +1,29 @@
+{
+  "GET": "/exam/123",
+  
+  "data": {
+    "id": 123,
+    "name": "foo",
+    "isActive": 1,
+    "passingGrade": 0.7, 
+    "created": {
+      "datetime": "2014-09-27T18:30:49-0500",
+      "user": {
+        "userId": 20,
+        "name": "John Smith"
+      }
+    },
+    "updated": {
+      "datetime": "2014-09-27T18:30:49-0500",
+      "user": {
+        "userId": 20,
+        "name": "John Smith"
+      }
+    },
+    "questions": [
+      {"id": 1101, "link": "/exam/question/1101"},
+      {"id": 1102, "link": "/exam/question/1102"},
+      {"id": 1103, "link": "/exam/question/1103"}
+    ]
+  }
+}

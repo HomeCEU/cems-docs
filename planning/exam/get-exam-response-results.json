@@ -1,0 +1,25 @@
+{
+  "GET": "/exam/response/6010/results",
+
+  "meta": {
+    "enrollments": [
+      {"id": 2048, "link": "/enrollment/2048"}
+    ]
+  },
+  "data": {
+    "examId": 123,
+    "responseId": 6010,
+    "completed": true,
+    "ok": true,
+    "answers": [
+      {
+        "questionId": 1102,
+        "questionText": "some text",
+        "optionId": 3014,
+        "answerText": "used for free text field answers",
+        "ok": true,
+        "link": "/exam/question/1102"
+      }
+    ]
+  }
+}

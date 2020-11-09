@@ -1,0 +1,1006 @@
+swagger: "2.0"
+info:
+  version: "2.0.0"
+  title: "CEMS exam and survey API"
+host: "api.hceu-sandbox.com"
+basePath: "/api/v2"
+
+paths:
+
+  /exam:
+    get:
+      tags:
+        - "Exam"
+        - "Exam Managment"
+      summary: "List exams"
+      description: "list of exams"
+      operationId: "getExamList"
+      parameters:
+        - name: "filter[search]"
+          in: "query"
+          description: "filter results by search string which searchs exam names"
+          type: "string"
+          required: false
+        - name: "filter[isActive]"
+          in: "query"
+          description: ""
+          type: "string"
+          required: false
+        - name: "sort"
+          in: "query"
+          description: "field name to sort by.  prefix with a minus sign to sort DESC (ex: sort=-createdAt)"
+          type: "string"
+          required: false
+        - name: "page[number]"
+          in: "query"
+          description: "page number, 1 is for the first page."
+          type: "number"
+          required: false
+        - name: "page[size]"
+          in: "query"
+          description: "number of results per page"
+          type: "number"
+          required: false
+      responses:
+        200:
+          description: "success"
+          schema:
+            required:
+              - "items"
+            properties: 
+              meta: 
+                properties: 
+                  page: 
+                    properties: 
+                      number: 
+                        type: "number"
+                        example: 4
+                      size: 
+                        type: "number"
+                        example: 20
+                      count: 
+                        type: "number"
+                        example: 7
+                    type: "object"
+                  sort: 
+                    type: "string"
+                    example: "-createdAt"
+                type: "object"
+              items: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    id: 
+                      type: "number"
+                      example: 2010
+                    name: 
+                      type: "string"
+                      example: "ppe"
+                    isActive: 
+                      type: "number"
+                      example: 1
+                    link: 
+                      type: "string"
+                      example: "/exam/2010"
+              links: 
+                required: 
+                  - "first"
+                  - "prev"
+                  - "self"
+                  - "next"
+                  - "last"
+                properties: 
+                  first: 
+                    type: "string"
+                    example: "/exam?sort=-createdAt&page[number]=1&page[size]=20"
+                  prev: 
+                    type: "string"
+                    example: "/exam?sort=-createdAt&page[number]=3&page[size]=20"
+                  self: 
+                    type: "string"
+                    example: "/exam?sort=-createdAt&page[number]=4&page[size]=20"
+                  next: 
+                    type: "string"
+                    example: "/exam?sort=-createdAt&page[number]=5&page[size]=20"
+                  last: 
+                    type: "string"
+                    example: "/exam?sort=-createdAt&page[number]=7&page[size]=20"
+                type: "object"
+    post:
+      tags:
+        - "Exam"
+        - "Exam Managment"
+      summary: "post new exam"
+      description: ""
+      operationId: "addExam"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "exam"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "questionId"
+            properties: 
+              name: 
+                type: "string"
+                example: "mcat"
+              isActive: 
+                type: "number"
+                example: 0
+                description: "0 or 1"
+              passingGrade: 
+                type: "number"
+                example: 0.7
+                description: "float such as 0.7 for 70%"
+      responses:
+        200:
+          description: "success"
+          schema:
+            required: 
+              - "data"
+              - "links"
+            properties: 
+              data: 
+                required: 
+                  - "id"
+                  - "name"
+                  - "isActive"
+                  - "passingGrade"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 123
+                  name: 
+                    type: "string"
+                    example: "mcat"
+                  isActive: 
+                    type: "number"
+                    example: 0
+                  passingGrade: 
+                    type: "number"
+                    example: 0.7
+                type: "object"
+              links: 
+                required: 
+                  - "record"
+                  - "addQuestion"
+                properties: 
+                  record: 
+                    type: "string"
+                    example: "/exam/123"
+                  addQuestion: 
+                    type: "string"
+                    example: "/exam/question"
+                type: "object"
+        401:
+          description: "not authenticated"
+        403:
+          description: "not authorized"
+        404:
+          description: "not found"
+
+  /exam/question:
+    get:
+      tags:
+        - "Exam"
+        - "Exam Managment"
+        - "Exam Runner"
+      summary: "List questions"
+      description: ""
+      operationId: "getExamQuestionList"
+      parameters:
+        - name: "filter[search]"
+          in: "query"
+          description: "filter results by search string which searchs exam names"
+          type: "string"
+          required: false
+        - name: "filter[examId]"
+          in: "query"
+          description: ""
+          type: "string"
+          required: false
+        - name: "sort"
+          in: "query"
+          description: "field name to sort by.  prefix with a minus sign to sort DESC (ex: sort=-createdAt)"
+          type: "string"
+          required: false
+        - name: "page[number]"
+          in: "query"
+          description: "page number, 1 is for the first page."
+          type: "number"
+          required: false
+        - name: "page[size]"
+          in: "query"
+          description: "number of results per page"
+          type: "number"
+          required: false
+      responses:
+        200:
+          description: "success"
+          schema:
+            required: 
+              - "items"
+            properties: 
+              meta: 
+                properties: 
+                  filter: 
+                    properties: 
+                      examId: 
+                        type: "number"
+                        example: 123
+                    type: "object"
+                  page: 
+                    required: 
+                      - "number"
+                      - "size"
+                      - "count"
+                    properties: 
+                      number: 
+                        type: "number"
+                        example: 4
+                      size: 
+                        type: "number"
+                        example: 20
+                      count: 
+                        type: "number"
+                        example: 7
+                    type: "object"
+                  sort: 
+                    type: "string"
+                    example: "displayOrder"
+                type: "object"
+              items: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    id: 
+                      type: "number"
+                      example: 1102
+                    examId: 
+                      type: "number"
+                      example: 123
+                    text: 
+                      type: "string"
+                      example: "Which of the following is a prime number"
+                    displayOrder: 
+                      type: "number"
+                      example: 2
+                    link: 
+                      type: "string"
+                      example: "/exam/question/1102"
+              links: 
+                required: 
+                  - "first"
+                  - "prev"
+                  - "self"
+                  - "next"
+                  - "last"
+                properties: 
+                  first: 
+                    type: "string"
+                    example: "/exam/question?filter[examId]=123&sort=displayOrder&page[number]=1&page[size]=20"
+                  prev: 
+                    type: "string"
+                    example: "/exam/question?filter[examId]=123&sort=displayOrder&page[number]=3&page[size]=20"
+                  self: 
+                    type: "string"
+                    example: "/exam/question?filter[examId]=123&sort=displayOrder&page[number]=4&page[size]=20"
+                  next: 
+                    type: "string"
+                    example: "/exam/question?filter[examId]=123&sort=displayOrder&page[number]=5&page[size]=20"
+                  last: 
+                    type: "string"
+                    example: "/exam/question?filter[examId]=123&sort=displayOrder&page[number]=7&page[size]=20"
+                type: "object"
+    post:
+      tags:
+        - "Exam"
+        - "Exam Managment"
+      summary: "post new question to exam"
+      description: ""
+      operationId: "addExamQuestion"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "exam"
+          description: ""
+          required: true
+          schema:
+            required: 
+              - "examId"
+              - "text"
+              - "type"
+              - "displayOrder"
+              - "options"
+            properties: 
+              examId: 
+                type: "number"
+                example: 123
+              text: 
+                type: "string"
+                example: "Which of the following is a prime number"
+              type: 
+                type: "string"
+                example: "multiple_choice"
+              displayOrder: 
+                type: "number"
+                example: 2
+              options: 
+                type: "array"
+                items: 
+                  type: "object"
+                  properties: 
+                    displayOrder: 
+                      type: "number"
+                      example: 1
+                    text: 
+                      type: "string"
+                      example: "21"
+            type: "object"
+          
+      responses:
+        200:
+          description: "success"
+          schema:
+            required: 
+              - "data"
+              - "links"
+            properties: 
+              data: 
+                required: 
+                  - "id"
+                  - "examId"
+                  - "text"
+                  - "type"
+                  - "displayOrder"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 1010
+                  examId: 
+                    type: "number"
+                    example: 123
+                  text: 
+                    type: "string"
+                    example: "Which of the following is a prime number"
+                  type: 
+                    type: "string"
+                    example: "multiple_choice"
+                  displayOrder: 
+                    type: "number"
+                    example: 2
+                type: "object"
+              links: 
+                required: 
+                  - "record"
+                  - "exam"
+                properties: 
+                  record: 
+                    type: "string"
+                    example: "/exam/question/1010"
+                  exam: 
+                    type: "string"
+                    example: "/exam/123"
+                type: "object"
+          
+        401:
+          description: "not authenticated"
+        403:
+          description: "not authorized"
+        404:
+          description: "not found"
+
+  /exam/{examId}:
+    get:
+      tags:
+        - "Exam"
+        - "Exam Managment"
+        - "Exam Runner"
+      summary: "Get exam by id"
+      description: ""
+      operationId: "getExamById"
+      parameters:
+        - name: "examId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "success"
+          schema:
+            required: 
+              - "data"
+            properties: 
+              data: 
+                required: 
+                  - "id"
+                  - "name"
+                  - "isActive"
+                  - "passingGrade"
+                  - "questions"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 123
+                  name: 
+                    type: "string"
+                    example: "foo"
+                  isActive: 
+                    type: "number"
+                    example: 1
+                  passingGrade: 
+                    type: "number"
+                    example: 0.7
+                  created: 
+                    required: 
+                      - "datetime"
+                      - "user"
+                    properties: 
+                      datetime: 
+                        type: "string"
+                        format: "date-time"
+                      user: 
+                        required: 
+                          - "userId"
+                          - "name"
+                        properties: 
+                          userId: 
+                            type: "number"
+                            example: 20
+                          name: 
+                            type: "string"
+                            example: "John Smith"
+                        type: "object"
+                    type: "object"
+                  updated: 
+                    required: 
+                      - "datetime"
+                      - "user"
+                    properties: 
+                      datetime: 
+                        type: "string"
+                        format: "date-time"
+                      user: 
+                        required: 
+                          - "userId"
+                          - "name"
+                        properties: 
+                          userId: 
+                            type: "number"
+                            example: 20
+                          name: 
+                            type: "string"
+                            example: "John Smith"
+                        type: "object"
+                    type: "object"
+                  questions: 
+                    type: "array"
+                    items: 
+                      type: "object"
+                      properties: 
+                        id: 
+                          type: "number"
+                          example: 1101
+                        link: 
+                          type: "string"
+                          example: "/exam/question/1101"
+                type: "object"
+        401:
+          description: "not authenticated"
+        403:
+          description: "user was authenticated but not authorized"
+        404:
+          description: "not found"
+    put:
+      tags:
+        - "Exam"
+        - "Exam Managment"
+      summary: "update exam"
+      description: ""
+      operationId: "updateExam"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "exam"
+          description: ""
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "questionId"
+            properties: 
+              name: 
+                type: "string"
+                example: "mcat"
+              isActive: 
+                type: "number"
+                example: 1
+                description: "0 or 1"
+              passingGrade: 
+                type: "number"
+                example: 0.7
+                description: "float such as 0.7 for 70%"
+      responses:
+        200:
+          description: "success"
+          schema:
+            required: 
+              - "data"
+              - "links"
+            properties: 
+              data: 
+                required: 
+                  - "id"
+                  - "name"
+                  - "isActive"
+                  - "passingGrade"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 123
+                  name: 
+                    type: "string"
+                    example: "mcat"
+                  isActive: 
+                    type: "number"
+                    example: 1
+                  passingGrade: 
+                    type: "number"
+                    example: 0.7
+                type: "object"
+              links: 
+                required: 
+                  - "record"
+                  - "addQuestion"
+                properties: 
+                  record: 
+                    type: "string"
+                    example: "/exam/123"
+                  addQuestion: 
+                    type: "string"
+                    example: "/exam/question"
+                type: "object"
+        401:
+          description: "not authenticated"
+        403:
+          description: "not authorized"
+        404:
+          description: "not found"
+
+  /enrollment/{enrollmentId}/exam/{examId}:
+    get:
+      tags:
+        - "Exam"
+        - "Enrollment"
+        - "Exam Runner"
+      summary: "get exam for enrollment"
+      description: ""
+      operationId: "getEnrollmentExam"
+      parameters:
+        - name: "enrollmentId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "examId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "success"
+          schema:
+            required:
+              - "meta"
+              - "data"
+              - "links"
+            properties:
+              meta: 
+                required: 
+                  - "totalQuestions"
+                  - "required"
+                  - "completed"
+                  - "attempts"
+                properties: 
+                  totalQuestions: 
+                    type: "number"
+                    example: 3
+                  required: 
+                    type: "boolean"
+                    example: true
+                  completed: 
+                    type: "boolean"
+                    example: false
+                  attempts: 
+                    type: "array"
+                    items: 
+                      type: "object"
+                      properties: 
+                        id: 
+                          type: "number"
+                          example: 6010
+                        link: 
+                          type: "string"
+                          example: "/exam/response/6010/results"
+                type: "object"
+              data: 
+                required: 
+                  - "id"
+                  - "name"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 123
+                  name: 
+                    type: "string"
+                    example: "foo"
+                type: "object"
+              links: 
+                required: 
+                  - "detail"
+                  - "continue"
+                  - "results"
+                properties: 
+                  detail: 
+                    type: "string"
+                    example: "/exam/123"
+                  continue: 
+                    type: "string"
+                    example: "/enrollment/2048/exam/123/continue"
+                  results: 
+                    type: "string"
+                    example: "/exam/response/6010/results"
+                type: "object"
+        401:
+          description: "not authenticated"
+        403:
+          description: "user was authenticated but not authorized"
+        404:
+          description: "not found"
+ 
+  /enrollment/{enrollmentId}/exam/{examId}/continue:
+    get:
+      tags:
+        - "Exam"
+        - "Exam Runner"
+        - "Enrollment"
+      summary: ""
+      description: "if an exam-response does not yet exist one is created"
+      operationId: "continueExam"
+      parameters:
+        - name: "enrollmentId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "examId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "success"
+          schema:
+            required: 
+              - "data"
+              - "links"
+            properties: 
+              data: 
+                required: 
+                  - "enrollmentId"
+                  - "examId"
+                  - "responseId"
+                  - "completed"
+                properties: 
+                  enrollmentId: 
+                    type: "number"
+                    example: 2048
+                  examId: 
+                    type: "number"
+                    example: 123
+                  responseId: 
+                    type: "number"
+                    example: 6010
+                  completed: 
+                    type: "boolean"
+                    example: false
+                type: "object"
+              links: 
+                required: 
+                  - "nextQuestion"
+                  - "results"
+                properties: 
+                  nextQuestion: 
+                    type: "string"
+                    example: "/exam/question/1101?response=6010"
+                  results: 
+                    type: "string"
+                    example: "/exam/response/6010/results"
+                type: "object"
+        401:
+          description: "not authenticated"
+        403:
+          description: "user was authenticated but not authorized"
+        404:
+          description: "Exam not found"
+          
+  /exam/question/{examQuestionId}:
+    get:
+      tags:
+        - "Exam"
+        - "Exam Managment"
+        - "Exam Runner"
+      summary: "get specific exam question by questionId"
+      description: ""
+      operationId: "getExamQuestion"
+      parameters:
+        - name: "examQuestionId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "responseId"
+          in: "query"
+          description: ""
+          required: true
+          type: "integer"
+      responses:
+        200:
+          description: "success"
+          schema:
+            required: 
+              - "meta"
+              - "data"
+              - "links"
+            properties: 
+              meta: 
+                required: 
+                  - "examId"
+                properties: 
+                  examId: 
+                    type: "number"
+                    example: 123
+                type: "object"
+              data: 
+                required: 
+                  - "id"
+                  - "text"
+                  - "displayOrder"
+                  - "type"
+                  - "options"
+                properties: 
+                  id: 
+                    type: "number"
+                    example: 1102
+                  text: 
+                    type: "string"
+                    example: "Which of the following is a prime number"
+                  displayOrder: 
+                    type: "number"
+                    example: 2
+                  type: 
+                    type: "string"
+                    example: "multiple_choice"
+                  options: 
+                    type: "array"
+                    items: 
+                      type: "object"
+                      properties: 
+                        id: 
+                          type: "number"
+                          example: 3011
+                        displayOrder: 
+                          type: "number"
+                          example: 1
+                        text: 
+                          type: "string"
+                          example: "21"
+                type: "object"
+              links: 
+                required: 
+                  - "parent"
+                  - "postAnswer"
+                properties: 
+                  parent:
+                    type: "string"
+                    format: "uri"
+                    example: "/exam/123"
+                  postAnswer: 
+                    type: "string"
+                    description: "Used to point where the question answer should be sent to.  Only privided when responseId query param is set"
+                    example: "/exam/response/6010"
+                    format: "uri"
+                type: "object"
+        401:
+          description: "not authenticated"
+        403:
+          description: "user was authenticated but not authorized"
+        404:
+          description: "not found"
+          
+  /exam/response/{responseId}:
+    post:
+      tags:
+        - "Exam"
+        - "Exam Runner"
+      summary: "post answer to exam question"
+      description: ""
+      operationId: "answerExamQuestion"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "responseId"
+          in: "path"
+          description: "identifies this isntance of the exam"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "docData"
+          description: "Required: docType, dataKey, data"
+          required: true
+          schema:
+            type: "object"
+            required: 
+              - "questionId"
+            properties: 
+              questionId: 
+                type: "number"
+                example: 1102
+              optionId: 
+                type: "number"
+                example: 3014
+                description: "used with multiple-choice questions"
+              answerText: 
+                type: "string"
+                example: "Trump 2020"
+                description: "used with text questions"
+      responses:
+        200:
+          description: "success"
+          schema:
+            required: 
+              - "data"
+              - "links"
+            properties: 
+              data: 
+                required: 
+                  - "examId"
+                  - "responseId"
+                  - "questionId"
+                  - "ok"
+                properties: 
+                  examId: 
+                    type: "number"
+                    example: 123
+                  responseId: 
+                    type: "number"
+                    example: 6010
+                  questionId: 
+                    type: "number"
+                    example: 1102
+                  optionId: 
+                    type: "number"
+                    example: 3014
+                    description: "this is only returned for multiple-choice questions"
+                  ok: 
+                    type: "boolean"
+                    example: true
+                type: "object"
+              links: 
+                required: 
+                  - "nextQuestion"
+                  - "results"
+                properties: 
+                  nextQuestion: 
+                    type: "string"
+                    example: "/exam/question/1103?response=6010"
+                    format: "uri"
+                  results: 
+                    type: "string"
+                    example: "/exam/response/6010/results"
+                    format: "uri"
+                type: "object"
+        401:
+          description: "not authenticated"
+        403:
+          description: "user was authenticated but not authorized"
+        404:
+          description: "not found"
+          
+  /exam/response/{responseId}/results:
+    get:
+      tags:
+        - "Exam"
+        - "Exam Runner"
+      summary: "get results from completed exam"
+      description: ""
+      operationId: "getExamResponseResults"
+      parameters:
+        - name: "responseId"
+          in: "path"
+          description: "identifies a specific exam completion"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "success"
+          schema:
+            required:
+              - "data"
+            properties: 
+              meta:
+                properties: 
+                  enrollments: 
+                    type: "array"
+                    items: 
+                      type: "object"
+                      properties: 
+                        id: 
+                          type: "number"
+                          example: 2048
+                        link: 
+                          type: "string"
+                          example: "/enrollment/2048"
+                type: "object"
+              data: 
+                required: 
+                  - "examId"
+                  - "responseId"
+                  - "completed"
+                  - "ok"
+                  - "answers"
+                properties: 
+                  examId: 
+                    type: "number"
+                    example: 123
+                  responseId: 
+                    type: "number"
+                    example: 6010
+                  completed: 
+                    type: "boolean"
+                    example: true
+                  ok: 
+                    type: "boolean"
+                    example: true
+                  answers: 
+                    type: "array"
+                    items: 
+                      type: "object"
+                      properties: 
+                        questionId: 
+                          type: "number"
+                          example: 1102
+                        questionText: 
+                          type: "string"
+                          example: "some text"
+                        optionId: 
+                          type: "number"
+                          example: 3014
+                        answerText: 
+                          type: "string"
+                          example: "used for free text field answers"
+                        ok: 
+                          type: "boolean"
+                          example: true
+                        link: 
+                          type: "string"
+                          example: "/exam/question/1102"
+                          format: "uri"
+                type: "object"
+        401:
+          description: "not authenticated"
+        403:
+          description: "user was authenticated but not authorized"
+        404:
+          description: "not found"
