@@ -17,8 +17,8 @@
     "sort": "-createdAt"
   },
   "items": [
-    {"id": 2010, "name": "ppe", "isActive": 1, "link": "/exam/2010"},
-    {"id": 2011, "name": "gtp", "isActive": 1, "link": "/exam/2011"}
+    {"id": 2010, "name": "ppe", "isActive": true, "link": "/exam/2010"},
+    {"id": 2011, "name": "gtp", "isActive": true, "link": "/exam/2011"}
   ],
   "links": {
     "first": "/exam?sort=-createdAt&page[number]=1&page[size]=20",

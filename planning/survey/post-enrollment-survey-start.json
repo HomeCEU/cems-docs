@@ -1,0 +1,12 @@
+{
+  "POST": "/enrollment/2048/survey/321/start",
+
+  "data": {
+    "enrollmentId": 2048,
+    "examId": 321,
+    "responseId": 8010
+  },
+  "links": {
+    "nextQuestion": "/survey/question/1101?response=8010"
+  }
+}

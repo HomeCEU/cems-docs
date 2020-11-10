@@ -1,0 +1,12 @@
+{
+  "POST": "/enrollment/2048/exam/123/start",
+
+  "data": {
+    "enrollmentId": 2048,
+    "examId": 123,
+    "responseId": 6010
+  },
+  "links": {
+    "nextQuestion": "/exam/question/1101?response=6010"
+  }
+}

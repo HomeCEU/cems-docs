@@ -15,7 +15,8 @@
   },
   "links": {
     "detail": "/exam/123",
-    "continue": "/enrollment/2048/exam/123/continue",
+    "start": "/enrollment/2048/exam/123/start",
+    "nextQuestion": "/exam/question/1101?response=6010",
     "results": "/exam/response/6010/results"
   }
 }

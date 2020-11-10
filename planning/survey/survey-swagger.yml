@@ -40,8 +40,8 @@ paths:
                     type: "string"
                     example: "foo"
                   isActive: 
-                    type: "number"
-                    example: 1
+                    type: "boolean"
+                    example: true
                   description: 
                     type: "string"
                     example: "net provider score"
@@ -168,18 +168,22 @@ paths:
               links: 
                 required: 
                   - "detail"
-                  - "continue"
-                  - "results"
                 properties: 
                   detail: 
                     type: "string"
                     example: "/survey/123"
-                  continue: 
+                  start: 
                     type: "string"
-                    example: "/enrollment/2048/survey/123/continue"
+                    example: "/enrollment/2048/survey/123/start"
+                    format: "uri"
+                  nextQuestion: 
+                    type: "string"
+                    example: "/survey/question/1101?response=6010"
+                    format: "uri"
                   results: 
                     type: "string"
                     example: "/survey/response/6010/results"
+                    format: "uri"
                 type: "object"
         401:
           description: "not authenticated"
@@ -187,15 +191,16 @@ paths:
           description: "user was authenticated but not authorized"
         404:
           description: "not found"
- 
-  /enrollment/{enrollmentId}/survey/{surveyId}/continue:
-    get:
+  
+
+  /enrollment/{enrollmentId}/survey/{surveyId}/start:
+    post:
       tags:
         - "Survey"
         - "Enrollment"
-      summary: ""
-      description: "if an survey-response does not yet exist one is created"
-      operationId: "continueSurvey"
+      summary: "start survey"
+      description: ""
+      operationId: "startSurvey"
       parameters:
         - name: "enrollmentId"
           in: "path"
@@ -220,7 +225,6 @@ paths:
                   - "enrollmentId"
                   - "surveyId"
                   - "responseId"
-                  - "completed"
                 properties: 
                   enrollmentId: 
                     type: "number"
@@ -231,29 +235,25 @@ paths:
                   responseId: 
                     type: "number"
                     example: 6010
-                  completed: 
-                    type: "boolean"
-                    example: false
                 type: "object"
               links: 
                 required: 
                   - "nextQuestion"
-                  - "results"
                 properties: 
                   nextQuestion: 
                     type: "string"
                     example: "/survey/question/1101?response=6010"
-                  results: 
-                    type: "string"
-                    example: "/survey/response/6010/results"
+                    format: "uri"
                 type: "object"
+        400:
+          description: "unable to start, perhaps one is already in progress or completed and passed"
         401:
           description: "not authenticated"
         403:
           description: "user was authenticated but not authorized"
         404:
-          description: "Survey not found"
-          
+          description: "not found"
+
   /survey/question/{surveyQuestionId}:
     get:
       tags:

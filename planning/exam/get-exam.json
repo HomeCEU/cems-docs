@@ -4,7 +4,7 @@
   "data": {
     "id": 123,
     "name": "foo",
-    "isActive": 1,
+    "isActive": true,
     "passingGrade": 0.7, 
     "created": {
       "datetime": "2014-09-27T18:30:49-0500",

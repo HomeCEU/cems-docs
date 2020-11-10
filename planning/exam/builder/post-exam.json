@@ -3,7 +3,7 @@
 
   "request": {
     "name": "mcat",
-    "isActive": 0,
+    "isActive": false,
     "passingGrade": 0.7
   },
 
@@ -11,7 +11,7 @@
     "data": {
       "id": 123,
       "name": "mcat",
-      "isActive": 0,
+      "isActive": false,
       "passingGrade": 0.7
     },
     "links": {

@@ -13,7 +13,8 @@
   },
   "links": {
     "detail": "/survey/321",
-    "continue": "/enrollment/2048/survey/321/continue",
+    "start": "/enrollment/2048/survey/321/start",
+    "nextQuestion": "/survey/question/1101?response=6010",
     "results": "/survey/response/8010/results"
   }
 }

@@ -24,7 +24,7 @@ paths:
         - name: "filter[isActive]"
           in: "query"
           description: ""
-          type: "string"
+          type: "boolean"
           required: false
         - name: "sort"
           in: "query"
@@ -78,8 +78,8 @@ paths:
                       type: "string"
                       example: "ppe"
                     isActive: 
-                      type: "number"
-                      example: 1
+                      type: "boolean"
+                      example: true
                     link: 
                       type: "string"
                       example: "/exam/2010"
@@ -130,9 +130,8 @@ paths:
                 type: "string"
                 example: "mcat"
               isActive: 
-                type: "number"
-                example: 0
-                description: "0 or 1"
+                type: "boolean"
+                example: false
               passingGrade: 
                 type: "number"
                 example: 0.7
@@ -159,8 +158,8 @@ paths:
                     type: "string"
                     example: "mcat"
                   isActive: 
-                    type: "number"
-                    example: 0
+                    type: "boolean"
+                    example: false
                   passingGrade: 
                     type: "number"
                     example: 0.7
@@ -434,8 +433,8 @@ paths:
                     type: "string"
                     example: "foo"
                   isActive: 
-                    type: "number"
-                    example: 1
+                    type: "boolean"
+                    example: true
                   passingGrade: 
                     type: "number"
                     example: 0.7
@@ -509,6 +508,11 @@ paths:
       produces:
         - "application/json"
       parameters:
+        - name: "examId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
         - in: "body"
           name: "exam"
           description: ""
@@ -522,9 +526,8 @@ paths:
                 type: "string"
                 example: "mcat"
               isActive: 
-                type: "number"
-                example: 1
-                description: "0 or 1"
+                type: "boolean"
+                example: true
               passingGrade: 
                 type: "number"
                 example: 0.7
@@ -551,8 +554,8 @@ paths:
                     type: "string"
                     example: "mcat"
                   isActive: 
-                    type: "number"
-                    example: 1
+                    type: "boolean"
+                    example: true
                   passingGrade: 
                     type: "number"
                     example: 0.7
@@ -648,18 +651,22 @@ paths:
               links: 
                 required: 
                   - "detail"
-                  - "continue"
-                  - "results"
                 properties: 
                   detail: 
                     type: "string"
                     example: "/exam/123"
-                  continue: 
+                  start: 
                     type: "string"
-                    example: "/enrollment/2048/exam/123/continue"
+                    example: "/enrollment/2048/exam/123/start"
+                    format: "uri"
+                  nextQuestion: 
+                    type: "string"
+                    example: "/exam/question/1101?response=6010"
+                    format: "uri"
                   results: 
                     type: "string"
                     example: "/exam/response/6010/results"
+                    format: "uri"
                 type: "object"
         401:
           description: "not authenticated"
@@ -668,15 +675,15 @@ paths:
         404:
           description: "not found"
  
-  /enrollment/{enrollmentId}/exam/{examId}/continue:
-    get:
+  /enrollment/{enrollmentId}/exam/{examId}/start:
+    post:
       tags:
         - "Exam"
         - "Exam Runner"
         - "Enrollment"
-      summary: ""
-      description: "if an exam-response does not yet exist one is created"
-      operationId: "continueExam"
+      summary: "start exam"
+      description: ""
+      operationId: "startExam"
       parameters:
         - name: "enrollmentId"
           in: "path"
@@ -701,7 +708,6 @@ paths:
                   - "enrollmentId"
                   - "examId"
                   - "responseId"
-                  - "completed"
                 properties: 
                   enrollmentId: 
                     type: "number"
@@ -712,22 +718,18 @@ paths:
                   responseId: 
                     type: "number"
                     example: 6010
-                  completed: 
-                    type: "boolean"
-                    example: false
                 type: "object"
               links: 
                 required: 
                   - "nextQuestion"
-                  - "results"
                 properties: 
                   nextQuestion: 
                     type: "string"
                     example: "/exam/question/1101?response=6010"
-                  results: 
-                    type: "string"
-                    example: "/exam/response/6010/results"
+                    format: "uri"
                 type: "object"
+        400:
+          description: "unable to start, perhaps one is already in progress or completed and passed"
         401:
           description: "not authenticated"
         403:
