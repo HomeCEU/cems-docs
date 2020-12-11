@@ -9,7 +9,6 @@
   "data": {
     "surveyId": 321,
     "responseId": 8010,
-    "completed": true,
     "status": "in progress",
     "answers": [
       {
