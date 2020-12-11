@@ -10,7 +10,7 @@
     "surveyId": 321,
     "responseId": 8010,
     "completed": true,
-    "status": "in progress,
+    "status": "in progress",
     "answers": [
       {
         "questionId": 1101,
