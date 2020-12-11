@@ -9,6 +9,7 @@
   "data": {
     "examId": 123,
     "responseId": 6010,
+    "score": .80,
     "completed": true,
     "ok": true,
     "answers": [
