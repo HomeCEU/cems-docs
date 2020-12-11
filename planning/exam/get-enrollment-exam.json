@@ -4,7 +4,7 @@
   "meta": {
     "totalQuestions": 3,
     "required": true,
-    "completed": false,
+    "status": "in progress",
     "attempts": [
       {"id": 6010, "link": "/exam/response/6010/results"}
     ]

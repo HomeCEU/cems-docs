@@ -612,7 +612,7 @@ paths:
                 required: 
                   - "totalQuestions"
                   - "required"
-                  - "completed"
+                  - "status"
                   - "attempts"
                 properties: 
                   totalQuestions: 
@@ -621,9 +621,9 @@ paths:
                   required: 
                     type: "boolean"
                     example: true
-                  completed: 
-                    type: "boolean"
-                    example: false
+                  status:
+                    type: "string"
+                    example: "in progress"
                   attempts: 
                     type: "array"
                     items: 
@@ -880,7 +880,7 @@ paths:
                   - "examId"
                   - "responseId"
                   - "questionId"
-                  - "ok"
+                  - "status"
                 properties: 
                   examId: 
                     type: "number"
@@ -895,9 +895,9 @@ paths:
                     type: "number"
                     example: 3014
                     description: "this is only returned for multiple-choice questions"
-                  ok: 
-                    type: "boolean"
-                    example: true
+                  status:
+                    type: "string"
+                    example: "correct"
                 type: "object"
               links: 
                 required: 
@@ -959,8 +959,7 @@ paths:
                 required: 
                   - "examId"
                   - "responseId"
-                  - "completed"
-                  - "ok"
+                  - "status"
                   - "answers"
                 properties: 
                   examId: 
@@ -969,12 +968,9 @@ paths:
                   responseId: 
                     type: "number"
                     example: 6010
-                  completed: 
-                    type: "boolean"
-                    example: true
-                  ok: 
-                    type: "boolean"
-                    example: true
+                  status:
+                    type: "string"
+                    example: "in progress"
                   answers: 
                     type: "array"
                     items: 
@@ -992,9 +988,9 @@ paths:
                         answerText: 
                           type: "string"
                           example: "used for free text field answers"
-                        ok: 
-                          type: "boolean"
-                          example: true
+                        status:
+                          type: "string"
+                          example: "incorrect"
                         link: 
                           type: "string"
                           example: "/exam/question/1102"
