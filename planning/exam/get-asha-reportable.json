@@ -1,0 +1,10 @@
+{
+  "GET": "/enrollment/12345/asha/reportable",
+
+  "data": {
+    "isReportable": "true"
+  },
+  "links": {
+    "reportToAsha": "/enrollment/12345/reportToAsha"
+  }
+}
