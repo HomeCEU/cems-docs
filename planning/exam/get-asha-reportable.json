@@ -2,7 +2,8 @@
   "GET": "/enrollment/12345/asha/reportable",
 
   "data": {
-    "isReportable": "true"
+    "isReportable": "true",
+    "ashaNumber": 12345678
   },
   "links": {
     "reportToAsha": "/enrollment/12345/reportToAsha"
