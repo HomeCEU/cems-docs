@@ -1,0 +1,37 @@
+{
+  "GET": "/enrollment/6010/completionReport",
+  "data": {
+    "completions": [
+      {
+        "examId": 123,
+        "responseId": 1234,
+        "score": 0.80,
+        "answers": [
+          {
+            "question": {
+              "questionId": 1102,
+              "displayOrder": 1,
+              "questionText": "some text",
+              "link": "/exam/question/1102"
+            },
+            "option": {
+              "optionId": 3014,
+              "displayOrder": 1,
+              "answerText": "used for free text field answers",
+              "status": "correct"
+            },
+            "correctOption": {
+              "optionId": 3014,
+              "displayOrder": 1,
+              "answerText": "used for free text field answers"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "links": {
+    "details": "/api/v2/enrollment/3632108",
+    "certificate": "/api/v2/enrollment/3632108/certificate"
+  }
+}
