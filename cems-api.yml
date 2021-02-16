@@ -4389,12 +4389,20 @@ paths:
       responses:
         204:
           description: "Success"
+        400:
+          description: |
+            - Enrollment with ID {enrollmentId} is not complete
+            - ASHA ID should be no more than 8 digits
+            - Please, enter your ASHA ID as numbers only, without any special character.
         403:
           description: "Not authorized"
         404:
           description: "Enrollment not found"
         409:
-          description: "We do not have asha number on file and one was not provided, please provide the asha number in the request body"
+          description: |
+            - We do not have asha number on file and one was not provided, please provide the asha number in the request body
+            - Duplicate ASHA ID found. Verify your ID and contact Customer Support if problem persists
+
 
   /company/{companyId}/member/{learnerId}/completions:
     get:
