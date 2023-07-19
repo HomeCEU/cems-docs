@@ -2616,7 +2616,67 @@ paths:
           description: "Order item not found"
         406:
           description: "Invalid date format"
-          
+
+  /company/{companyId}/orderitems/update_expiration:
+    post:
+      tags:
+        - "Course"
+      summary: "Set a new expiration date for a set of Order Items, ignores if an order item provided doesn't exist"
+      description: ""
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "companyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "body"
+          in: "body"
+          description: ""
+          schema:
+            type: "object"
+            required:
+              - "expiration_date"
+              - "order_items"
+            properties:
+              expiration_date:
+                type: "string"
+                example: "2020-05-28"
+              order_items:
+                type: "array"
+                items:
+                  type: "number"
+                  example:
+                    - 1
+                    - 2
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "object"
+            required:
+              - "data"
+            properties:
+              data:
+                type: "object"
+                required:
+                  - "message"
+                properties:
+                  message:
+                    type: "string"
+                    example: "OrderItem 6846373 was updated successfully"
+        401:
+          description: "Not authenticated"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Company not found"
+        406:
+          description: "Invalid date format | Invalid order_items format"
+
   /filterset:
     post:
       tags:
