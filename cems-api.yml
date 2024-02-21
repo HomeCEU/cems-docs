@@ -3625,6 +3625,12 @@ paths:
       description: ""
       produces:
       - "application/json"
+      parameters:
+      - name: "refresh_token"
+        in: "query"
+        type: "string"
+        required: true
+        description: ""
       responses:
         200:
           description: "Access token has been refreshed"
@@ -4455,6 +4461,35 @@ paths:
           description: "Enrollment not found"
         409:
           description: "We do not have asha number on file and one was not provided, please provide the asha number in the request body"
+          
+  /company/{companyId}/member/{learnerId}/enrollments:
+    get:
+      tags:
+        - "Enrollments"
+      summary: "Learner course completions"
+      operationId: "getMemberTranscript"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "companyId"
+          in: "path"
+          description: ""
+          required: true
+          type: "integer"
+        - name: "learnerId"
+          in: "path"
+          description: ""
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/LearnerCompletions"
+        403:
+          description: "Not authorized"
+        404:
+          description: "Company or learner not found"
 
   /company/{companyId}/member/{learnerId}/completions:
     get:
