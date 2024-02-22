@@ -4467,7 +4467,7 @@ paths:
       tags:
         - "Enrollments"
       summary: "Learner course completions"
-      operationId: "getMemberTranscript"
+      operationId: "getMemberEnrollments"
       produces:
       - "application/json"
       parameters:
@@ -4485,7 +4485,7 @@ paths:
         200:
           description: "Success"
           schema:
-            $ref: "#/definitions/LearnerCompletions"
+            $ref: "#/definitions/GetExamEnrollments"
         403:
           description: "Not authorized"
         404:
@@ -7074,6 +7074,12 @@ definitions:
             examId: 
               type: "string"
               example: "1234"
+            isScorm:
+              type: "string"
+              example: "0"
+            reportToAsha:
+              type: "string"
+              example: "0"
 
   AddUserLicense:
     required: 
