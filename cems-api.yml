@@ -1560,10 +1560,10 @@ paths:
       parameters:
         - name: "body"
           in: "body"
-          description: "The only required parameters are: first_name, last_name, company_id, emloyee_id, access_level, is_active, and is_corporate_admin"
+          description: "The only required parameters are: first_name, last_name, company_id, employee_id, access_level, is_active, and is_corporate_admin"
           required: false
           schema:
-            $ref: "#/definitions/CompanyMember"
+            $ref: "#/definitions/AddCompanyMember"
       responses:
         201:
           description: "User was created"
@@ -6859,8 +6859,8 @@ definitions:
                 ceBrokerCourseNumber: 
                   type: "number"
                   example: 554433
-                  
-  CompanyMember:
+
+  AddCompanyMember:
     required: 
       - "company_id"
       - "first_name"
@@ -6950,13 +6950,16 @@ definitions:
       license_expires_on: 
         type: "string"
         example: "2020-12-31"
+      send_welcome_email:
+        type: boolean
+        example: true
       group_ids: 
         type: "array"
         items: 
           type: "number"
         example: 
           - 4567
-          - 9876
+          - 9876              
 
   LearnerCompletions:
     type: "object"
